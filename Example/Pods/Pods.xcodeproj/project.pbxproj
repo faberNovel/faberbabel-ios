@@ -6,33 +6,52 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = AE7B4FB01588B9E6DF09CB79FC7CE7BD /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		27D5864DB5382D8719DA58787481D2F4 /* Pods-Faberbabel_iOS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B336FC445CA1CE4D6BD8BAB9DA7162 /* Pods-Faberbabel_iOS_Example-dummy.m */; };
+		0942C1F3D250D650C87A2D90D5BBC507 /* Pods-Faberbabel_iOS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B336FC445CA1CE4D6BD8BAB9DA7162 /* Pods-Faberbabel_iOS_Example-dummy.m */; };
+		1B74214EFE3D1EC44E30177B0A884E92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		5D3D68484F6F242ED195C0856D4948EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		6889687996F91DD7C3A0B491192F7997 /* Pods-Faberbabel_iOS_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 89B26436C74B30C489F3A2EA2D96A7F8 /* Pods-Faberbabel_iOS_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		76CE3203B42C52013D49D320A8BC0821 /* Pods-Faberbabel_iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E32232C99F7BD96077EE8FB61B48A25 /* Pods-Faberbabel_iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		919C6FDAAF09DD44CBACEDECAB0BC73A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		BF9633A69B3DDF4F30749FBF55807F87 /* Faberbabel_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B3DBEBA414F7FCCB3A93004E40BC36 /* Faberbabel_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1E89D0A5B692A6361FBBDA023A15843 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FC0689204079B893A658AF03258B74 /* ReplaceMe.swift */; };
+		D3FB647E79631D071B92F51F86956119 /* Pods-Faberbabel_iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E32232C99F7BD96077EE8FB61B48A25 /* Pods-Faberbabel_iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D59782D08C0005275A090B7E251C04C4 /* Faberbabel_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E681E142E40E35D4353197FF20C72C /* Faberbabel_iOS-dummy.m */; };
 		DF7AC13C90FFC231DACBCA29119593C9 /* Pods-Faberbabel_iOS_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7690BEF041AC83F27DE586B97BF8B6BA /* Pods-Faberbabel_iOS_Tests-dummy.m */; };
 		E5F82E0FB9BF5CAF60F36910B959168F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5FA4A4A81C6059BE9F2EF9AEE6AB85F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F697DABD96973EE88190E750202BA6DA;
-			remoteInfo = Faberbabel_iOS;
-		};
 		D81343261BCD6A8E175714941668B35E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 35612F067E9A26D4BBACB76BBCBF48FB;
 			remoteInfo = "Pods-Faberbabel_iOS_Example";
+		};
+		DD0ACC909C3A3D858A9CF50401706678 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F697DABD96973EE88190E750202BA6DA;
+			remoteInfo = Faberbabel_iOS;
+		};
+		F18F671E7ECE179FC454D5117AEA6F90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
+			remoteInfo = SwiftLint;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -46,10 +65,12 @@
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		373AAF460D6C91913D3F8DDC35717E0A /* Pods-Faberbabel_iOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Faberbabel_iOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		3E2E1EE02CF74D27772B4FA95DCC0025 /* Faberbabel_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Faberbabel_iOS.release.xcconfig; sourceTree = "<group>"; };
+		3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
 		4FF355B93ED9638BCBE7FE43C2BF05D0 /* Faberbabel_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Faberbabel_iOS.framework; path = Faberbabel_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5223496160A1BBB5E897AE998449A592 /* Pods-Faberbabel_iOS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Faberbabel_iOS_Example.modulemap"; sourceTree = "<group>"; };
 		5E403CE470BF4AC0108C8007E9C5060B /* Pods_Faberbabel_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Faberbabel_iOS_Example.framework; path = "Pods-Faberbabel_iOS_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7690BEF041AC83F27DE586B97BF8B6BA /* Pods-Faberbabel_iOS_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Faberbabel_iOS_Tests-dummy.m"; sourceTree = "<group>"; };
+		7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
 		806B25F8B49FA26E44857AC742A31F82 /* Faberbabel_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Faberbabel_iOS.debug.xcconfig; sourceTree = "<group>"; };
 		81E681E142E40E35D4353197FF20C72C /* Faberbabel_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Faberbabel_iOS-dummy.m"; sourceTree = "<group>"; };
 		89B26436C74B30C489F3A2EA2D96A7F8 /* Pods-Faberbabel_iOS_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Faberbabel_iOS_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -73,11 +94,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		16E3DD0B6799F4E50FABBB2F507DEF00 /* Frameworks */ = {
+		74FBD64AB95FCE64333511F1CDA146C5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				919C6FDAAF09DD44CBACEDECAB0BC73A /* Foundation.framework in Frameworks */,
+				1B74214EFE3D1EC44E30177B0A884E92 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +139,24 @@
 				B0833E3594DAA7BFE5EADE0CA0858853 /* README.md */,
 			);
 			name = Pod;
+			sourceTree = "<group>";
+		};
+		7FDA596DBE0337ACDFE55A210D54EF26 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */,
+				7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftLint";
+			sourceTree = "<group>";
+		};
+		965877409E01FB3D85D85E90E6B30185 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D96179D43A67C5D5323B0682D32C133C /* SwiftLint */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		96FF2116C65CD3A06A20C0508C4215DE /* Pods-Faberbabel_iOS_Example */ = {
@@ -177,6 +216,7 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				F932361AD474B12A143E370089C966C8 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				965877409E01FB3D85D85E90E6B30185 /* Pods */,
 				010BFCDA17E70E2966C547AC3687D5C7 /* Products */,
 				E0F664BC0439F45460A902B772950D03 /* Targets Support Files */,
 			);
@@ -188,6 +228,15 @@
 				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D96179D43A67C5D5323B0682D32C133C /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+				7FDA596DBE0337ACDFE55A210D54EF26 /* Support Files */,
+			);
+			name = SwiftLint;
+			path = SwiftLint;
 			sourceTree = "<group>";
 		};
 		E0F664BC0439F45460A902B772950D03 /* Targets Support Files */ = {
@@ -234,6 +283,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		29CFC8E9DB3C8DE74A248676BF052BC3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3FB647E79631D071B92F51F86956119 /* Pods-Faberbabel_iOS_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6DB3027D7B28E173DEA2B0A35AA89818 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,30 +299,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		887E1A534ACB42BD486E641397E1A5C9 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				76CE3203B42C52013D49D320A8BC0821 /* Pods-Faberbabel_iOS_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		35612F067E9A26D4BBACB76BBCBF48FB /* Pods-Faberbabel_iOS_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 818D4486638FC4219A3973B97E302849 /* Build configuration list for PBXNativeTarget "Pods-Faberbabel_iOS_Example" */;
+			buildConfigurationList = D802D78D53A22AC0452F91813D8CD74D /* Build configuration list for PBXNativeTarget "Pods-Faberbabel_iOS_Example" */;
 			buildPhases = (
-				887E1A534ACB42BD486E641397E1A5C9 /* Headers */,
-				00F1B765F6F6ABF8537508A8361621B1 /* Sources */,
-				16E3DD0B6799F4E50FABBB2F507DEF00 /* Frameworks */,
-				4A71282E515A5245F6B11329DE00CB55 /* Resources */,
+				29CFC8E9DB3C8DE74A248676BF052BC3 /* Headers */,
+				61D64040853AF7AD20AF8B9107E27C75 /* Sources */,
+				74FBD64AB95FCE64333511F1CDA146C5 /* Frameworks */,
+				68E9496D8EB23B32D35E5985BE8A4796 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A5FF2F20C991E21F7C200D54E9E5927C /* PBXTargetDependency */,
+				1F0C0A9736BDC4FC4D9DFDD39CDD8E91 /* PBXTargetDependency */,
+				45EA0E6B9049F153572A5E6F9C624BBE /* PBXTargetDependency */,
 			);
 			name = "Pods-Faberbabel_iOS_Example";
 			productName = "Pods-Faberbabel_iOS_Example";
@@ -334,12 +384,13 @@
 				F697DABD96973EE88190E750202BA6DA /* Faberbabel_iOS */,
 				35612F067E9A26D4BBACB76BBCBF48FB /* Pods-Faberbabel_iOS_Example */,
 				FECC6D9EB2A959F056B7277065E574A1 /* Pods-Faberbabel_iOS_Tests */,
+				52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4A71282E515A5245F6B11329DE00CB55 /* Resources */ = {
+		68E9496D8EB23B32D35E5985BE8A4796 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -363,14 +414,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00F1B765F6F6ABF8537508A8361621B1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				27D5864DB5382D8719DA58787481D2F4 /* Pods-Faberbabel_iOS_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0EBB90B3AA1B09D65987296BB0307331 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,14 +431,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		61D64040853AF7AD20AF8B9107E27C75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0942C1F3D250D650C87A2D90D5BBC507 /* Pods-Faberbabel_iOS_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A5FF2F20C991E21F7C200D54E9E5927C /* PBXTargetDependency */ = {
+		1F0C0A9736BDC4FC4D9DFDD39CDD8E91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Faberbabel_iOS;
 			target = F697DABD96973EE88190E750202BA6DA /* Faberbabel_iOS */;
-			targetProxy = 5FA4A4A81C6059BE9F2EF9AEE6AB85F1 /* PBXContainerItemProxy */;
+			targetProxy = DD0ACC909C3A3D858A9CF50401706678 /* PBXContainerItemProxy */;
+		};
+		45EA0E6B9049F153572A5E6F9C624BBE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftLint;
+			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
+			targetProxy = F18F671E7ECE179FC454D5117AEA6F90 /* PBXContainerItemProxy */;
 		};
 		DC03BF908D34DF30B6D7CCC4CF5C9025 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -439,7 +496,67 @@
 			};
 			name = Debug;
 		};
-		3377D1D23335030B73F2B43066FA790C /* Release */ = {
+		3AE85821112616DB54706A468A7FA5A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A7B693444170D08827472334EA8F141 /* Pods-Faberbabel_iOS_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Faberbabel_iOS_Example/Pods-Faberbabel_iOS_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Faberbabel_iOS_Example/Pods-Faberbabel_iOS_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		46EECD2DED30D7C5FE141C0B267C2D3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		55DD740115BE746C8DBB7753806D85D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		62358F635E6D8BD1950CC00B507236A6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B96F374FD369097C9CF6CC5319688245 /* Pods-Faberbabel_iOS_Example.release.xcconfig */;
 			buildSettings = {
@@ -694,39 +811,6 @@
 			};
 			name = Debug;
 		};
-		DF1F85BB4CBB8184E93BB75673171684 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A7B693444170D08827472334EA8F141 /* Pods-Faberbabel_iOS_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Faberbabel_iOS_Example/Pods-Faberbabel_iOS_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Faberbabel_iOS_Example/Pods-Faberbabel_iOS_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -735,15 +819,6 @@
 			buildConfigurations = (
 				B8BCBD0110C2658BB5DAADB9B7D97B92 /* Debug */,
 				B0087CB4594321EF41619F3181FE120E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		818D4486638FC4219A3973B97E302849 /* Build configuration list for PBXNativeTarget "Pods-Faberbabel_iOS_Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DF1F85BB4CBB8184E93BB75673171684 /* Debug */,
-				3377D1D23335030B73F2B43066FA790C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -757,11 +832,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		AE7B4FB01588B9E6DF09CB79FC7CE7BD /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46EECD2DED30D7C5FE141C0B267C2D3F /* Debug */,
+				55DD740115BE746C8DBB7753806D85D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BF0BB52A83959C992A55BE388F36F139 /* Build configuration list for PBXNativeTarget "Pods-Faberbabel_iOS_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0890148EC3496459FEA0C0D5B777EA8E /* Debug */,
 				A45830FC798167D2A7A67888B64C9771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D802D78D53A22AC0452F91813D8CD74D /* Build configuration list for PBXNativeTarget "Pods-Faberbabel_iOS_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AE85821112616DB54706A468A7FA5A1 /* Debug */,
+				62358F635E6D8BD1950CC00B507236A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
