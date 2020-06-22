@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Faberbabel_iOS_Example' do
+  pod 'Faberbabel_iOS', :path => '../'
+
+  target 'Faberbabel_iOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
