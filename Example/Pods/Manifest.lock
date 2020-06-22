@@ -1,0 +1,16 @@
+PODS:
+  - Faberbabel_iOS (0.1.0)
+
+DEPENDENCIES:
+  - Faberbabel_iOS (from `../`)
+
+EXTERNAL SOURCES:
+  Faberbabel_iOS:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Faberbabel_iOS: d18cd78b1d62fe6d0b9883550f6e386122678834
+
+PODFILE CHECKSUM: ae0d39821dda5702b61af7048b2bc028d723f56e
+
+COCOAPODS: 1.9.1
