@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
     Use Faberbabel in your iOS app easily with this framework.
                         DESC
 
-  s.homepage         = 'https://github.com/faberNovel/faberbabel-ios'
+  s.homepage         = 'https://github.com/faberNovel'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Jean Haberer' => 'jean.haberer@fabernovel.com' }
