@@ -2,10 +2,10 @@ use_frameworks!
 
 target 'Faberbabel_iOS_Example' do
   pod 'Faberbabel_iOS', :path => '../'
+  pod 'SwiftLint', '~> 0.39'
 
   target 'Faberbabel_iOS_Tests' do
     inherit! :search_paths
-
     
   end
 end

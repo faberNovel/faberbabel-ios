@@ -1,0 +1,26 @@
+desc "Run all unit tests"
+lane :tests do
+  scan(
+    workspace: "Example/Faberbabel_iOS.xcworkspace",
+    configuration: "Debug",
+    scheme: "Faberbabel_iOS-Example",
+    clean: true,
+    devices: ["iPhone 8"]
+  )
+end
+
+desc "Linting"
+lane :lint do
+  swiftlint(
+      mode: :lint,
+      strict: true,
+      executable: "Example/Pods/SwiftLint/swiftlint",
+      path: "Example"
+  )
+end
+
+desc "CI Check"
+lane :ci_check do
+  tests
+  lint
+end
