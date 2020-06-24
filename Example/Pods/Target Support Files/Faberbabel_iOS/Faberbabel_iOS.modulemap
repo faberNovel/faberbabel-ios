@@ -1,6 +1,0 @@
-framework module Faberbabel_iOS {
-  umbrella header "Faberbabel_iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38B4E46C7335B01DC2A3C6E2 /* Pods_Faberbabel_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83937F0A3B829B1C6577A4A1 /* Pods_Faberbabel_iOS_Example.framework */; };
+		398A81FF1A75BA500B671B37 /* Pods_Faberbabel_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E0AF1F404EF77FF679D4E8C /* Pods_Faberbabel_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		B640C4D15EBA7C18A67767D6 /* Pods_Faberbabel_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDE0B989EC2393B282F7079 /* Pods_Faberbabel_iOS_Tests.framework */; };
+		71095F61B1F95E6322361619 /* Pods_Faberbabel_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2A2875138543DEA570C7C8 /* Pods_Faberbabel_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,30 +23,30 @@
 			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
-			remoteInfo = Faberbabel_iOS;
+			remoteInfo = Faberbabel;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		30D15F478970D3C30C457FA4 /* Pods-Faberbabel_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_iOS_Example.release.xcconfig"; path = "Target Support Files/Pods-Faberbabel_iOS_Example/Pods-Faberbabel_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
-		35EFFF2B683BF4BA168813F3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		4DDE0B989EC2393B282F7079 /* Pods_Faberbabel_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faberbabel_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		607FACD01AFB9204008FA782 /* Faberbabel_iOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faberbabel_iOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E0AF1F404EF77FF679D4E8C /* Pods_Faberbabel_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faberbabel_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B2A2875138543DEA570C7C8 /* Pods_Faberbabel_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faberbabel_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54778E01FE9915EBD3E3CFD4 /* Faberbabel.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Faberbabel.podspec; path = ../Faberbabel.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5D512403CA1C980057C9E07E /* Pods-Faberbabel_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_Tests.release.xcconfig"; path = "Target Support Files/Pods-Faberbabel_Tests/Pods-Faberbabel_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		607FACD01AFB9204008FA782 /* Faberbabel_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faberbabel_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACE51AFB9204008FA782 /* Faberbabel_iOS_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Faberbabel_iOS_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACE51AFB9204008FA782 /* Faberbabel_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Faberbabel_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		7D673C86CEB8BF46A5505887 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		83937F0A3B829B1C6577A4A1 /* Pods_Faberbabel_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faberbabel_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F2952900475A8FBD3EA0734 /* Pods-Faberbabel_iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_iOS_Example.debug.xcconfig"; path = "Target Support Files/Pods-Faberbabel_iOS_Example/Pods-Faberbabel_iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		8FF960822E61A0584C788EC3 /* Faberbabel_iOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Faberbabel_iOS.podspec; path = ../Faberbabel_iOS.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		D6C644612C1C7D805BD40986 /* Pods-Faberbabel_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_iOS_Tests.release.xcconfig"; path = "Target Support Files/Pods-Faberbabel_iOS_Tests/Pods-Faberbabel_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		F67D34D48EE6B57F9BFA7806 /* Pods-Faberbabel_iOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_iOS_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Faberbabel_iOS_Tests/Pods-Faberbabel_iOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		9083216BFB95714471677805 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		964D412E9EB21607C89B356C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9CCF604D665B099A6FB6D020 /* Pods-Faberbabel_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_Example.debug.xcconfig"; path = "Target Support Files/Pods-Faberbabel_Example/Pods-Faberbabel_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		ABC74A6F801F2BFD7755DC04 /* Pods-Faberbabel_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Faberbabel_Tests/Pods-Faberbabel_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF388D5F5F082A76BFA63C12 /* Pods-Faberbabel_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_Example.release.xcconfig"; path = "Target Support Files/Pods-Faberbabel_Example/Pods-Faberbabel_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38B4E46C7335B01DC2A3C6E2 /* Pods_Faberbabel_iOS_Example.framework in Frameworks */,
+				71095F61B1F95E6322361619 /* Pods_Faberbabel_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,29 +62,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B640C4D15EBA7C18A67767D6 /* Pods_Faberbabel_iOS_Tests.framework in Frameworks */,
+				398A81FF1A75BA500B671B37 /* Pods_Faberbabel_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D5207555F08DC53A26ADD43 /* Frameworks */ = {
+		0E7C0E58CABBF5D38C8C4528 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				83937F0A3B829B1C6577A4A1 /* Pods_Faberbabel_iOS_Example.framework */,
-				4DDE0B989EC2393B282F7079 /* Pods_Faberbabel_iOS_Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		18800EEE0211F7B1AC97EF56 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8F2952900475A8FBD3EA0734 /* Pods-Faberbabel_iOS_Example.debug.xcconfig */,
-				30D15F478970D3C30C457FA4 /* Pods-Faberbabel_iOS_Example.release.xcconfig */,
-				F67D34D48EE6B57F9BFA7806 /* Pods-Faberbabel_iOS_Tests.debug.xcconfig */,
-				D6C644612C1C7D805BD40986 /* Pods-Faberbabel_iOS_Tests.release.xcconfig */,
+				9CCF604D665B099A6FB6D020 /* Pods-Faberbabel_Example.debug.xcconfig */,
+				FF388D5F5F082A76BFA63C12 /* Pods-Faberbabel_Example.release.xcconfig */,
+				ABC74A6F801F2BFD7755DC04 /* Pods-Faberbabel_Tests.debug.xcconfig */,
+				5D512403CA1C980057C9E07E /* Pods-Faberbabel_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -93,24 +84,24 @@
 			isa = PBXGroup;
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				607FACD21AFB9204008FA782 /* Example for Faberbabel_iOS */,
+				607FACD21AFB9204008FA782 /* Example for Faberbabel */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				18800EEE0211F7B1AC97EF56 /* Pods */,
-				0D5207555F08DC53A26ADD43 /* Frameworks */,
+				0E7C0E58CABBF5D38C8C4528 /* Pods */,
+				81B010A5104171554C25FD11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* Faberbabel_iOS_Example.app */,
-				607FACE51AFB9204008FA782 /* Faberbabel_iOS_Tests.xctest */,
+				607FACD01AFB9204008FA782 /* Faberbabel_Example.app */,
+				607FACE51AFB9204008FA782 /* Faberbabel_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		607FACD21AFB9204008FA782 /* Example for Faberbabel_iOS */ = {
+		607FACD21AFB9204008FA782 /* Example for Faberbabel */ = {
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -120,8 +111,8 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
-			name = "Example for Faberbabel_iOS";
-			path = Faberbabel_iOS;
+			name = "Example for Faberbabel";
+			path = Faberbabel;
 			sourceTree = "<group>";
 		};
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
@@ -152,41 +143,50 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				8FF960822E61A0584C788EC3 /* Faberbabel_iOS.podspec */,
-				35EFFF2B683BF4BA168813F3 /* README.md */,
-				7D673C86CEB8BF46A5505887 /* LICENSE */,
+				54778E01FE9915EBD3E3CFD4 /* Faberbabel.podspec */,
+				964D412E9EB21607C89B356C /* README.md */,
+				9083216BFB95714471677805 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		81B010A5104171554C25FD11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B2A2875138543DEA570C7C8 /* Pods_Faberbabel_Example.framework */,
+				0E0AF1F404EF77FF679D4E8C /* Pods_Faberbabel_Tests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACCF1AFB9204008FA782 /* Faberbabel_iOS_Example */ = {
+		607FACCF1AFB9204008FA782 /* Faberbabel_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Faberbabel_iOS_Example" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Faberbabel_Example" */;
 			buildPhases = (
-				AB1E0235F4A37C95E7772C1D /* [CP] Check Pods Manifest.lock */,
+				663580CD34038929EFAEF6C0 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				5F701F65E699929A7CF4B834 /* [CP] Embed Pods Frameworks */,
-				CA0AE8D024A1EB00004CD5F1 /* ShellScript */,
+				0DE27D3C87832D07D5DE6035 /* [CP] Embed Pods Frameworks */,
+				CA688DF124A34A51004A5572 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Faberbabel_iOS_Example;
-			productName = Faberbabel_iOS;
-			productReference = 607FACD01AFB9204008FA782 /* Faberbabel_iOS_Example.app */;
+			name = Faberbabel_Example;
+			productName = Faberbabel;
+			productReference = 607FACD01AFB9204008FA782 /* Faberbabel_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		607FACE41AFB9204008FA782 /* Faberbabel_iOS_Tests */ = {
+		607FACE41AFB9204008FA782 /* Faberbabel_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Faberbabel_iOS_Tests" */;
+			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Faberbabel_Tests" */;
 			buildPhases = (
-				25FA3D8E09801D5096992749 /* [CP] Check Pods Manifest.lock */,
+				EF89B2F39CC928280F06957D /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -196,9 +196,9 @@
 			dependencies = (
 				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
 			);
-			name = Faberbabel_iOS_Tests;
+			name = Faberbabel_Tests;
 			productName = Tests;
-			productReference = 607FACE51AFB9204008FA782 /* Faberbabel_iOS_Tests.xctest */;
+			productReference = 607FACE51AFB9204008FA782 /* Faberbabel_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -222,7 +222,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Faberbabel_iOS" */;
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Faberbabel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -236,8 +236,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACCF1AFB9204008FA782 /* Faberbabel_iOS_Example */,
-				607FACE41AFB9204008FA782 /* Faberbabel_iOS_Tests */,
+				607FACCF1AFB9204008FA782 /* Faberbabel_Example */,
+				607FACE41AFB9204008FA782 /* Faberbabel_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -263,47 +263,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		25FA3D8E09801D5096992749 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Faberbabel_iOS_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F701F65E699929A7CF4B834 /* [CP] Embed Pods Frameworks */ = {
+		0DE27D3C87832D07D5DE6035 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Faberbabel_iOS_Example/Pods-Faberbabel_iOS_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Faberbabel_iOS/Faberbabel_iOS.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Faberbabel_Example/Pods-Faberbabel_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Faberbabel/Faberbabel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Faberbabel_iOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Faberbabel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Faberbabel_iOS_Example/Pods-Faberbabel_iOS_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Faberbabel_Example/Pods-Faberbabel_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AB1E0235F4A37C95E7772C1D /* [CP] Check Pods Manifest.lock */ = {
+		663580CD34038929EFAEF6C0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -318,14 +296,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Faberbabel_iOS_Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Faberbabel_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CA0AE8D024A1EB00004CD5F1 /* ShellScript */ = {
+		CA688DF124A34A51004A5572 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -341,6 +319,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		EF89B2F39CC928280F06957D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Faberbabel_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -367,7 +367,7 @@
 /* Begin PBXTargetDependency section */
 		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 607FACCF1AFB9204008FA782 /* Faberbabel_iOS_Example */;
+			target = 607FACCF1AFB9204008FA782 /* Faberbabel_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -493,10 +493,10 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F2952900475A8FBD3EA0734 /* Pods-Faberbabel_iOS_Example.debug.xcconfig */;
+			baseConfigurationReference = 9CCF604D665B099A6FB6D020 /* Pods-Faberbabel_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Faberbabel_iOS/Info.plist;
+				INFOPLIST_FILE = Faberbabel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -508,10 +508,10 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30D15F478970D3C30C457FA4 /* Pods-Faberbabel_iOS_Example.release.xcconfig */;
+			baseConfigurationReference = FF388D5F5F082A76BFA63C12 /* Pods-Faberbabel_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Faberbabel_iOS/Info.plist;
+				INFOPLIST_FILE = Faberbabel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -523,7 +523,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F67D34D48EE6B57F9BFA7806 /* Pods-Faberbabel_iOS_Tests.debug.xcconfig */;
+			baseConfigurationReference = ABC74A6F801F2BFD7755DC04 /* Pods-Faberbabel_Tests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -539,13 +539,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faberbabel_iOS_Example.app/Faberbabel_iOS_Example";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faberbabel_Example.app/Faberbabel_Example";
 			};
 			name = Debug;
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6C644612C1C7D805BD40986 /* Pods-Faberbabel_iOS_Tests.release.xcconfig */;
+			baseConfigurationReference = 5D512403CA1C980057C9E07E /* Pods-Faberbabel_Tests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -557,14 +557,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faberbabel_iOS_Example.app/Faberbabel_iOS_Example";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Faberbabel_Example.app/Faberbabel_Example";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Faberbabel_iOS" */ = {
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Faberbabel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
@@ -573,7 +573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Faberbabel_iOS_Example" */ = {
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Faberbabel_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
@@ -582,7 +582,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Faberbabel_iOS_Tests" */ = {
+		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "Faberbabel_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,

@@ -1,5 +1,5 @@
 import XCTest
-import Faberbabel_iOS
+import Faberbabel
 
 class Tests: XCTestCase {
 

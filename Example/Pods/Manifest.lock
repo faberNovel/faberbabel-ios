@@ -1,9 +1,9 @@
 PODS:
-  - Faberbabel_iOS (0.1.0)
+  - Faberbabel (0.1.0)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
-  - Faberbabel_iOS (from `../`)
+  - Faberbabel (from `../`)
   - SwiftLint (~> 0.39)
 
 SPEC REPOS:
@@ -11,13 +11,13 @@ SPEC REPOS:
     - SwiftLint
 
 EXTERNAL SOURCES:
-  Faberbabel_iOS:
+  Faberbabel:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Faberbabel_iOS: b1d81666deb4bfb7f1aca3c12e1f4443bc39721e
+  Faberbabel: ddb2121c82012786c5b1f001213d78cac3e46783
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: 93cb5ac9eb2f013ea74a86703ba1257b43b84909
+PODFILE CHECKSUM: ff5e27875fb02e2e1a4ac63481013de1be6ffb7f
 
 COCOAPODS: 1.9.1
