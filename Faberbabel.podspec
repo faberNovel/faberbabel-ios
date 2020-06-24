@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint Faberbabel_iOS.podspec' to ensure this is a
+# Be sure to run `pod lib lint Faberbabel.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'Faberbabel_iOS'
+  s.name             = 'Faberbabel'
   s.version          = '0.1.0'
   s.summary          = 'Faberbabel iOS SDK'
 
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
     Use Faberbabel in your iOS app easily with this framework.
-                        DESC
+                      DESC
 
   s.homepage         = 'https://github.com/faberNovel'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
@@ -30,10 +30,10 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.swift_version = '5.0'
 
-  s.source_files = 'Faberbabel_iOS/Classes/**/*'
+  s.source_files = 'Faberbabel/Classes/**/*'
   
   # s.resource_bundles = {
-  #   'Faberbabel_iOS' => ['Faberbabel_iOS/Assets/*.png']
+  #   'Faberbabel' => ['Faberbabel/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
