@@ -1,9 +1,9 @@
 desc "Run all unit tests"
 lane :tests do
   scan(
-    workspace: "Example/Faberbabel_iOS.xcworkspace",
+    workspace: "Example/Faberbabel.xcworkspace",
     configuration: "Debug",
-    scheme: "Faberbabel_iOS-Example",
+    scheme: "Faberbabel-Example",
     clean: true,
     devices: ["iPhone 8"]
   )
