@@ -9,6 +9,11 @@ import Foundation
 import CoreData
 
 extension Bundle {
+    public func updateCurrentWording(completion: (WordingUpdateResult) -> Void) {
+        let lang = Locale.current.languageCode ?? "Base"
+        updateWording(forLanguageCode: lang, completion: completion)
+    }
+
     public func updateWording(forLanguageCode lang: String, completion: (WordingUpdateResult) -> Void) {
         guard self.localizations.contains(lang) else {
             completion(.failure(NSError.unknownLanguage))

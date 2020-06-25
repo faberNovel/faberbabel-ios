@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Faberbabel
+
+  Created by Jean Haberer on 25/06/2020.
+  Copyright © 2020 CocoaPods. All rights reserved.
+*/
+
+"hello_world_title" = "Hello World";
+"hello_world_description" = "This is the description of Hello World.";
+"refresh_button" = "Refresh";
+"localize_button" = "Localize";

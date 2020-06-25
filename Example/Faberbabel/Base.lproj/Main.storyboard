@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +18,58 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOl-Lv-ff0">
+                                <rect key="frame" x="16" y="269" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUJ-ft-cc1">
+                                <rect key="frame" x="16" y="323.5" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPU-Uf-pB2">
+                                <rect key="frame" x="164.5" y="384" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="localize" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WhF-DY-80w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l94-z7-OSo">
+                                <rect key="frame" x="164.5" y="422" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="refresh" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9fv-rM-0eN"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mPU-Uf-pB2" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="2sQ-ip-0R8"/>
+                            <constraint firstItem="LUJ-ft-cc1" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="5Jw-iS-1lf"/>
+                            <constraint firstItem="mPU-Uf-pB2" firstAttribute="top" secondItem="LUJ-ft-cc1" secondAttribute="bottom" constant="40" id="AYC-MS-Xeo"/>
+                            <constraint firstItem="TOl-Lv-ff0" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="ERf-BH-Yng"/>
+                            <constraint firstItem="l94-z7-OSo" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="RIj-Tj-Hwm"/>
+                            <constraint firstItem="LUJ-ft-cc1" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="RLQ-Hf-A2h"/>
+                            <constraint firstItem="l94-z7-OSo" firstAttribute="top" secondItem="mPU-Uf-pB2" secondAttribute="bottom" constant="8" id="UQ8-oz-Rgo"/>
+                            <constraint firstItem="LUJ-ft-cc1" firstAttribute="top" secondItem="TOl-Lv-ff0" secondAttribute="bottom" constant="34" id="dEJ-Lj-3vi"/>
+                            <constraint firstItem="TOl-Lv-ff0" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="jsk-JX-eHG"/>
+                            <constraint firstItem="LUJ-ft-cc1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="sfb-2U-V32"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="label1" destination="TOl-Lv-ff0" id="LLQ-8R-KhZ"/>
+                        <outlet property="label2" destination="LUJ-ft-cc1" id="eqA-nl-cU1"/>
+                        <outlet property="localizeButton" destination="mPU-Uf-pB2" id="7WC-8D-GBn"/>
+                        <outlet property="refreshButton" destination="l94-z7-OSo" id="dgf-JC-oj6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

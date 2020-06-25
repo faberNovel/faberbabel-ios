@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		71095F61B1F95E6322361619 /* Pods_Faberbabel_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2A2875138543DEA570C7C8 /* Pods_Faberbabel_Example.framework */; };
+		CA7415B424A487040057C12A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA7415B624A487040057C12A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		964D412E9EB21607C89B356C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9CCF604D665B099A6FB6D020 /* Pods-Faberbabel_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_Example.debug.xcconfig"; path = "Target Support Files/Pods-Faberbabel_Example/Pods-Faberbabel_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		ABC74A6F801F2BFD7755DC04 /* Pods-Faberbabel_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Faberbabel_Tests/Pods-Faberbabel_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		CA7415B524A487040057C12A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CA7415B924A4871B0057C12A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF388D5F5F082A76BFA63C12 /* Pods-Faberbabel_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_Example.release.xcconfig"; path = "Target Support Files/Pods-Faberbabel_Example/Pods-Faberbabel_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +113,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				CA7415B624A487040057C12A /* Localizable.strings */,
 			);
 			name = "Example for Faberbabel";
 			path = Faberbabel;
@@ -230,6 +234,7 @@
 				English,
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
@@ -248,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				CA7415B424A487040057C12A /* Localizable.strings in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -387,6 +393,15 @@
 				607FACDF1AFB9204008FA782 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		CA7415B624A487040057C12A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA7415B524A487040057C12A /* en */,
+				CA7415B924A4871B0057C12A /* fr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
