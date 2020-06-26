@@ -15,10 +15,10 @@ class LocalizableFetcher {
             completion(
                 .success(
                     """
-                    \"hello_world_title\" = \"Hello Truche\";
-                    \"hello_world_description\" = \"This is the description of Hello Truche.\";
+                    \"hello_world_title\" = \"Hello Updated World\";
+                    \"hello_world_description\" = \"This is the updated description of Hello World.\";
                     \"refresh_button\" = \"Refresh (already up to date)\";
-                    \"localize_button\" = \"Localize (but better)\";
+                    \"localize_button\" = \"updated localize\";
                     """
                 )
             )
@@ -26,10 +26,10 @@ class LocalizableFetcher {
             completion(
                 .success(
                     """
-                    \"hello_world_title\" = \"Bonjour Nal\";
-                    \"hello_world_description\" = \"Voici la description de bonjour nal.\";
+                    \"hello_world_title\" = \"Bonjour Monde à jour\";
+                    \"hello_world_description\" = \"Voici la description à jour de bonjour monde.\";
                     \"refresh_button\" = \"Actualiser (dejà à jour)\";
-                    \"localize_button\" = \"Localiser (mais en mieux)\";
+                    \"localize_button\" = \"Localiser à jour\";
                     """
                 )
             )
