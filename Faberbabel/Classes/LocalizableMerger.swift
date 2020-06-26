@@ -8,20 +8,8 @@
 import Foundation
 
 class LocalizableMerger {
-    init() {}
-
-    func merge(localStrings: NSDictionary, with remoteStrings: NSDictionary) -> NSDictionary {
-        let mergeResult = NSMutableDictionary(dictionary: localStrings)
-        for remoteLocalizable in remoteStrings {
-            if let localString = localStrings[remoteLocalizable.key] as? String,
-                let remoteString = remoteLocalizable.value as? String,
-                canMerge(local: localString, remote: remoteString) {
-                mergeResult[remoteLocalizable.key] = remoteLocalizable.value
-            } else if localStrings[remoteLocalizable.key] == nil {
-                mergeResult[remoteLocalizable.key] = remoteLocalizable.value
-            }
-        }
-        return mergeResult
+    func merge(localStrings: Localizations, with remoteStrings: Localizations) -> Localizations {
+        return localStrings.merging(remoteStrings) { canMerge(local: $0, remote: $1) ? $1 : $0 }
     }
 
     // MARK: - Private

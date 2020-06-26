@@ -12,22 +12,6 @@ extension Bundle {
 
     static var updatedLocalizationsBundle: Bundle?
 
-    static func updateLocalizationsBundle(forLanguage lang: String, withLocalizables strings: NSDictionary) {
-        if updatedLocalizationsBundle == nil {
-            updatedLocalizationsBundle = Bundle(bundleName: "updatedLocalizationsBundle")
-        }
-
-        let bundleURL = updatedLocalizationsBundle?.bundleURL
-        let languageURL = bundleURL?.appendingPathComponent("\(lang).lproj", isDirectory: true)
-        guard let langURL = languageURL else { return }
-
-        if FileManager.default.fileExists(atPath: langURL.path) == false {
-            try? FileManager.default.createDirectory(at: langURL, withIntermediateDirectories: true, attributes: nil)
-        }
-        let filePath = langURL.appendingPathComponent("Localizable.strings")
-        strings.write(to: filePath, atomically: false)
-    }
-
     // MARK: - Public
 
     public func updateCurrentWording(completion: (WordingUpdateResult) -> Void) {
@@ -42,32 +26,56 @@ extension Bundle {
         }
 
         let fetcher = LocalizableFetcher()
-        fetcher.fetch(for: lang) { (result) in
+        fetcher.fetch(for: lang) { result in
             switch result {
-            case let .success(strings):
-                guard
-                    let url: URL = self.url(
-                        forResource: "Localizable",
-                        withExtension: "strings",
-                        subdirectory: "\(lang).lproj"
-                    ) else {
-                        completion(.failure(NSError.unaccessibleBundle))
-                        return
+            case let .success(remoteDictionary):
+                if updateLocalizations(remoteDictionary: remoteDictionary, forLanguage: lang) {
+                    completion(.sucess)
+                } else {
+                    completion(.failure(NSError.unaccessibleBundle))
                 }
-
-                let localString = NSDictionary(contentsOfFile: url.path) ?? NSDictionary()
-                let merger = LocalizableMerger()
-                let mergedStrings = merger.merge(localStrings: localString, with: strings)
-                mergedStrings.write(
-                    to: url,
-                    atomically: false
-                )
-                Bundle.updateLocalizationsBundle(forLanguage: lang, withLocalizables: mergedStrings)
-                completion(.sucess)
             case let .failure(error):
                 completion(.failure(error))
             }
         }
+    }
+
+    // MARK: - Private
+
+    private func updateLocalizations(remoteDictionary: Localizations, forLanguage lang: String) -> Bool {
+        guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
+            return false
+        }
+        let localString: Localizations = NSDictionary(contentsOfFile: localFileUrl.path) as? Localizations ?? [:]
+        let merger = LocalizableMerger()
+        let mergedLocalizationDictionary = merger.merge(localStrings: localString, with: remoteDictionary)
+        (mergedLocalizationDictionary as NSDictionary).write(to: localFileUrl, atomically: false)
+        Bundle.updateLocalizationsBundle(forLanguage: lang,withLocalizables: mergedLocalizationDictionary)
+        return true
+    }
+
+    private func localizableFileUrl(forLanguage lang: String) -> URL? {
+        return self.url(
+            forResource: "Localizable",
+            withExtension: "strings",
+            subdirectory: "\(lang).lproj"
+        )
+    }
+
+    private static func updateLocalizationsBundle(forLanguage lang: String, withLocalizables strings: Localizations) {
+        if updatedLocalizationsBundle == nil {
+            updatedLocalizationsBundle = Bundle(bundleName: "updatedLocalizationsBundle")
+        }
+
+        let bundleURL = updatedLocalizationsBundle?.bundleURL
+        let languageURL = bundleURL?.appendingPathComponent("\(lang).lproj", isDirectory: true)
+        guard let langURL = languageURL else { return }
+
+        if FileManager.default.fileExists(atPath: langURL.path) == false {
+            try? FileManager.default.createDirectory(at: langURL, withIntermediateDirectories: true, attributes: nil)
+        }
+        let filePath = langURL.appendingPathComponent("Localizable.strings")
+        (strings as NSDictionary).write(to: filePath, atomically: false)
     }
 }
 

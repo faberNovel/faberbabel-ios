@@ -8,9 +8,7 @@
 import Foundation
 
 class LocalizableFetcher {
-    init() {}
-
-    func fetch(for lang: String, completion: (Result<NSDictionary, Error>) -> Void) {
+    func fetch(for lang: String, completion: (Result<Localizations, Error>) -> Void) {
         if lang == "en" {
             completion(
                 .success(
