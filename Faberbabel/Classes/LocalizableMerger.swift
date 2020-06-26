@@ -29,6 +29,6 @@ class LocalizableMerger {
     private func canMerge(local: String, remote: String) -> Bool {
         let localAttributesCount = local.countInstances(of: "$@") + local.countInstances(of: "%@")
         let remoteAttributesCount = remote.countInstances(of: "$@") + remote.countInstances(of: "%@")
-        return remoteAttributesCount == localAttributesCount
+        return (remoteAttributesCount == localAttributesCount) && (remote != "")
     }
 }

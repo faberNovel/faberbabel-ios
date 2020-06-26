@@ -37,6 +37,14 @@ class Tests: XCTestCase {
         XCTAssertEqual(merged, awaitedResult)
     }
 
+    func testMerger_emptyRemoteKey_ShouldKeepLocalKey() {
+        let local: NSDictionary = ["key": "this string should survive"]
+        let remote: NSDictionary = ["key": ""]
+        let localizableMerger = LocalizableMerger()
+        let merged = localizableMerger.merge(localStrings: local, with: remote)
+        XCTAssertEqual(merged, local)
+    }
+
     func testPerfomance_translation() {
         self.measure {
             _ = "hello_world_title".translation

@@ -45,27 +45,25 @@ extension Bundle {
         fetcher.fetch(for: lang) { (result) in
             switch result {
             case let .success(strings):
-                do {
-                    guard
-                        let url: URL = self.url(
-                            forResource: "Localizable",
-                            withExtension: "strings",
-                            subdirectory: "\(lang).lproj"
-                        )
-                        else { throw NSError.unaccessibleBundle }
-
-                    let localString = NSDictionary(contentsOfFile: url.path) ?? NSDictionary()
-                    let merger = LocalizableMerger()
-                    let mergedStrings = merger.merge(localStrings: localString, with: strings)
-                    mergedStrings.write(
-                        to: url,
-                        atomically: false
-                    )
-                    Bundle.updateLocalizationsBundle(forLanguage: lang, withLocalizables: mergedStrings)
-                    completion(.sucess)
-                } catch let error {
-                    completion(.failure(error))
+                guard
+                    let url: URL = self.url(
+                        forResource: "Localizable",
+                        withExtension: "strings",
+                        subdirectory: "\(lang).lproj"
+                    ) else {
+                        completion(.failure(NSError.unaccessibleBundle))
+                        return
                 }
+
+                let localString = NSDictionary(contentsOfFile: url.path) ?? NSDictionary()
+                let merger = LocalizableMerger()
+                let mergedStrings = merger.merge(localStrings: localString, with: strings)
+                mergedStrings.write(
+                    to: url,
+                    atomically: false
+                )
+                Bundle.updateLocalizationsBundle(forLanguage: lang, withLocalizables: mergedStrings)
+                completion(.sucess)
             case let .failure(error):
                 completion(.failure(error))
             }
