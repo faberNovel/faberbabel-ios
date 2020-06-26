@@ -9,6 +9,27 @@ import Foundation
 import CoreData
 
 extension Bundle {
+
+    static var updatedLocalizationsBundle: Bundle?
+
+    static func updateLocalizationsBundle(forLanguage lang: String, withLocalizables strings: String) {
+        if updatedLocalizationsBundle == nil {
+            updatedLocalizationsBundle = Bundle(bundleName: "updatedLocalizationsBundle")
+        }
+
+        let bundleURL = updatedLocalizationsBundle?.bundleURL
+        let languageURL = bundleURL?.appendingPathComponent("\(lang).lproj", isDirectory: true)
+        guard let langURL = languageURL else { return }
+
+        if FileManager.default.fileExists(atPath: langURL.path) == false {
+            try? FileManager.default.createDirectory(at: langURL, withIntermediateDirectories: true, attributes: nil)
+        }
+        let filePath = langURL.appendingPathComponent("Localizable.strings")
+        try? strings.write(to: filePath, atomically: false, encoding: .utf8)
+    }
+
+    // MARK: - Public
+
     public func updateCurrentWording(completion: (WordingUpdateResult) -> Void) {
         let lang = Locale.current.languageCode ?? "Base"
         updateWording(forLanguageCode: lang, completion: completion)
@@ -40,6 +61,8 @@ extension Bundle {
                         encoding: .utf8
                     )
 
+                    Bundle.updateLocalizationsBundle(forLanguage: lang, withLocalizables: strings)
+                    
                     completion(.sucess)
                 } catch let error {
                     completion(.failure(error))
@@ -48,5 +71,28 @@ extension Bundle {
                 completion(.failure(error))
             }
         }
+    }
+}
+
+extension Bundle {
+
+    // MARK: - Convenience functions
+
+    static func bundleUrl(bundleName: String) -> URL? {
+        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+            return nil
+        }
+        let documentsUrl = URL(fileURLWithPath: path)
+        return documentsUrl.appendingPathComponent(bundleName, isDirectory: true)
+    }
+
+    convenience init?(bundleName: String) {
+        guard let bundleUrl = Bundle.bundleUrl(bundleName: bundleName) else { return nil }
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: bundleUrl.path) {
+            try? fileManager.createDirectory(at: bundleUrl, withIntermediateDirectories: true, attributes: nil)
+        }
+        self.init(url: bundleUrl)
+
     }
 }

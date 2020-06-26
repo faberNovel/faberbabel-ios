@@ -41,7 +41,7 @@ class ViewController: UIViewController {
 
     @IBAction private func localize() {
         label1.text = NSLocalizedString("hello_world_title", comment: "")
-        label2.text = NSLocalizedString("hello_world_description", comment: "")
+        label2.text = "hello_world_description".translation
         refreshButton.setTitle(NSLocalizedString("refresh_button", comment: ""), for: .normal)
         localizeButton.setTitle(NSLocalizedString("localize_button", comment: ""), for: .normal)
     }

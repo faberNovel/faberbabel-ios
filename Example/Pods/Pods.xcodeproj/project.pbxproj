@@ -27,6 +27,7 @@
 		CA688DF524A350A5004A5572 /* LocalizableFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA688DF424A350A5004A5572 /* LocalizableFetcher.swift */; };
 		CA688DF924A35239004A5572 /* WordingUpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA688DF824A35239004A5572 /* WordingUpdateResult.swift */; };
 		CA688DFD24A355C2004A5572 /* NSError+Faberbabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA688DFC24A355C2004A5572 /* NSError+Faberbabel.swift */; };
+		CA7415BF24A5D5590057C12A /* String+Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7415BE24A5D5590057C12A /* String+Translation.swift */; };
 		CBA2F753AEB32F7B34BC187EED0FB826 /* Pods-Faberbabel_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBD1D484DE6AC67CA5C09444432C167 /* Pods-Faberbabel_Example-dummy.m */; };
 		D309CBB740BF2DE5D321098440C89EFE /* Faberbabel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A1D2FE475DB60BB47A459998D4B8B78C /* Faberbabel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D57733DDD9892DC606C9D01786FF3C7E /* Bundle+UpdateWording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61CA83A9D28746CD643986EE27AD69 /* Bundle+UpdateWording.swift */; };
@@ -66,17 +67,17 @@
 		3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
 		3F61CA83A9D28746CD643986EE27AD69 /* Bundle+UpdateWording.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bundle+UpdateWording.swift"; path = "Faberbabel/Classes/Bundle+UpdateWording.swift"; sourceTree = "<group>"; };
 		4ABABB67B191A7300C34E2425D927E03 /* Pods-Faberbabel_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Faberbabel_Example.modulemap"; sourceTree = "<group>"; };
-		4E3F69A814AAB7E6EA22B9ED8EDD84E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		4E3F69A814AAB7E6EA22B9ED8EDD84E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5F716909019C11453A4A748112765F58 /* Faberbabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Faberbabel.debug.xcconfig; sourceTree = "<group>"; };
 		7E93BE77C2E3229BE2312547F133825B /* Pods-Faberbabel_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Faberbabel_Example-Info.plist"; sourceTree = "<group>"; };
 		7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
 		7FD060D52750A847B063E766481235DE /* Pods-Faberbabel_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Faberbabel_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8B46D64B49919B9FDA131E5F1CCA2EDA /* Pods-Faberbabel_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Faberbabel_Tests-dummy.m"; sourceTree = "<group>"; };
 		914469D33B1F75D4DC1434BF096F9D9B /* Faberbabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Faberbabel-dummy.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9F78E38DDC75F743CA6EDAC3450B4EA2 /* Pods_Faberbabel_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Faberbabel_Example.framework; path = "Pods-Faberbabel_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9F78E38DDC75F743CA6EDAC3450B4EA2 /* Pods_Faberbabel_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faberbabel_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D2FE475DB60BB47A459998D4B8B78C /* Faberbabel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Faberbabel-umbrella.h"; sourceTree = "<group>"; };
-		A225F3C877DB174918E4EE74BAE2FBCA /* Pods_Faberbabel_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Faberbabel_Tests.framework; path = "Pods-Faberbabel_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A225F3C877DB174918E4EE74BAE2FBCA /* Pods_Faberbabel_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faberbabel_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2CB2563FC39863F77B28ACC00EFAA15 /* Faberbabel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Faberbabel.modulemap; sourceTree = "<group>"; };
 		A6F228BCFAC23EF72F2BC8F3767C3EBB /* Pods-Faberbabel_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Faberbabel_Tests-Info.plist"; sourceTree = "<group>"; };
 		AD419C97304B2FEAB8FA7D355F0F7FD4 /* Pods-Faberbabel_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Faberbabel_Tests.modulemap"; sourceTree = "<group>"; };
@@ -90,14 +91,15 @@
 		CA688DF424A350A5004A5572 /* LocalizableFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizableFetcher.swift; path = Faberbabel/Classes/LocalizableFetcher.swift; sourceTree = "<group>"; };
 		CA688DF824A35239004A5572 /* WordingUpdateResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordingUpdateResult.swift; path = Faberbabel/Classes/WordingUpdateResult.swift; sourceTree = "<group>"; };
 		CA688DFC24A355C2004A5572 /* NSError+Faberbabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSError+Faberbabel.swift"; path = "Faberbabel/Classes/NSError+Faberbabel.swift"; sourceTree = "<group>"; };
+		CA7415BE24A5D5590057C12A /* String+Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Translation.swift"; path = "Faberbabel/Classes/String+Translation.swift"; sourceTree = "<group>"; };
 		D0065DAEF2EB54681B82345D96B6E7ED /* Pods-Faberbabel_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Faberbabel_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0E88EC7B57A55EE1C3091E3D197BA17 /* Faberbabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Faberbabel-prefix.pch"; sourceTree = "<group>"; };
 		E5517F0335F7F9B5023F599FF87A738A /* Pods-Faberbabel_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Faberbabel_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		E84F4B2B9C98A5C16E3A261837BEA185 /* Pods-Faberbabel_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Faberbabel_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		EDC9867E130242ABCB259F615768797C /* Pods-Faberbabel_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Faberbabel_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F0E7B5BF1DEA29AE7AA042ED5B5E6C62 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		F27C2068B663A2FF59DCBA4C5BABC05B /* Faberbabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Faberbabel.framework; path = Faberbabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F90E0038596FDD658CB6A45EB22635FC /* Faberbabel.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Faberbabel.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F0E7B5BF1DEA29AE7AA042ED5B5E6C62 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F27C2068B663A2FF59DCBA4C5BABC05B /* Faberbabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Faberbabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F90E0038596FDD658CB6A45EB22635FC /* Faberbabel.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Faberbabel.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,9 +236,10 @@
 			isa = PBXGroup;
 			children = (
 				CA688DFC24A355C2004A5572 /* NSError+Faberbabel.swift */,
+				3F61CA83A9D28746CD643986EE27AD69 /* Bundle+UpdateWording.swift */,
+				CA7415BE24A5D5590057C12A /* String+Translation.swift */,
 				CA688DF824A35239004A5572 /* WordingUpdateResult.swift */,
 				CA688DF424A350A5004A5572 /* LocalizableFetcher.swift */,
-				3F61CA83A9D28746CD643986EE27AD69 /* Bundle+UpdateWording.swift */,
 				5A0CF0870979B03E7FF7D3015CA4A37C /* Pod */,
 				8AE453326FF8D7224A09CF7CF081BA3F /* Support Files */,
 			);
@@ -278,7 +281,6 @@
 			children = (
 				7FDA596DBE0337ACDFE55A210D54EF26 /* Support Files */,
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -436,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA7415BF24A5D5590057C12A /* String+Translation.swift in Sources */,
 				CA688DF924A35239004A5572 /* WordingUpdateResult.swift in Sources */,
 				9361B80D825CBB10C93A5A511CED4D1A /* Faberbabel-dummy.m in Sources */,
 				D57733DDD9892DC606C9D01786FF3C7E /* Bundle+UpdateWording.swift in Sources */,
@@ -719,8 +722,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
