@@ -12,7 +12,7 @@ extension Bundle {
 
     static var updatedLocalizationsBundle: Bundle?
 
-    static func updateLocalizationsBundle(forLanguage lang: String, withLocalizables strings: String) {
+    static func updateLocalizationsBundle(forLanguage lang: String, withLocalizables strings: NSDictionary) {
         if updatedLocalizationsBundle == nil {
             updatedLocalizationsBundle = Bundle(bundleName: "updatedLocalizationsBundle")
         }
@@ -25,7 +25,7 @@ extension Bundle {
             try? FileManager.default.createDirectory(at: langURL, withIntermediateDirectories: true, attributes: nil)
         }
         let filePath = langURL.appendingPathComponent("Localizable.strings")
-        try? strings.write(to: filePath, atomically: false, encoding: .utf8)
+        strings.write(to: filePath, atomically: false)
     }
 
     // MARK: - Public
@@ -46,7 +46,6 @@ extension Bundle {
             switch result {
             case let .success(strings):
                 do {
-
                     guard
                         let url: URL = self.url(
                             forResource: "Localizable",
@@ -55,14 +54,14 @@ extension Bundle {
                         )
                         else { throw NSError.unaccessibleBundle }
 
-                    try strings.write(
+                    let localString = NSDictionary(contentsOfFile: url.path) ?? NSDictionary()
+                    let merger = LocalizableMerger()
+                    let mergedStrings = merger.merge(localStrings: localString, with: strings)
+                    mergedStrings.write(
                         to: url,
-                        atomically: false,
-                        encoding: .utf8
+                        atomically: false
                     )
-
-                    Bundle.updateLocalizationsBundle(forLanguage: lang, withLocalizables: strings)
-                    
+                    Bundle.updateLocalizationsBundle(forLanguage: lang, withLocalizables: mergedStrings)
                     completion(.sucess)
                 } catch let error {
                     completion(.failure(error))
