@@ -20,13 +20,12 @@ class Tests: XCTestCase {
     }
 
     func testMerger_lackRemoteKey_ShouldKeepLocalKey() {
-        let local = ["key1": "hello world", "key2": "this string should survive"]
+        var local = ["key1": "hello world", "key2": "this string should survive"]
         let remote = ["key1": "hello updated world"]
         let localizableMerger = LocalizableMerger()
         let merged = localizableMerger.merge(localStrings: local, with: remote)
-        var awaitedResult = local
-        awaitedResult["key1"] = remote["key1"]
-        XCTAssertEqual(merged, awaitedResult)
+        local["key1"] = remote["key1"]
+        XCTAssertEqual(merged, local)
     }
 
     func testMerger_emptyRemoteKey_ShouldKeepLocalKey() {
