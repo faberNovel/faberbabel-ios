@@ -27,23 +27,32 @@ class ViewController: UIViewController {
     @IBAction private func refresh() {
         refreshButton.isEnabled = false
         localizeButton.isEnabled = false
-        Bundle.main.updateCurrentWording { result in
-            refreshButton.isEnabled = true
-            localizeButton.isEnabled = true
+
+        guard let url = URL(string: "base_url") else { return }
+
+        let wordingRequest = UpdateWordingRequest(
+            baseURL: url,
+            projectId: "project_id",
+            language: .current
+        )
+
+        Bundle.main.updateWording(request: wordingRequest) { [weak self] result in
+            self?.refreshButton.isEnabled = true
+            self?.localizeButton.isEnabled = true
             switch result {
             case .success:
                 print("Success updating wording")
             case let .failure(error):
-                print("Error updating wording: \(error.localizedDescription)")
+                print("Error updating wording: \(error)")
             }
         }
     }
 
     @IBAction private func localize() {
-        label1.text = NSLocalizedString("hello_world_title", comment: "")
+        label1.text = "hello_world_title".translation
         label2.text = "hello_world_description".translation
-        refreshButton.setTitle(NSLocalizedString("refresh_button", comment: ""), for: .normal)
-        localizeButton.setTitle(NSLocalizedString("localize_button", comment: ""), for: .normal)
+        refreshButton.setTitle("refresh_button".translation, for: .normal)
+        localizeButton.setTitle("localize_button".translation, for: .normal)
     }
 
 }

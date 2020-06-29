@@ -13,12 +13,16 @@ extension String {
     }
 
     public func translate(to lang: String) -> String {
-        guard
-            let path = Bundle.updatedLocalizationsBundle?
-                .path(forResource: lang, ofType: "lproj"),
-            let bundle = Bundle(path: path) else {
-                return NSLocalizedString(self, comment: "")
+        if let dictionary = Bundle.updatedLocalizables[lang],
+            let localized = dictionary[self] {
+            return localized
+        } else if
+            let url = Bundle.localizableFileUrl(forLanguage: lang),
+            let dictionary = NSDictionary(contentsOfFile: url.path) as? Localizations,
+            let localized = dictionary[self] {
+            Bundle.updatedLocalizables[lang] = dictionary
+            return localized
         }
-        return bundle.localizedString(forKey: self, value: nil, table: nil)
+        return NSLocalizedString(self, comment: "")
     }
 }
