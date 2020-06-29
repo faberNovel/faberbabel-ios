@@ -13,11 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Bundle install
-      run: bundle install
+      run: |
+          gem install bundler -v 2.1.4
+          bundle install
     - name: Bundle install Example
       working-directory: ./Example
       run: bundle install
-    - name: Pod install
+    - name: Pod install Example
       working-directory: ./Example
       run: bundle exec pod install
     - name: Build and test
