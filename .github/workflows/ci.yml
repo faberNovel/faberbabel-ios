@@ -7,15 +7,15 @@ on:
 
 jobs:
   build:
+    env:
+      PATH: /Users/slave/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
     runs-on: [self-hosted, macOS]
 
     steps:
     - uses: actions/checkout@v2
     - name: Bundle install
-      run: |
-          gem install bundler -v 2.1.4
-          bundle install
+      run: bundle install
     - name: Bundle install Example
       working-directory: ./Example
       run: bundle install
