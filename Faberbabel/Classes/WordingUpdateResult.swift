@@ -7,7 +7,4 @@
 
 import Foundation
 
-public enum WordingUpdateResult {
-    case sucess
-    case failure(_ error: Error)
-}
+public typealias WordingUpdateResult = Result<(), Error>

@@ -24,36 +24,33 @@ extension Bundle {
             completion(.failure(NSError.unknownLanguage))
             return
         }
-        guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
-            completion(.failure(NSError.unaccessibleBundle))
-            return
-        }
 
         let fetcher = LocalizableFetcher()
         fetcher.fetch(for: lang) { result in
-            let mergedResult = result.map { remoteStrings -> Localizations in
-                mergedLocalization(fromLocalFileUrl: localFileUrl, remoteStrings: remoteStrings, forLanguage: lang)
-            }
-            switch mergedResult {
-            case let .success(mergedStrings):
-                updateMainBundle(localFileUrl: localFileUrl, withLocalizables: mergedStrings)
+            let updateLocalizationResult = result.mapThrow { remoteStrings in
+                let mergedStrings = try mergedLocalization(remoteStrings: remoteStrings, forLanguage: lang)
+                try updateMainBundle(forLanguage: lang, withLocalizables: mergedStrings)
                 updateLocalizationsBundle(forLanguage: lang, withLocalizables: mergedStrings)
-                completion(.sucess)
-            case let .failure(error):
-                completion(.failure(error))
             }
+            completion(updateLocalizationResult)
         }
     }
 
     // MARK: - Private
 
-    private func mergedLocalization(fromLocalFileUrl: URL, remoteStrings: Localizations, forLanguage lang: String) -> Localizations {
-        let localStrings: Localizations = NSDictionary(contentsOfFile: fromLocalFileUrl.path) as? Localizations ?? [:]
+    private func mergedLocalization(remoteStrings: Localizations, forLanguage lang: String) throws -> Localizations {
+        guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
+            throw NSError.unaccessibleBundle
+        }
+        let localStrings: Localizations = NSDictionary(contentsOfFile: localFileUrl.path) as? Localizations ?? [:]
         let merger = LocalizableMerger()
         return merger.merge(localStrings: localStrings, with: remoteStrings)
     }
 
-    private func updateMainBundle(localFileUrl: URL, withLocalizables strings: Localizations) {
+    private func updateMainBundle(forLanguage lang: String, withLocalizables strings: Localizations) throws  {
+        guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
+            throw NSError.unaccessibleBundle
+        }
         (strings as NSDictionary).write(to: localFileUrl, atomically: false)
     }
 
@@ -84,7 +81,6 @@ extension Bundle {
 }
 
 extension Bundle {
-
     // MARK: - Convenience functions
 
     static func bundleUrl(bundleName: String) -> URL? {
