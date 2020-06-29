@@ -8,6 +8,6 @@
 import Foundation
 
 public enum WordingUpdateResult {
-    case sucess
+    case success
     case failure(_ error: Error)
 }

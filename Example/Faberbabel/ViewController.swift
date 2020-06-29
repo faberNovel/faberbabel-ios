@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             refreshButton.isEnabled = true
             localizeButton.isEnabled = true
             switch result {
-            case .sucess:
+            case .success:
                 print("Success updating wording")
             case let .failure(error):
                 print("Error updating wording: \(error.localizedDescription)")

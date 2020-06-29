@@ -1,27 +1,50 @@
 import XCTest
-import Faberbabel
+@testable import Faberbabel
 
 class Tests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testMerger_wrongAttributesNumber_ShouldNotMerge() {
+        let local = ["key1": "%@ %@", "key2": "%1$@ %2$@"]
+        let remote = ["key1": "%@", "key2": "%1$@ %2$@ %3$@"]
+        let localizableMerger = LocalizableMerger()
+        let merged = localizableMerger.merge(localStrings: local, with: remote)
+        XCTAssertEqual(merged, local)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testMerger_correctAttributesNumber_ShouldMerge() {
+        let local = ["key1": "%@ local %@", "key2": "%1$@ local %2$@"]
+        let remote = ["key1": "%@ remote %@", "key2": "%1$@ remote %2$@"]
+        let localizableMerger = LocalizableMerger()
+        let merged = localizableMerger.merge(localStrings: local, with: remote)
+        XCTAssertEqual(merged, remote)
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testMerger_lackRemoteKey_ShouldKeepLocalKey() {
+        var local = ["key1": "hello world", "key2": "this string should survive"]
+        let remote = ["key1": "hello updated world"]
+        let localizableMerger = LocalizableMerger()
+        let merged = localizableMerger.merge(localStrings: local, with: remote)
+        local["key1"] = remote["key1"]
+        XCTAssertEqual(merged, local)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
+    func testMerger_emptyRemoteKey_ShouldKeepLocalKey() {
+        let local = ["key": "this string should survive"]
+        let remote = ["key": ""]
+        let localizableMerger = LocalizableMerger()
+        let merged = localizableMerger.merge(localStrings: local, with: remote)
+        XCTAssertEqual(merged, local)
+    }
+
+    func testPerfomance_translation() {
         self.measure {
-            // Put the code you want to measure the time of here.
+            _ = "hello_world_title".translation
+        }
+    }
+
+    func testPerformance_localized() {
+        self.measure {
+            _ = NSLocalizedString("hello_world_title", comment: "")
         }
     }
 }
