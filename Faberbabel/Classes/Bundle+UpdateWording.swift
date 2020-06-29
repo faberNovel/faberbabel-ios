@@ -27,12 +27,19 @@ extension Bundle {
 
         let fetcher = LocalizableFetcher()
         fetcher.fetch(for: lang) { result in
-            let updateLocalizationResult = result.mapThrow { remoteStrings in
-                let mergedStrings = try mergedLocalization(remoteStrings: remoteStrings, forLanguage: lang)
-                try updateMainBundle(forLanguage: lang, withLocalizables: mergedStrings)
-                updateLocalizationsBundle(forLanguage: lang, withLocalizables: mergedStrings)
+            let mergedLocalizableResult = result.mapThrow { try mergedLocalization(remoteStrings: $0, forLanguage: lang)}
+            do {
+                switch mergedLocalizableResult {
+                case let .success(mergedLocalizable):
+                    try updateMainBundle(forLanguage: lang, withLocalizable: mergedLocalizable)
+                    updateLocalizationsBundle(forLanguage: lang, withLocalizable: mergedLocalizable)
+                    completion(.success)
+                case let .failure(error):
+                    throw error
+                }
+            } catch {
+                completion(.failure(error))
             }
-            completion(updateLocalizationResult)
         }
     }
 
@@ -47,14 +54,14 @@ extension Bundle {
         return merger.merge(localStrings: localStrings, with: remoteStrings)
     }
 
-    private func updateMainBundle(forLanguage lang: String, withLocalizables strings: Localizations) throws  {
+    private func updateMainBundle(forLanguage lang: String, withLocalizable strings: Localizations) throws  {
         guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
             throw NSError.unaccessibleBundle
         }
         (strings as NSDictionary).write(to: localFileUrl, atomically: false)
     }
 
-    private func updateLocalizationsBundle(forLanguage lang: String, withLocalizables strings: Localizations){
+    private func updateLocalizationsBundle(forLanguage lang: String, withLocalizable strings: Localizations){
         if Bundle.updatedLocalizationsBundle == nil {
             Bundle.updatedLocalizationsBundle = Bundle(bundleName: "updatedLocalizationsBundle")
         }
