@@ -16,7 +16,7 @@ extension String {
         if let dictionary = Bundle.updatedLocalizables[lang],
             let localized = dictionary[self] {
             return localized
-        } else if
+        } else if Bundle.updatedLocalizables[lang] == nil,
             let url = Bundle.localizableFileUrl(forLanguage: lang),
             let dictionary = NSDictionary(contentsOfFile: url.path) as? Localizations,
             let localized = dictionary[self] {

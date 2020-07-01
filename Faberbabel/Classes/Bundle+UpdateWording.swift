@@ -47,7 +47,7 @@ extension Bundle {
             do {
                 switch mergedLocalizableResult {
                 case let .success(mergedLocalizable):
-                    try self.updateLocalizationsBundle(forLanguage: lang, withLocalizable: mergedLocalizable)
+                    try self.updateLocalizations(forLanguage: lang, withLocalizable: mergedLocalizable)
                     completion(.success)
                 case let .failure(error):
                     throw error
@@ -69,7 +69,7 @@ extension Bundle {
         return merger.merge(localStrings: localStrings, with: remoteStrings)
     }
 
-    private func updateLocalizationsBundle(forLanguage lang: String, withLocalizable strings: Localizations) throws {
+    private func updateLocalizations(forLanguage lang: String, withLocalizable strings: Localizations) throws {
         guard let localFileUrl = Bundle.localizableFileUrl(forLanguage: lang) else {
             throw NSError.unaccessibleBundle
         }
