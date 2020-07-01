@@ -9,7 +9,7 @@ This library is an iOS SDK to easily implement Faberbabel in you app. Faberbabel
 
 - [Features](#features)
 - [Example](#example)
-- [How to use](#how to use)
+- [How to use](#how-to-use)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Communication](#communication)
