@@ -1,6 +1,6 @@
 # Faberbabel
 
-[![CI Status](https://img.shields.io/travis/Jean Haberer/Faberbabel.svg?style=flat)](https://travis-ci.org/Jean Haberer/Faberbabel)
+![](https://github.com/faberNovel/Faberbabel/workflows/CI/badge.svg)
 [![Version](https://img.shields.io/cocoapods/v/Faberbabel.svg?style=flat)](https://cocoapods.org/pods/Faberbabel)
 [![License](https://img.shields.io/cocoapods/l/Faberbabel.svg?style=flat)](https://cocoapods.org/pods/Faberbabel)
 [![Platform](https://img.shields.io/cocoapods/p/Faberbabel.svg?style=flat)](https://cocoapods.org/pods/Faberbabel)
