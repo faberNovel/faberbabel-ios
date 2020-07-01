@@ -33,11 +33,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 let wordingRequest = UpdateWordingRequest(
 	baseURL: FABERBABEL_BASE_URL,
 	projectId: FABERBABEL_PROJECT_ID,
-	language: .current // you can set it manually with languageCode("en")
+	language: .current // you can also set it manually specifying .languageCode("en")
 )
 
 Bundle.main.updateWording(request: wordingRequest) { [weak self] result in
-	 switch result {
+   switch result {
    case .success:
       // Update UI
    case let .failure(error):
