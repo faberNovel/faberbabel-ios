@@ -50,6 +50,8 @@ Bundle.main.updateWording(request: wordingRequest) { [weak self] result in
 
 ```swift
 "key".translation // returns the localized string in the current language
+// OR
+"key".translate(to: "en") // returns the localized string in english (if it exists)
 ```
 
 ## Requirements
