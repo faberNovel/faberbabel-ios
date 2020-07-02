@@ -18,7 +18,7 @@ extension Bundle {
         guard let langURL = languageURL else { return nil }
 
         if FileManager.default.fileExists(atPath: langURL.path) == false {
-            try? FileManager.default.createDirectory(at: langURL, withIntermediateDirectories: true, attributes: nil)
+            createLocalizationsBundle(forLang: lang, atUrl: langURL)
         }
 
         let filePath = langURL.appendingPathComponent("Localizable.strings")
@@ -75,6 +75,14 @@ extension Bundle {
         }
         Bundle.updatedLocalizables[lang] = strings
         (strings as NSDictionary).write(to: localFileUrl, atomically: false)
+    }
+
+    private static func createLocalizationsBundle(forLang lang: String, atUrl langURL: URL) {
+        try? FileManager.default.createDirectory(at: langURL, withIntermediateDirectories: true, attributes: nil)
+        let localizableFilePath = langURL.appendingPathComponent("Localizable.strings")
+        guard let mainLocalizableFile = Bundle.main.path(forResource: "Localizable", ofType: "strings", inDirectory: "\(lang).lproj") else { return }
+        let mainLocalizable = NSDictionary(contentsOfFile: mainLocalizableFile)
+        mainLocalizable?.write(toFile: localizableFilePath.path, atomically: false)
     }
 }
 
