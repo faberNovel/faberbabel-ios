@@ -25,14 +25,14 @@
 		947D9CC153BCA2D39ABAD1B7DDAF4490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		BA5AFDEBA35C3650A6E2AB3032648D1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		CA688DF524A350A5004A5572 /* LocalizableFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA688DF424A350A5004A5572 /* LocalizableFetcher.swift */; };
-		CA688DF924A35239004A5572 /* WordingUpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA688DF824A35239004A5572 /* WordingUpdateResult.swift */; };
+		CA688DF924A35239004A5572 /* FBWordingUpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA688DF824A35239004A5572 /* FBWordingUpdateResult.swift */; };
 		CA688DFD24A355C2004A5572 /* NSError+Faberbabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA688DFC24A355C2004A5572 /* NSError+Faberbabel.swift */; };
 		CA7415BF24A5D5590057C12A /* String+Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7415BE24A5D5590057C12A /* String+Translation.swift */; };
 		CA7415C324A5F1890057C12A /* LocalizableMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7415C224A5F1890057C12A /* LocalizableMerger.swift */; };
 		CA7415C724A612F40057C12A /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7415C624A612F40057C12A /* String+Utils.swift */; };
 		CA7415D124A633CC0057C12A /* LocalizationsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7415D024A633CC0057C12A /* LocalizationsType.swift */; };
 		CA7415D524A9CC380057C12A /* Result+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7415D424A9CC380057C12A /* Result+Error.swift */; };
-		CA7415D924A9E1EF0057C12A /* UpdateWordingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7415D824A9E1EF0057C12A /* UpdateWordingRequest.swift */; };
+		CA7415D924A9E1EF0057C12A /* FBUpdateWordingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7415D824A9E1EF0057C12A /* FBUpdateWordingRequest.swift */; };
 		CBA2F753AEB32F7B34BC187EED0FB826 /* Pods-Faberbabel_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBD1D484DE6AC67CA5C09444432C167 /* Pods-Faberbabel_Example-dummy.m */; };
 		D309CBB740BF2DE5D321098440C89EFE /* Faberbabel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A1D2FE475DB60BB47A459998D4B8B78C /* Faberbabel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D57733DDD9892DC606C9D01786FF3C7E /* Bundle+UpdateWording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61CA83A9D28746CD643986EE27AD69 /* Bundle+UpdateWording.swift */; };
@@ -94,14 +94,14 @@
 		C0BE2625F3FE838BD3328199391FC7B4 /* Pods-Faberbabel_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Faberbabel_Example-umbrella.h"; sourceTree = "<group>"; };
 		C67992A98C6EA1C28769F10053529428 /* Faberbabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Faberbabel.release.xcconfig; sourceTree = "<group>"; };
 		CA688DF424A350A5004A5572 /* LocalizableFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizableFetcher.swift; path = Faberbabel/Classes/LocalizableFetcher.swift; sourceTree = "<group>"; };
-		CA688DF824A35239004A5572 /* WordingUpdateResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordingUpdateResult.swift; path = Faberbabel/Classes/WordingUpdateResult.swift; sourceTree = "<group>"; };
+		CA688DF824A35239004A5572 /* FBWordingUpdateResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBWordingUpdateResult.swift; path = Faberbabel/Classes/FBWordingUpdateResult.swift; sourceTree = "<group>"; };
 		CA688DFC24A355C2004A5572 /* NSError+Faberbabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSError+Faberbabel.swift"; path = "Faberbabel/Classes/NSError+Faberbabel.swift"; sourceTree = "<group>"; };
 		CA7415BE24A5D5590057C12A /* String+Translation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Translation.swift"; path = "Faberbabel/Classes/String+Translation.swift"; sourceTree = "<group>"; };
 		CA7415C224A5F1890057C12A /* LocalizableMerger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizableMerger.swift; path = Faberbabel/Classes/LocalizableMerger.swift; sourceTree = "<group>"; };
 		CA7415C624A612F40057C12A /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Utils.swift"; path = "Faberbabel/Classes/String+Utils.swift"; sourceTree = "<group>"; };
 		CA7415D024A633CC0057C12A /* LocalizationsType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizationsType.swift; path = Faberbabel/Classes/LocalizationsType.swift; sourceTree = "<group>"; };
 		CA7415D424A9CC380057C12A /* Result+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Result+Error.swift"; path = "Faberbabel/Classes/Result+Error.swift"; sourceTree = "<group>"; };
-		CA7415D824A9E1EF0057C12A /* UpdateWordingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateWordingRequest.swift; path = Faberbabel/Classes/UpdateWordingRequest.swift; sourceTree = "<group>"; };
+		CA7415D824A9E1EF0057C12A /* FBUpdateWordingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FBUpdateWordingRequest.swift; path = Faberbabel/Classes/FBUpdateWordingRequest.swift; sourceTree = "<group>"; };
 		D0065DAEF2EB54681B82345D96B6E7ED /* Pods-Faberbabel_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Faberbabel_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0E88EC7B57A55EE1C3091E3D197BA17 /* Faberbabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Faberbabel-prefix.pch"; sourceTree = "<group>"; };
 		E5517F0335F7F9B5023F599FF87A738A /* Pods-Faberbabel_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Faberbabel_Example-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -248,8 +248,8 @@
 				3F61CA83A9D28746CD643986EE27AD69 /* Bundle+UpdateWording.swift */,
 				CA688DF424A350A5004A5572 /* LocalizableFetcher.swift */,
 				CA7415C224A5F1890057C12A /* LocalizableMerger.swift */,
-				CA7415D824A9E1EF0057C12A /* UpdateWordingRequest.swift */,
-				CA688DF824A35239004A5572 /* WordingUpdateResult.swift */,
+				CA7415D824A9E1EF0057C12A /* FBUpdateWordingRequest.swift */,
+				CA688DF824A35239004A5572 /* FBWordingUpdateResult.swift */,
 				CA7415D024A633CC0057C12A /* LocalizationsType.swift */,
 				CA7415C624A612F40057C12A /* String+Utils.swift */,
 				CA688DFC24A355C2004A5572 /* NSError+Faberbabel.swift */,
@@ -456,8 +456,8 @@
 				CA7415C724A612F40057C12A /* String+Utils.swift in Sources */,
 				CA7415C324A5F1890057C12A /* LocalizableMerger.swift in Sources */,
 				CA7415BF24A5D5590057C12A /* String+Translation.swift in Sources */,
-				CA7415D924A9E1EF0057C12A /* UpdateWordingRequest.swift in Sources */,
-				CA688DF924A35239004A5572 /* WordingUpdateResult.swift in Sources */,
+				CA7415D924A9E1EF0057C12A /* FBUpdateWordingRequest.swift in Sources */,
+				CA688DF924A35239004A5572 /* FBWordingUpdateResult.swift in Sources */,
 				9361B80D825CBB10C93A5A511CED4D1A /* Faberbabel-dummy.m in Sources */,
 				CA7415D124A633CC0057C12A /* LocalizationsType.swift in Sources */,
 				D57733DDD9892DC606C9D01786FF3C7E /* Bundle+UpdateWording.swift in Sources */,

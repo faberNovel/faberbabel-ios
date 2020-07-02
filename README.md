@@ -30,13 +30,13 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ### Update the wording
 
 ```swift
-let wordingRequest = UpdateWordingRequest(
+let wordingRequest = FBUpdateWordingRequest(
 	baseURL: FABERBABEL_BASE_URL,
 	projectId: FABERBABEL_PROJECT_ID,
 	language: .current // you can also set it manually specifying .languageCode("en")
 )
 
-Bundle.main.updateWording(request: wordingRequest) { [weak self] result in
+Bundle.main.fb_updateWording(request: wordingRequest) { [weak self] result in
    switch result {
    case .success:
       // Update UI
@@ -49,9 +49,9 @@ Bundle.main.updateWording(request: wordingRequest) { [weak self] result in
 ### Localize a key with the updated wording
 
 ```swift
-"key".translation // returns the localized string in the current language
+"key".fb_translation // returns the localized string in the current language
 // OR
-"key".translate(to: "en") // returns the localized string in english (if it exists)
+"key".fb_translate(to: "en") // returns the localized string in english (if it exists)
 ```
 
 ## Requirements
@@ -70,7 +70,7 @@ pod 'Faberbabel'
 
 ## Communication 
 
-- If you **need help**, use [Twitter](https://twitter.com/FabernovelTech).
+- If you **need help**, use [Twitter](https://twitter.com/Fabernovel).
 - If you'd like to **ask a general question**, use [Twitter](https://www.fabernovel.com/).
 - If you'd like to **apply for a job**, visit https://careers.fabernovel.com/.
 - If you **found a bug**, open an issue.

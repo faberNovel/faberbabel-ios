@@ -8,11 +8,11 @@
 import Foundation
 
 extension String {
-    public var translation: String {
-        return translate(to: Locale.current.languageCode ?? "en")
+    public var fb_translation: String {
+        return fb_translate(to: Locale.current.languageCode ?? "en")
     }
 
-    public func translate(to lang: String) -> String {
+    public func fb_translate(to lang: String) -> String {
         if let dictionary = Bundle.updatedLocalizables[lang],
             let localized = dictionary[self] {
             return localized

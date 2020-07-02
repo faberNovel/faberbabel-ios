@@ -22,7 +22,6 @@ class LocalizableFetcher {
             URLQueryItem(name: "platform", value: "ios"),
             URLQueryItem(name: "language", value: lang)
         ]
-
         DispatchQueue(label: "updateWording").async {
             if let url = urlComponents?.url,
                 let dictionary = NSDictionary(contentsOf: url),

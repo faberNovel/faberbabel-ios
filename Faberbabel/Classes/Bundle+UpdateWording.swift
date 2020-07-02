@@ -16,18 +16,16 @@ extension Bundle {
         let bundleURL = Bundle(bundleName: "updatedLocalizationsBundle")?.bundleURL
         let languageURL = bundleURL?.appendingPathComponent("\(lang).lproj", isDirectory: true)
         guard let langURL = languageURL else { return nil }
-
         if FileManager.default.fileExists(atPath: langURL.path) == false {
             createLocalizationsBundle(forLang: lang, atUrl: langURL)
         }
-
         let filePath = langURL.appendingPathComponent("Localizable.strings")
         return filePath
     }
 
     // MARK: - Public
     
-    public func updateWording(request: UpdateWordingRequest, completion: @escaping(WordingUpdateResult) -> Void) {
+    public func fb_updateWording(request: FBUpdateWordingRequest, completion: @escaping(FBWordingUpdateResult) -> Void) {
         let lang: String
         switch request.language {
         case let .languageCode(langCode):
@@ -35,12 +33,10 @@ extension Bundle {
         case .current:
             lang = Locale.current.languageCode ?? "en"
         }
-
         guard self.localizations.contains(lang) else {
             completion(.failure(NSError.unknownLanguage))
             return
         }
-
         let fetcher = LocalizableFetcher(baseURL: request.baseURL, projectId: request.projectId)
         fetcher.fetch(for: lang) { result in
             let mergedLocalizableResult = result.mapThrow { try self.mergedLocalization(remoteStrings: $0, forLanguage: lang)}
