@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     @IBAction private func refresh() {
         refreshButton.isEnabled = false
         localizeButton.isEnabled = false
-        // TODO: Jean Haberer (02/07/2020) - Replace by your project identifiers (project_base_url & project_id)
+        // Replace by your project identifiers (project_base_url & project_id)
         guard let url = URL(string: "project_base_url") else { return }
         let wordingRequest = UpdateWordingRequest(
             baseURL: url,
