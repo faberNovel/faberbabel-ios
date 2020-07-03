@@ -13,16 +13,12 @@ extension String {
     }
 
     public func fb_translate(to lang: String) -> String {
-        if let dictionary = Bundle.updatedLocalizables[lang],
-            let localized = dictionary[self] {
-            return localized
-        } else if Bundle.updatedLocalizables[lang] == nil,
-            let url = Bundle.localizableFileUrl(forLanguage: lang),
-            let dictionary = NSDictionary(contentsOfFile: url.path) as? Localizations,
-            let localized = dictionary[self] {
-            Bundle.updatedLocalizables[lang] = dictionary
-            return localized
-        }
-        return NSLocalizedString(self, comment: "")
+        guard
+            let directoryUrl = Bundle.updatedLocalizablesBundle?.localizableDirectoryUrl,
+            let bundle = Bundle(path: directoryUrl.path)
+            else {
+                return NSLocalizedString(self, comment: "")
+            }
+        return bundle.localizedString(forKey: self, value: nil, table: nil)
     }
 }
