@@ -8,31 +8,32 @@
 import Foundation
 
 class LocalizableFetcher {
-    func fetch(for lang: String, completion: (Result<Localizations, Error>) -> Void) {
-        if lang == "en" {
-            completion(
-                .success(
-                    [
-                        "hello_world_title": "Hello Updated World",
-                        "hello_world_description": "This is the updated description of Hello World.",
-                        "refresh_button": "Refresh (already up to date)",
-                        "localize_button": "updated localize"
-                    ]
-                )
-            )
-        } else if lang == "fr" {
-            completion(
-                .success(
-                    [
-                        "hello_world_title": "Bonjour Monde à jour",
-                        "hello_world_description": "Voici la description à jour de bonjour monde.",
-                        "refresh_button": "Actualiser (déjà à jour)",
-                        "localize_button": "Localiser à jour"
-                    ]
-                )
-            )
-        } else {
-            completion(.failure(NSError.unknownLanguage))
+    let projectId: String
+    let baseURL: URL
+
+    init(baseURL: URL, projectId: String) {
+        self.baseURL = baseURL
+        self.projectId = projectId
+    }
+
+    func fetch(for lang: String, completion: @escaping(Result<Localizations, Error>) -> Void) {
+        var urlComponents = URLComponents(string: baseURL.absoluteString + "/translations/projects/\(projectId)")
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "platform", value: "ios"),
+            URLQueryItem(name: "language", value: lang)
+        ]
+        DispatchQueue(label: "updateWording").async {
+            if let url = urlComponents?.url,
+                let dictionary = NSDictionary(contentsOf: url),
+                let localizations = dictionary as? Localizations {
+                DispatchQueue.main.async {
+                    completion(.success(localizations))
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(.failure(NSError.unreachableServerError))
+                }
+            }
         }
     }
 }

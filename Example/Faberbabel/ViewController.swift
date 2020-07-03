@@ -27,23 +27,30 @@ class ViewController: UIViewController {
     @IBAction private func refresh() {
         refreshButton.isEnabled = false
         localizeButton.isEnabled = false
-        Bundle.main.updateCurrentWording { result in
-            refreshButton.isEnabled = true
-            localizeButton.isEnabled = true
+        // Replace by your project identifiers (project_base_url & project_id)
+        guard let url = URL(string: "project_base_url") else { return }
+        let wordingRequest = UpdateWordingRequest(
+            baseURL: url,
+            projectId: "project_id",
+            language: .current
+        )
+        Bundle.main.fb_updateWording(request: wordingRequest) { [weak self] result in
+            self?.refreshButton.isEnabled = true
+            self?.localizeButton.isEnabled = true
             switch result {
             case .success:
                 print("Success updating wording")
             case let .failure(error):
-                print("Error updating wording: \(error.localizedDescription)")
+                print("Error updating wording: \(error)")
             }
         }
     }
 
     @IBAction private func localize() {
-        label1.text = NSLocalizedString("hello_world_title", comment: "")
-        label2.text = "hello_world_description".translation
-        refreshButton.setTitle(NSLocalizedString("refresh_button", comment: ""), for: .normal)
-        localizeButton.setTitle(NSLocalizedString("localize_button", comment: ""), for: .normal)
+        label1.text = "hello_world_title".fb_translation
+        label2.text = "hello_world_description".fb_translation
+        refreshButton.setTitle("refresh_button".fb_translation, for: .normal)
+        localizeButton.setTitle("localize_button".fb_translation, for: .normal)
     }
 
 }

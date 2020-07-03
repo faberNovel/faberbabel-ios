@@ -10,29 +10,42 @@ import CoreData
 
 extension Bundle {
 
-    static var updatedLocalizationsBundle: Bundle?
+    static var updatedLocalizablesBundle = Bundle(bundleName: "updatedLocalizablesBundle")
 
-    // MARK: - Public
-
-    public func updateCurrentWording(completion: (WordingUpdateResult) -> Void) {
-        let lang = Locale.current.languageCode ?? "Base"
-        updateWording(forLanguageCode: lang, completion: completion)
+    var localizableDirectoryUrl: URL? {
+        let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL
+        guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion.txt") else { return nil }
+        let currentVersion: String
+        if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
+            currentVersion = version
+        } else {
+            currentVersion = "\(Date().timeIntervalSince1970)"
+            try? currentVersion.write(to: propertyFileURL, atomically: false, encoding: .utf8)
+        }
+        return bundleURL?.appendingPathComponent(currentVersion, isDirectory: true)
     }
 
-    public func updateWording(forLanguageCode lang: String, completion: (WordingUpdateResult) -> Void) {
+    // MARK: - Public
+    
+    public func fb_updateWording(request: UpdateWordingRequest, completion: @escaping(WordingUpdateResult) -> Void) {
+        let lang: String
+        switch request.language {
+        case let .languageCode(langCode):
+            lang = langCode
+        case .current:
+            lang = Locale.current.languageCode ?? "en"
+        }
         guard self.localizations.contains(lang) else {
             completion(.failure(NSError.unknownLanguage))
             return
         }
-
-        let fetcher = LocalizableFetcher()
+        let fetcher = LocalizableFetcher(baseURL: request.baseURL, projectId: request.projectId)
         fetcher.fetch(for: lang) { result in
-            let mergedLocalizableResult = result.mapThrow { try mergedLocalization(remoteStrings: $0, forLanguage: lang)}
+            let mergedLocalizableResult = result.mapThrow { try self.mergedLocalization(remoteStrings: $0, forLanguage: lang)}
             do {
                 switch mergedLocalizableResult {
                 case let .success(mergedLocalizable):
-                    try updateMainBundle(forLanguage: lang, withLocalizable: mergedLocalizable)
-                    updateLocalizationsBundle(forLanguage: lang, withLocalizable: mergedLocalizable)
+                    try self.updateLocalizations(forLanguage: lang, withLocalizable: mergedLocalizable)
                     completion(.success)
                 case let .failure(error):
                     throw error
@@ -46,7 +59,7 @@ extension Bundle {
     // MARK: - Private
 
     private func mergedLocalization(remoteStrings: Localizations, forLanguage lang: String) throws -> Localizations {
-        guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
+        guard let localFileUrl = localizableFileUrl(forLanguage: lang, copyMainLocalizable: true) else {
             throw NSError.unaccessibleBundle
         }
         let localStrings: Localizations = NSDictionary(contentsOfFile: localFileUrl.path) as? Localizations ?? [:]
@@ -54,36 +67,39 @@ extension Bundle {
         return merger.merge(localStrings: localStrings, with: remoteStrings)
     }
 
-    private func updateMainBundle(forLanguage lang: String, withLocalizable strings: Localizations) throws  {
-        guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
+    private func updateLocalizations(forLanguage lang: String, withLocalizable strings: Localizations) throws {
+        guard let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL else { return }
+        let propertyFileURL = bundleURL.appendingPathComponent("currentLocalizableVersion.txt")
+        if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
+            let lastLocalizablesUrl = bundleURL.appendingPathComponent(version, isDirectory: true)
+            try FileManager.default.removeItem(atPath: lastLocalizablesUrl.path)
+        }
+        let currentVersion = "\(Date().timeIntervalSince1970)"
+        try currentVersion.write(to: propertyFileURL, atomically: false, encoding: .utf8)
+        guard let localFileUrl = localizableFileUrl(forLanguage: lang, copyMainLocalizable: false) else {
             throw NSError.unaccessibleBundle
         }
         (strings as NSDictionary).write(to: localFileUrl, atomically: false)
     }
 
-    private func updateLocalizationsBundle(forLanguage lang: String, withLocalizable strings: Localizations){
-        if Bundle.updatedLocalizationsBundle == nil {
-            Bundle.updatedLocalizationsBundle = Bundle(bundleName: "updatedLocalizationsBundle")
-        }
-
-        let bundleURL = Bundle.updatedLocalizationsBundle?.bundleURL
-        let languageURL = bundleURL?.appendingPathComponent("\(lang).lproj", isDirectory: true)
-        guard let langURL = languageURL else { return }
-
+    private func localizableFileUrl(forLanguage lang: String, copyMainLocalizable: Bool) -> URL? {
+        let languageURL = localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj", isDirectory: true)
+        guard let langURL = languageURL else { return nil }
         if FileManager.default.fileExists(atPath: langURL.path) == false {
             try? FileManager.default.createDirectory(at: langURL, withIntermediateDirectories: true, attributes: nil)
+            if copyMainLocalizable { copyMainLocalization(forLang: lang, atUrl: langURL) }
         }
-
         let filePath = langURL.appendingPathComponent("Localizable.strings")
-        (strings as NSDictionary).write(to: filePath, atomically: false)
+        return filePath
     }
 
-    private func localizableFileUrl(forLanguage lang: String) -> URL? {
-        return self.url(
-            forResource: "Localizable",
-            withExtension: "strings",
-            subdirectory: "\(lang).lproj"
-        )
+    private func copyMainLocalization(forLang lang: String, atUrl langURL: URL) {
+        let localizableFilePath = langURL.appendingPathComponent("Localizable.strings")
+        guard
+            let mainLocalizableFile = Bundle.main.path(forResource: "Localizable", ofType: "strings", inDirectory: "\(lang).lproj")
+            else { return }
+        let mainLocalizable = NSDictionary(contentsOfFile: mainLocalizableFile)
+        mainLocalizable?.write(toFile: localizableFilePath.path, atomically: false)
     }
 }
 

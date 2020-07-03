@@ -7,6 +7,8 @@ on:
 
 jobs:
   build:
+    env:
+      PATH: /Users/slave/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
     runs-on: [self-hosted, macOS]
 
@@ -17,7 +19,7 @@ jobs:
     - name: Bundle install Example
       working-directory: ./Example
       run: bundle install
-    - name: Pod install
+    - name: Pod install Example
       working-directory: ./Example
       run: bundle exec pod install
     - name: Build and test

@@ -38,7 +38,7 @@ class Tests: XCTestCase {
 
     func testPerfomance_translation() {
         self.measure {
-            _ = "hello_world_title".translation
+            _ = "hello_world_title".fb_translation
         }
     }
 

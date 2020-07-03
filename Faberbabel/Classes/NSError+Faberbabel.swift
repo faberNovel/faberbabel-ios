@@ -11,6 +11,9 @@ extension NSError {
     static var unknownLanguage: NSError {
         return NSError(domain: "Faberbabel", code: 0, userInfo: ["description":"Unknown Language Code"])
     }
+    static var unreachableServerError: NSError {
+        return NSError(domain: "Faberbabel", code: 0, userInfo: ["description":"Unable to reach the server"])
+    }
     static var unaccessibleBundle: NSError {
         return NSError(domain: "Faberbabel", code: 0, userInfo: ["description":"Unaccessible Bundle"])
     }
