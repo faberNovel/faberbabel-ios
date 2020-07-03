@@ -1,5 +1,5 @@
 //
-//  FBUpdateWordingRequest.swift
+//  UpdateWordingRequest.swift
 //  Faberbabel
 //
 //  Created by Jean Haberer on 29/06/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct FBUpdateWordingRequest {
+public struct UpdateWordingRequest {
     public let baseURL: URL
     public let projectId: String
     public let language: Language

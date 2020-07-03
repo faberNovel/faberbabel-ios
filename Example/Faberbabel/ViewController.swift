@@ -27,10 +27,11 @@ class ViewController: UIViewController {
     @IBAction private func refresh() {
         refreshButton.isEnabled = false
         localizeButton.isEnabled = false
-        guard let url = URL(string: "yourBaseURL") else { return }
-        let wordingRequest = FBUpdateWordingRequest(
+        // TODO: Jean Haberer (02/07/2020) - Replace by your project identifiers (project_base_url & project_id)
+        guard let url = URL(string: "project_base_url") else { return }
+        let wordingRequest = UpdateWordingRequest(
             baseURL: url,
-            projectId: "yourProjectID",
+            projectId: "project_id",
             language: .current
         )
         Bundle.main.fb_updateWording(request: wordingRequest) { [weak self] result in

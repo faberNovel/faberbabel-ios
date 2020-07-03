@@ -1,5 +1,5 @@
 //
-//  FBWordingUpdateResult.swift
+//  WordingUpdateResult.swift
 //  Faberbabel
 //
 //  Created by Jean Haberer on 24/06/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum FBWordingUpdateResult {
+public enum WordingUpdateResult {
     case success
     case failure(_ error: Error)
 }

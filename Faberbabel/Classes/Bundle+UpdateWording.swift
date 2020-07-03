@@ -27,7 +27,7 @@ extension Bundle {
 
     // MARK: - Public
     
-    public func fb_updateWording(request: FBUpdateWordingRequest, completion: @escaping(FBWordingUpdateResult) -> Void) {
+    public func fb_updateWording(request: UpdateWordingRequest, completion: @escaping(WordingUpdateResult) -> Void) {
         let lang: String
         switch request.language {
         case let .languageCode(langCode):
