@@ -14,7 +14,7 @@ extension Bundle {
 
     var localizableDirectoryUrl: URL? {
         let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL
-        guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion") else { return nil }
+        guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion.txt") else { return nil }
         let currentVersion: String
         if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
             currentVersion = version
@@ -69,9 +69,9 @@ extension Bundle {
 
     private func updateLocalizations(forLanguage lang: String, withLocalizable strings: Localizations) throws {
         guard let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL else { return }
-        let propertyFileURL = bundleURL.appendingPathComponent("properties.txt")
-        if let currentVersion = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
-            let lastLocalizablesUrl = bundleURL.appendingPathComponent(currentVersion, isDirectory: true)
+        let propertyFileURL = bundleURL.appendingPathComponent("currentLocalizableVersion.txt")
+        if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
+            let lastLocalizablesUrl = bundleURL.appendingPathComponent(version, isDirectory: true)
             try FileManager.default.removeItem(atPath: lastLocalizablesUrl.path)
         }
         let currentVersion = "\(Date().timeIntervalSince1970)"
