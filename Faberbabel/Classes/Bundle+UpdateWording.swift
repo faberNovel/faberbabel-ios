@@ -41,7 +41,13 @@ extension Bundle {
         }
         let fetcher = LocalizableFetcher(baseURL: request.baseURL, projectId: request.projectId)
         fetcher.fetch(for: lang) { result in
-            let mergedLocalizableResult = result.mapThrow { try self.mergedLocalization(remoteStrings: $0, forLanguage: lang)}
+            let mergedLocalizableResult = result.mapThrow {
+                try self.mergedLocalization(
+                    remoteStrings: $0,
+                    forLanguage: lang,
+                    options: request.mergingOptions
+                )
+            }
             do {
                 switch mergedLocalizableResult {
                 case let .success(mergedLocalizable):
@@ -58,13 +64,13 @@ extension Bundle {
 
     // MARK: - Private
 
-    private func mergedLocalization(remoteStrings: Localizations, forLanguage lang: String) throws -> Localizations {
-        guard let localFileUrl = localizableFileUrl(forLanguage: lang, copyMainLocalizable: true) else {
-            throw NSError.unaccessibleBundle
-        }
-        let localStrings: Localizations = NSDictionary(contentsOfFile: localFileUrl.path) as? Localizations ?? [:]
+    private func mergedLocalization(remoteStrings: Localizations, forLanguage lang: String, options: [MergingOption]) throws -> Localizations {
+        guard
+            let mainLocalizableFile = Bundle.main.path(forResource: "Localizable", ofType: "strings", inDirectory: "\(lang).lproj")
+            else { throw NSError.unaccessibleBundle }
+        let localStrings: Localizations = NSDictionary(contentsOfFile: mainLocalizableFile) as? Localizations ?? [:]
         let merger = LocalizableMerger()
-        return merger.merge(localStrings: localStrings, with: remoteStrings)
+        return merger.merge(localStrings: localStrings, with: remoteStrings, options: options)
     }
 
     private func updateLocalizations(forLanguage lang: String, withLocalizable strings: Localizations) throws {

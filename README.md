@@ -30,13 +30,17 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ### Update the wording
 
 ```swift
-let wordingRequest = FBUpdateWordingRequest(
+let wordingRequest = UpdateWordingRequest(
 	baseURL: FABERBABEL_BASE_URL,
 	projectId: FABERBABEL_PROJECT_ID,
-	language: .current // you can also set it manually specifying .languageCode("en")
+  language: .languageCode("fr") , // Optional: Default is '.current'
+  mergingOptions: [] // Optional: Default is []
+  // If you want the merge to allow big changes in your wording such as a number of attributes mismatch, 
+  // you can for example use the following :
+  // mergingOptions: [.allowRemoteEmptyString, .allowAttributeNumberMismatch]
 )
 
-Bundle.main.fb_updateWording(request: wordingRequest) { [weak self] result in
+Bundle.main.fb_updateWording(request: wordingRequest) { result in
    switch result {
    case .success:
       // Update UI
