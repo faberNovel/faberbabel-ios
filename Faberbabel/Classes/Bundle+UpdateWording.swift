@@ -11,7 +11,8 @@ import CoreData
 extension Bundle {
 
     static var updatedLocalizablesBundle = Bundle(bundleName: "updatedLocalizablesBundle")
-    static var projectId: String?
+    static var faberbabelProjectId: String?
+    static var faberbabelURL: URL?
 
     var localizableDirectoryUrl: URL? {
         let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL
@@ -28,8 +29,9 @@ extension Bundle {
 
     // MARK: - Public
 
-    static public func fb_setup(projectId: String) {
-        self.projectId = projectId
+    static public func fb_setup(projectId: String, baseURL: URL) {
+        self.faberbabelProjectId = projectId
+        self.faberbabelURL = baseURL
     }
     
     public func fb_updateWording(request: UpdateWordingRequest, completion: @escaping(WordingUpdateResult) -> Void) {
@@ -44,11 +46,12 @@ extension Bundle {
             completion(.failure(NSError.unknownLanguage))
             return
         }
-        guard let projectId = Bundle.projectId else {
+        guard let projectId = Bundle.faberbabelProjectId,
+            let baseURL = Bundle.faberbabelURL else {
             completion(.failure(NSError.sdkNotSetUp))
             return
         }
-        let fetcher = LocalizableFetcher(baseURL: request.baseURL, projectId: projectId)
+        let fetcher = LocalizableFetcher(baseURL: baseURL, projectId: projectId)
         fetcher.fetch(for: lang) { result in
             let mergedLocalizableResult = result.mapThrow {
                 try self.mergedLocalization(

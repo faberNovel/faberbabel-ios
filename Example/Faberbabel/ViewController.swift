@@ -27,12 +27,9 @@ class ViewController: UIViewController {
     @IBAction private func refresh() {
         refreshButton.isEnabled = false
         localizeButton.isEnabled = false
-        // Replace by your project identifiers (project_base_url & project_id)
-        guard let url = URL(string: "project_base_url") else { return }
         let wordingRequest = UpdateWordingRequest(
-            baseURL: url,
-            projectId: "project_id",
-            language: .current
+            language: .current,
+            mergingOptions: [.allowRemoteEmptyString]
         )
         Bundle.main.fb_updateWording(request: wordingRequest) { [weak self] result in
             self?.refreshButton.isEnabled = true

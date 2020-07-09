@@ -15,7 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Replace by your project id and url
+        guard let url = URL(string: "base_url") else { return false }
+        Bundle.fb_setup(
+            projectId: "project_id",
+            baseURL: url
+        )
         return true
     }
 
