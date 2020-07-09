@@ -9,15 +9,24 @@ import Foundation
 
 class LocalizableMerger {
     func merge(localStrings: Localizations, with remoteStrings: Localizations, options: [MergingOption] = []) -> Localizations {
-        return localStrings.merging(remoteStrings) { canMerge(local: $0, remote: $1, options: options) ? $1 : $0 }
+        var result = localStrings
+        for remoteLocalizable in remoteStrings {
+            if let local = result[remoteLocalizable.key] {
+                if canMerge(local: local, remote: remoteLocalizable.value, key: remoteLocalizable.key, options: options) {
+                    result[remoteLocalizable.key] = remoteLocalizable.value
+                }
+            } else {
+                result[remoteLocalizable.key] = remoteLocalizable.value
+            }
+        }
+        return result
     }
 
     // MARK: - Private
-
-    private func canMerge(local: String, remote: String, options: [MergingOption]) -> Bool {
+    private func canMerge(local: String, remote: String, key: String, options: [MergingOption]) -> Bool {
         if !options.contains(.allowRemoteEmptyString),
             remote == "" {
-            print("WARNING:\nWon't merge remote `\(remote)` : Remote string is empty")
+            print("WARNING:\nWon't merge key `\(key)` : Remote string is empty")
             return false
         }
         let localAttributesCount = local.countInstances(of: "$@") + local.countInstances(of: "%@")
@@ -26,7 +35,7 @@ class LocalizableMerger {
             remoteAttributesCount != localAttributesCount {
             print(
                 "WARNING:"
-                    + "\nWon't merge remote string `\(remote)` : "
+                    + "\nWon't merge remote key `\(key)` : "
                     + "\nRemote string does not match the parameter's number of the local string "
                     + "(remote: \(remoteAttributesCount), local: \(localAttributesCount))"
             )

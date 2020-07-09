@@ -17,4 +17,10 @@ extension NSError {
     static var unaccessibleBundle: NSError {
         return NSError(domain: "Faberbabel", code: 0, userInfo: ["description":"Unaccessible Bundle"])
     }
+    static var sdkNotSetUp: NSError {
+        return NSError(domain: "Faberbabel", code: 0, userInfo: [
+            "description":"The SDK wasn't setup, please add Bundle.fb_setup(...) in your App Delegate for example"
+            ]
+        )
+    }
 }

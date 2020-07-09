@@ -9,7 +9,6 @@ import Foundation
 
 public struct UpdateWordingRequest {
     public let baseURL: URL
-    public let projectId: String
     public let language: Language
     public let mergingOptions : [MergingOption]
 
@@ -20,12 +19,10 @@ public struct UpdateWordingRequest {
 
     public init(
         baseURL: URL,
-        projectId: String,
         language: Language = .current,
         mergingOptions: [MergingOption] = []
     ) {
         self.baseURL = baseURL
-        self.projectId = projectId
         self.language = language
         self.mergingOptions = mergingOptions
     }
