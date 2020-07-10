@@ -21,7 +21,7 @@ extension String {
             }
         var localized = bundle.localizedString(forKey: self, value: nil, table: nil)
         if localized == self {
-            print("ERROR:\nKey not found for language code '\(lang)': '\(self)'")
+            EventNotifier.shared?.notify(events: [Event(type: .missing_key, key: self)])
             if lang != "en" {
                 localized = fb_translate(to: "en")
             }

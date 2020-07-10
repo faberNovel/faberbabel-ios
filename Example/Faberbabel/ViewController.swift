@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         localizeButton.isEnabled = false
         let wordingRequest = UpdateWordingRequest(
             language: .current,
-            mergingOptions: [.allowRemoteEmptyString]
+            mergingOptions: []
         )
         Bundle.main.fb_updateWording(request: wordingRequest) { [weak self] result in
             self?.refreshButton.isEnabled = true

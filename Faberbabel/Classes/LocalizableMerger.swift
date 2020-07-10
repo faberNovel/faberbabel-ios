@@ -10,37 +10,34 @@ import Foundation
 class LocalizableMerger {
     func merge(localStrings: Localizations, with remoteStrings: Localizations, options: [MergingOption] = []) -> Localizations {
         var result = localStrings
+        var events: [Event] = []
         for remoteLocalizable in remoteStrings {
             if let local = result[remoteLocalizable.key] {
-                if canMerge(local: local, remote: remoteLocalizable.value, key: remoteLocalizable.key, options: options) {
+                if let event = canMerge(local: local, remote: remoteLocalizable.value, key: remoteLocalizable.key, options: options) {
+                    events.append(event)
+                } else {
                     result[remoteLocalizable.key] = remoteLocalizable.value
                 }
             } else {
                 result[remoteLocalizable.key] = remoteLocalizable.value
             }
         }
+        EventNotifier.shared?.notify(events: events)
         return result
     }
 
     // MARK: - Private
-    private func canMerge(local: String, remote: String, key: String, options: [MergingOption]) -> Bool {
+    private func canMerge(local: String, remote: String, key: String, options: [MergingOption]) -> Event? {
         if !options.contains(.allowRemoteEmptyString),
             remote == "" {
-            print("WARNING:\nWon't merge key `\(key)` : Remote string is empty")
-            return false
+            return Event(type: .empty_value, key: key)
         }
         let localAttributesCount = local.countInstances(of: "$@") + local.countInstances(of: "%@")
         let remoteAttributesCount = remote.countInstances(of: "$@") + remote.countInstances(of: "%@")
         if !options.contains(.allowAttributeNumberMismatch),
             remoteAttributesCount != localAttributesCount {
-            print(
-                "WARNING:"
-                    + "\nWon't merge remote key `\(key)` : "
-                    + "\nRemote string does not match the parameter's number of the local string "
-                    + "(remote: \(remoteAttributesCount), local: \(localAttributesCount))"
-            )
-            return false
+            return Event(type: .mismatch_attributes, key: key)
         }
-        return true
+        return nil
     }
 }
