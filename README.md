@@ -20,6 +20,7 @@ This library is an iOS SDK to easily implement Faberbabel in you app. Faberbabel
 
 - [x] Update the app wording remotely
 - [x] Localize a key with the updated wording
+- [x] Notify the back when an error occurs (key missing / merge error)
 
 ## Example
 
@@ -27,12 +28,23 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## How to use 
 
+### Setup
+
+Setup the librairy with your credentials in the `AppDelegate.swift`for example.
+
+```swift
+Bundle.fb_setup(
+	projectId: "xxx-xxx-xxx",
+	baseURL: "https://xxx.com"
+)
+```
+
+
+
 ### Update the wording
 
 ```swift
 let wordingRequest = UpdateWordingRequest(
-	baseURL: FABERBABEL_BASE_URL,
-	projectId: FABERBABEL_PROJECT_ID,
   language: .languageCode("fr") , // Optional: Default is '.current'
   mergingOptions: [] // Optional: Default is []
   // If you want the merge to allow big changes in your wording such as a number of attributes mismatch, 
