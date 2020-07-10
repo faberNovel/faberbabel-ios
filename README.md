@@ -30,7 +30,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ### Setup
 
-Setup the librairy with your credentials in the `AppDelegate.swift`for example.
+Setup the library with your credentials in the `AppDelegate.swift`for example.
 
 ```swift
 Bundle.fb_setup(
