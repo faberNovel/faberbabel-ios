@@ -87,7 +87,7 @@ extension Bundle {
         let propertyFileURL = bundleURL.appendingPathComponent("currentLocalizableVersion.txt")
         if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
             let lastLocalizablesUrl = bundleURL.appendingPathComponent(version, isDirectory: true)
-            try FileManager.default.removeItem(atPath: lastLocalizablesUrl.path)
+            try? FileManager.default.removeItem(atPath: lastLocalizablesUrl.path)
         }
         let currentVersion = "\(Date().timeIntervalSince1970)"
         try currentVersion.write(to: propertyFileURL, atomically: false, encoding: .utf8)
