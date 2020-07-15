@@ -6,7 +6,9 @@ target 'Faberbabel_Example' do
 
   target 'Faberbabel_Tests' do
     inherit! :search_paths
+  end
 
-    
+  target 'Widget' do
+    inherit! :search_paths
   end
 end

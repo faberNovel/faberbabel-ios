@@ -16,11 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Replace by your project id and url
-        guard let url = URL(string: "base_url") else { return false }
+        guard let url = URL(string: "https://faberbabel-develop.herokuapp.com") else { return false }
         Bundle.fb_setup(
-            projectId: "project_id",
+            projectId: "349a41ab-7815-4cf6-ae54-2e5f2304bfe9",
             baseURL: url
         )
+        Bundle.fb_addAppGroupIdentifier("group.faberbabel.com")
         return true
     }
 
