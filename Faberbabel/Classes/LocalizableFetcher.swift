@@ -8,6 +8,8 @@
 import Foundation
 
 class LocalizableFetcher {
+    static var shared: LocalizableFetcher?
+
     let projectId: String
     let baseURL: URL
 

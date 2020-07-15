@@ -26,6 +26,12 @@ extension Bundle {
     }
 
     // MARK: - Public
+
+    static public func fb_setup(projectId: String, baseURL: URL) {
+        EventNotifier.shared = EventNotifier(projectId: projectId, baseURL: baseURL)
+        LocalizableFetcher.shared = LocalizableFetcher(baseURL: baseURL, projectId: projectId)
+
+    }
     
     public func fb_updateWording(request: UpdateWordingRequest, completion: @escaping(WordingUpdateResult) -> Void) {
         let lang: String
@@ -39,9 +45,18 @@ extension Bundle {
             completion(.failure(NSError.unknownLanguage))
             return
         }
-        let fetcher = LocalizableFetcher(baseURL: request.baseURL, projectId: request.projectId)
+        guard let fetcher = LocalizableFetcher.shared else {
+            completion(.failure(NSError.sdkNotSetUp))
+            return
+        }
         fetcher.fetch(for: lang) { result in
-            let mergedLocalizableResult = result.mapThrow { try self.mergedLocalization(remoteStrings: $0, forLanguage: lang)}
+            let mergedLocalizableResult = result.mapThrow {
+                try self.mergedLocalization(
+                    remoteStrings: $0,
+                    forLanguage: lang,
+                    options: request.mergingOptions
+                )
+            }
             do {
                 switch mergedLocalizableResult {
                 case let .success(mergedLocalizable):
@@ -58,13 +73,13 @@ extension Bundle {
 
     // MARK: - Private
 
-    private func mergedLocalization(remoteStrings: Localizations, forLanguage lang: String) throws -> Localizations {
-        guard let localFileUrl = localizableFileUrl(forLanguage: lang, copyMainLocalizable: true) else {
-            throw NSError.unaccessibleBundle
-        }
-        let localStrings: Localizations = NSDictionary(contentsOfFile: localFileUrl.path) as? Localizations ?? [:]
+    private func mergedLocalization(remoteStrings: Localizations, forLanguage lang: String, options: [MergingOption]) throws -> Localizations {
+        guard
+            let mainLocalizableFile = Bundle.main.path(forResource: "Localizable", ofType: "strings", inDirectory: "\(lang).lproj")
+            else { throw NSError.unaccessibleBundle }
+        let localStrings: Localizations = NSDictionary(contentsOfFile: mainLocalizableFile) as? Localizations ?? [:]
         let merger = LocalizableMerger()
-        return merger.merge(localStrings: localStrings, with: remoteStrings)
+        return merger.merge(localStrings: localStrings, with: remoteStrings, options: options)
     }
 
     private func updateLocalizations(forLanguage lang: String, withLocalizable strings: Localizations) throws {
@@ -72,7 +87,7 @@ extension Bundle {
         let propertyFileURL = bundleURL.appendingPathComponent("currentLocalizableVersion.txt")
         if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
             let lastLocalizablesUrl = bundleURL.appendingPathComponent(version, isDirectory: true)
-            try FileManager.default.removeItem(atPath: lastLocalizablesUrl.path)
+            try? FileManager.default.removeItem(atPath: lastLocalizablesUrl.path)
         }
         let currentVersion = "\(Date().timeIntervalSince1970)"
         try currentVersion.write(to: propertyFileURL, atomically: false, encoding: .utf8)
