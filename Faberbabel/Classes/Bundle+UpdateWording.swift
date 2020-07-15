@@ -11,6 +11,7 @@ import CoreData
 extension Bundle {
 
     static var updatedLocalizablesBundle = Bundle(bundleName: "updatedLocalizablesBundle")
+    static private var appGroupIdentifier: String?
 
     var localizableDirectoryUrl: URL? {
         let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL
@@ -30,7 +31,10 @@ extension Bundle {
     static public func fb_setup(projectId: String, baseURL: URL) {
         EventNotifier.shared = EventNotifier(projectId: projectId, baseURL: baseURL)
         LocalizableFetcher.shared = LocalizableFetcher(baseURL: baseURL, projectId: projectId)
+    }
 
+    static public func fb_addAppGroupIdentifier(_ appGroupIdentifier: String) {
+        self.appGroupIdentifier = appGroupIdentifier
     }
     
     public func fb_updateWording(request: UpdateWordingRequest, completion: @escaping(WordingUpdateResult) -> Void) {
@@ -122,8 +126,12 @@ extension Bundle {
     // MARK: - Convenience functions
 
     static func bundleUrl(bundleName: String) -> URL? {
-        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
-            return nil
+        var path: String = ""
+        if let appGroupIdentifier = appGroupIdentifier,
+            let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) {
+            path = groupURL.path
+        } else if let appPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first {
+            path = appPath
         }
         let documentsUrl = URL(fileURLWithPath: path)
         return documentsUrl.appendingPathComponent(bundleName, isDirectory: true)

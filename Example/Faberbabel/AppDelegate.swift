@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             projectId: "project_id",
             baseURL: url
         )
+        Bundle.fb_addAppGroupIdentifier("group.faberbabel.com")
         return true
     }
 

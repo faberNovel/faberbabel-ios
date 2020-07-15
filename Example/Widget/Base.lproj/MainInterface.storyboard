@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="Widget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="25" verticalHuggingPriority="25" horizontalCompressionResistancePriority="75" verticalCompressionResistancePriority="75" text="hello_world_title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="GcN-lo-r42">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZV2-aS-ads">
+                                <rect key="frame" x="108.5" y="158" width="103" height="30"/>
+                                <state key="normal" title="localize_button"/>
+                                <connections>
+                                    <action selector="localize" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="vDQ-jp-toP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="trailing" secondItem="ssy-KU-ocm" secondAttribute="trailing" id="6Oj-Hn-ytR"/>
+                            <constraint firstItem="ZV2-aS-ads" firstAttribute="top" secondItem="GcN-lo-r42" secondAttribute="bottom" id="BhN-oV-c7W"/>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="E0Q-wK-9pQ"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="ZV2-aS-ads" secondAttribute="bottom" constant="12" id="M96-Sz-f22"/>
+                            <constraint firstItem="ZV2-aS-ads" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="S0M-fi-K7B"/>
+                            <constraint firstItem="GcN-lo-r42" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="mjF-wK-vXR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="200"/>
+                    <connections>
+                        <outlet property="button" destination="ZV2-aS-ads" id="VtU-Uo-WWJ"/>
+                        <outlet property="label" destination="GcN-lo-r42" id="bwN-ln-J6L"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="8.6956521739130448" y="43.526785714285715"/>
+        </scene>
+    </scenes>
+</document>

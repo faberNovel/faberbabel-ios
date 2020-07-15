@@ -39,7 +39,11 @@ Bundle.fb_setup(
 )
 ```
 
+If you are using extensions, you might want to share one wording for all of your targets. You can achieve that simply by adding this line with a valid `App Group Identifier` before using the library in all your wanted targets. Remember to add this `App Group Identifier` in the capabilities of your targets.
 
+```swift
+Bundle.fb_addAppGroupIdentifier("APP_GROUP_IDENTIFIER")
+```
 
 ### Update the wording
 
