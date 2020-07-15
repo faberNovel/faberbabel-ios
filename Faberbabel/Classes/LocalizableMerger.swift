@@ -10,11 +10,16 @@ import Foundation
 class LocalizableMerger {
     func merge(localStrings: Localizations, with remoteStrings: Localizations, options: [MergingOption] = []) -> Localizations {
         var result = localStrings
-        var events: [Event] = []
+        var exceptions: [Event] = []
         for remoteLocalizable in remoteStrings {
             if let local = result[remoteLocalizable.key] {
-                if let event = canMerge(local: local, remote: remoteLocalizable.value, key: remoteLocalizable.key, options: options) {
-                    events.append(event)
+                if let exception = exceptionFromMerging(
+                    local: local,
+                    remote: remoteLocalizable.value,
+                    key: remoteLocalizable.key,
+                    options: options
+                ) {
+                    exceptions.append(exception)
                 } else {
                     result[remoteLocalizable.key] = remoteLocalizable.value
                 }
@@ -22,12 +27,12 @@ class LocalizableMerger {
                 result[remoteLocalizable.key] = remoteLocalizable.value
             }
         }
-        EventNotifier.shared?.notify(events: events)
+        EventNotifier.shared?.notify(events: exceptions)
         return result
     }
 
     // MARK: - Private
-    private func canMerge(local: String, remote: String, key: String, options: [MergingOption]) -> Event? {
+    private func exceptionFromMerging(local: String, remote: String, key: String, options: [MergingOption]) -> Event? {
         if !options.contains(.allowRemoteEmptyString),
             remote == "" {
             return Event(type: .empty_value, key: key)
