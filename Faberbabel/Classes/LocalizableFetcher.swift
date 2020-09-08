@@ -7,8 +7,13 @@
 
 import Foundation
 
-class LocalizableFetcher {
-    static var shared: LocalizableFetcher?
+protocol LocalizableFetcher {
+    func fetch(for lang: String,
+               completion: @escaping(Result<Localizations, Error>) -> Void)
+}
+
+class RemoteLocalizableFetcher: LocalizableFetcher {
+    static var shared: RemoteLocalizableFetcher?
 
     let projectId: String
     let baseURL: URL
@@ -17,6 +22,8 @@ class LocalizableFetcher {
         self.baseURL = baseURL
         self.projectId = projectId
     }
+
+    // MARK: - LocalizableFetcher
 
     func fetch(for lang: String,
                completion: @escaping(Result<Localizations, Error>) -> Void) {
