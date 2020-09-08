@@ -41,13 +41,13 @@ class LocalizableMerger {
                                       key: String,
                                       options: [MergingOption]) -> Event? {
         if !options.contains(.allowRemoteEmptyString), remote.isEmpty {
-            return Event(type: .empty_value, key: key)
+            return Event(type: .emptyValue, key: key)
         }
         let localAttributesCount = local.countInstances(of: "$@") + local.countInstances(of: "%@")
         let remoteAttributesCount = remote.countInstances(of: "$@") + remote.countInstances(of: "%@")
         if !options.contains(.allowAttributeNumberMismatch),
             remoteAttributesCount != localAttributesCount {
-            return Event(type: .mismatch_attributes, key: key)
+            return Event(type: .mismatchAttributes, key: key)
         }
         return nil
     }

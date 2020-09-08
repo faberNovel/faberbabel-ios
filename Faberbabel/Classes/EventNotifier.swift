@@ -24,12 +24,12 @@ class EventNotifier {
     }
 
     func notify(events: [Event]) {
-        for event in events {
-            print("FABERBABEL: \(event.type.rawValue) on key \'\(event.key)\'")
-        }
         let restBody = RestEventNotificationBody(
-            events: events.map { EventMapper(event: $0).map() }
+            events: events.map { RestEventMapper(event: $0).map() }
         )
+        for event in restBody.events {
+            print("FABERBABEL: \(event.type) on key \'\(event.key)\'")
+        }
         let url = baseURL.appendingPathComponent("translations/projects/\(projectId)/events")
         let session = URLSession.shared
         var request = URLRequest(url: url)
