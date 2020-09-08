@@ -15,8 +15,8 @@ extension Faberbabel {
                                  baseURL: URL,
                                  appGroupIdentifier: String? = nil) {
         let fetcher = RemoteLocalizableFetcher(
-            baseURL: baseURL,
-            projectId: projectId
+            projectId: projectId,
+            baseURL: baseURL
         )
         let remoteLogger = RemoteEventLogger(
             projectId: projectId,
