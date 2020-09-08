@@ -63,6 +63,21 @@ class LocalizableMergerTests: XCTestCase {
         XCTAssertEqual(logger.loggedEvents.sorted(), expectedEvents)
     }
 
+    func testWrongAttributesNumberShouldMerge() {
+        // Given
+        let local = ["key1": "%@ %@", "key2": "%1$@ %2$@"]
+        let remote = ["key1": "%@", "key2": "%1$@ %2$@ %3$@"]
+        // When
+        let merged = localizableMerger.merge(
+            localStrings: local,
+            with: remote,
+            options: [.allowAttributeNumberMismatch]
+        )
+        // Then
+        XCTAssertEqual(merged, remote)
+        XCTAssertEqual(logger.loggedEvents, [])
+    }
+
     func testCorrectAttributesNumberShouldMerge() {
         // Given
         let local = ["key1": "%@ local %@", "key2": "%1$@ local %2$@"]
@@ -96,5 +111,20 @@ class LocalizableMergerTests: XCTestCase {
         XCTAssertEqual(merged, local)
         let event = Event(type: .emptyValue, key: "key")
         XCTAssertEqual(logger.loggedEvents.sorted(), [event])
+    }
+
+    func testEmptyRemoteKeyShouldMerge() {
+        // Given
+        let local = ["key": "this string should survive"]
+        let remote = ["key": ""]
+        // When
+        let merged = localizableMerger.merge(
+            localStrings: local,
+            with: remote,
+            options: [.allowRemoteEmptyString]
+        )
+        // Then
+        XCTAssertEqual(merged, remote)
+        XCTAssertEqual(logger.loggedEvents, [])
     }
 }
