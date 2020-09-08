@@ -46,13 +46,7 @@ public class Faberbabel {
     func updateWording(request: UpdateWordingRequest,
                        bundle: Bundle,
                        completion: @escaping (WordingUpdateResult) -> Void) {
-        let lang: String
-        switch request.language {
-        case let .languageCode(langCode):
-            lang = langCode
-        case .current:
-            lang = Locale.current.languageCode ?? "en"
-        }
+        let lang = self.lang(for: request)
         guard bundle.localizations.contains(lang) else {
             completion(.failure(.unknownLanguage))
             return
@@ -82,6 +76,15 @@ public class Faberbabel {
     }
 
     // MARK: - Private
+
+    private func lang(for request: UpdateWordingRequest) -> String {
+        switch request.language {
+        case let .languageCode(langCode):
+            return langCode
+        case .current:
+            return Locale.current.languageCode ?? "en"
+        }
+    }
 
     private func mergedLocalization(remoteStrings: Localizations,
                                     forLanguage lang: String,
