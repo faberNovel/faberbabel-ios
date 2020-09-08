@@ -9,9 +9,9 @@ import Foundation
 
 class LocalizableMerger {
 
-    private let eventNotifier: EventNotifier?
+    private let eventNotifier: EventLogger?
 
-    init(eventNotifier: EventNotifier?) {
+    init(eventNotifier: EventLogger?) {
         self.eventNotifier = eventNotifier
     }
 
@@ -36,7 +36,7 @@ class LocalizableMerger {
                 result[remoteLocalizable.key] = remoteLocalizable.value
             }
         }
-        eventNotifier?.notify(events: exceptions)
+        eventNotifier?.log(exceptions)
         return result
     }
 

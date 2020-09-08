@@ -17,7 +17,7 @@ extension String {
         var localized = fb_localize(to: lang)
         if localized == self {
             let event = Event(type: .missingKey, key: self)
-            RemoteEventNotifier.shared?.notify(event: event)
+            RemoteEventLogger.shared?.log(event)
             if lang != "en" {
                 localized = fb_localize(to: "en")
             }

@@ -1,5 +1,5 @@
 //
-//  EventNotifier.swift
+//  EventLogger.swift
 //  Faberbabel
 //
 //  Created by Jean Haberer on 09/07/2020.
@@ -7,19 +7,19 @@
 
 import Foundation
 
-protocol EventNotifier {
-    func notify(events: [Event])
+protocol EventLogger {
+    func log(_ events: [Event])
 }
 
-extension EventNotifier {
+extension EventLogger {
 
-    func notify(event: Event) {
-        notify(events: [event])
+    func log(_ event: Event) {
+        log([event])
     }
 }
 
-class RemoteEventNotifier: EventNotifier {
-    static var shared: RemoteEventNotifier?
+class RemoteEventLogger: EventLogger {
+    static var shared: RemoteEventLogger?
 
     private let projectId: String
     private let baseURL: URL
@@ -37,9 +37,9 @@ class RemoteEventNotifier: EventNotifier {
         let events: [RestEvent]
     }
 
-    // MARK: - EventNotifier
+    // MARK: - EventLogger
 
-    func notify(events: [Event]) {
+    func log(_ events: [Event]) {
         let restBody = RestEventNotificationBody(
             events: events.map { RestEventMapper(event: $0).map() }
         )

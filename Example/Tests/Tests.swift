@@ -3,13 +3,13 @@ import XCTest
 
 // swiftlint:disable implicitly_unwrapped_optional
 
-class MemoryEventNotifier: EventNotifier {
+class MemoryEventLogger: EventLogger {
 
     var notifiedEvents: [Event] = []
 
     // MARK: - EventNotifier
 
-    func notify(events: [Event]) {
+    func log(_ events: [Event]) {
         notifiedEvents.append(contentsOf: events)
     }
 }
@@ -20,7 +20,7 @@ class Tests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let notifier = MemoryEventNotifier()
+        let notifier = MemoryEventLogger()
         localizableMerger = LocalizableMerger(eventNotifier: notifier)
     }
 
