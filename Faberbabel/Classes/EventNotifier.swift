@@ -10,13 +10,16 @@ import Foundation
 class EventNotifier {
     static var shared: EventNotifier?
 
-    let projectId: String
-    let baseURL: URL
+    private let projectId: String
+    private let baseURL: URL
+    private let urlSession: URLSession
 
     init(projectId: String,
-         baseURL: URL) {
+         baseURL: URL,
+         urlSession: URLSession = .shared) {
         self.baseURL = baseURL
         self.projectId = projectId
+        self.urlSession = urlSession
     }
 
     private struct RestEventNotificationBody: Codable {
@@ -31,7 +34,6 @@ class EventNotifier {
             print("FABERBABEL: \(event.type) on key \'\(event.key)\'")
         }
         let url = baseURL.appendingPathComponent("translations/projects/\(projectId)/events")
-        let session = URLSession.shared
         var request = URLRequest(url: url)
         do {
             request.httpBody = try JSONEncoder().encode(restBody)
@@ -39,7 +41,7 @@ class EventNotifier {
             print(error.localizedDescription)
         }
         request.httpMethod = "POST"
-        let task = session.dataTask(with: request as URLRequest)
+        let task = urlSession.dataTask(with: request as URLRequest)
         task.resume()
     }
 }
