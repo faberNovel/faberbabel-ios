@@ -48,11 +48,11 @@ extension Bundle {
             lang = Locale.current.languageCode ?? "en"
         }
         guard self.localizations.contains(lang) else {
-            completion(.failure(NSError.unknownLanguage))
+            completion(.failure(.unknownLanguage))
             return
         }
         guard let fetcher = LocalizableFetcher.shared else {
-            completion(.failure(NSError.sdkNotSetUp))
+            completion(.failure(.sdkNotSetUp))
             return
         }
         fetcher.fetch(for: lang) { result in
@@ -69,10 +69,12 @@ extension Bundle {
                     try self.updateLocalizations(forLanguage: lang, withLocalizable: mergedLocalizable)
                     completion(.success)
                 case let .failure(error):
-                    throw error
+                    completion(.failure(.other(error)))
                 }
-            } catch {
+            } catch let error as WordingUpdateError {
                 completion(.failure(error))
+            } catch {
+                completion(.failure(.other(error)))
             }
         }
     }
@@ -88,7 +90,7 @@ extension Bundle {
             inDirectory: "\(lang).lproj"
         )
         guard let mainLocalizableFile = bundle else {
-            throw NSError.unaccessibleBundle
+            throw WordingUpdateError.unaccessibleBundle
         }
         let localStrings: Localizations = NSDictionary(contentsOfFile: mainLocalizableFile) as? Localizations ?? [:]
         let merger = LocalizableMerger()
@@ -110,7 +112,7 @@ extension Bundle {
             encoding: .utf8
         )
         guard let localFileUrl = localizableFileUrl(forLanguage: lang, copyMainLocalizable: false) else {
-            throw NSError.unaccessibleBundle
+            throw WordingUpdateError.unaccessibleBundle
         }
         (strings as NSDictionary).write(to: localFileUrl, atomically: false)
     }

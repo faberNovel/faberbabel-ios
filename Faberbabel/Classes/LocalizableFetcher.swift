@@ -34,7 +34,7 @@ class LocalizableFetcher {
                 }
             } else {
                 DispatchQueue.main.async {
-                    completion(.failure(NSError.unreachableServerError))
+                    completion(.failure(WordingUpdateError.unreachableServer))
                 }
             }
         }
