@@ -23,4 +23,8 @@ desc "CI Check"
 lane :ci_check do
   tests
   lint
+  pod_lib_lint(
+    use_bundle_exec: true,
+    allow_warnings: false
+  )
 end

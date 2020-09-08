@@ -24,5 +24,3 @@ jobs:
       run: bundle exec pod install
     - name: Build and test
       run: bundle exec fastlane ci_check
-    - name: Pod lib lint
-      run: pod lib lint
