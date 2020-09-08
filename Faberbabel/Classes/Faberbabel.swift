@@ -9,8 +9,8 @@ import Foundation
 
 public class Faberbabel {
 
+    let logger: EventLogger
     private let fetcher: LocalizableFetcher
-    private let logger: EventLogger
     private let appGroupIdentifier: String?
 
     init(fetcher: LocalizableFetcher,
@@ -22,6 +22,21 @@ public class Faberbabel {
     }
 
     // MARK: - Public
+
+    var localizableDirectoryUrl: URL? {
+        let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL
+        guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion.txt") else {
+            return nil
+        }
+        let currentVersion: String
+        if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
+            currentVersion = version
+        } else {
+            currentVersion = "\(Date().timeIntervalSince1970)"
+            try? currentVersion.write(to: propertyFileURL, atomically: false, encoding: .utf8)
+        }
+        return bundleURL?.appendingPathComponent(currentVersion, isDirectory: true)
+    }
 
     func updateWording(request: UpdateWordingRequest,
                        bundle: Bundle,
@@ -129,20 +144,5 @@ public class Faberbabel {
         }
         let mainLocalizable = NSDictionary(contentsOfFile: mainLocalizableFile)
         mainLocalizable?.write(toFile: localizableFilePath.path, atomically: false)
-    }
-
-    private var localizableDirectoryUrl: URL? {
-        let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL
-        guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion.txt") else {
-            return nil
-        }
-        let currentVersion: String
-        if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
-            currentVersion = version
-        } else {
-            currentVersion = "\(Date().timeIntervalSince1970)"
-            try? currentVersion.write(to: propertyFileURL, atomically: false, encoding: .utf8)
-        }
-        return bundleURL?.appendingPathComponent(currentVersion, isDirectory: true)
     }
 }

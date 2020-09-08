@@ -55,4 +55,12 @@ extension Faberbabel {
             completion: completion
         )
     }
+
+    public static func translation(forKey key: String,
+                                   lang: String) -> String {
+        guard let instance = Faberbabel.shared else {
+            preconditionFailure("The SDK wasn't setup. Follow the README instructions.")
+        }
+        return instance.translation(forKey: key, lang: lang)
+    }
 }
