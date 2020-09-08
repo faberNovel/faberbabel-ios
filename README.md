@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Faberbabel.svg?style=flat)](https://cocoapods.org/pods/Faberbabel)
 [![Platform](https://img.shields.io/cocoapods/p/Faberbabel.svg?style=flat)](https://cocoapods.org/pods/Faberbabel)
 
-This library is an iOS SDK to easily implement Faberbabel in you app. Faberbabel helps you deploy a new wording remotely into you apps.
+This library is an iOS SDK to easily implement Faberbabel in you app. Faberbabel helps you deploy a new wording remotely into your apps.
 
 - [Features](#features)
 - [Example](#example)
@@ -26,20 +26,21 @@ This library is an iOS SDK to easily implement Faberbabel in you app. Faberbabel
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## How to use 
+## How to use
 
 ### Setup
 
-Setup the library with your credentials in the `AppDelegate.swift`for example.
+Setup the library with your credentials in the `AppDelegate.swift` for example.
 
 ```swift
 Bundle.fb_setup(
-	projectId: "xxx-xxx-xxx",
-	baseURL: "https://xxx.com"
+    projectId: "xxx-xxx-xxx",
+    baseURL: "https://xxx.com"
 )
 ```
 
-If you are using extensions, you might want to share one wording for all of your targets. You can achieve that simply by adding this line with a valid `App Group Identifier` before using the library in all your wanted targets. Remember to add this `App Group Identifier` in the capabilities of your targets.
+If you are using extensions, you might want to share one wording for all of your targets. You can achieve that simply by adding this line with a valid `App Group Identifier` before using the library in all your wanted targets.
+Remember to add this `App Group Identifier` in the capabilities of your targets.
 
 ```swift
 Bundle.fb_addAppGroupIdentifier("APP_GROUP_IDENTIFIER")
@@ -49,20 +50,20 @@ Bundle.fb_addAppGroupIdentifier("APP_GROUP_IDENTIFIER")
 
 ```swift
 let wordingRequest = UpdateWordingRequest(
-  language: .languageCode("fr") , // Optional: Default is '.current'
-  mergingOptions: [] // Optional: Default is []
-  // If you want the merge to allow big changes in your wording such as a number of attributes mismatch, 
-  // you can for example use the following :
-  // mergingOptions: [.allowRemoteEmptyString, .allowAttributeNumberMismatch]
+    language: .languageCode("fr") , // Optional: Default is '.current'
+    mergingOptions: [] // Optional: Default is []
+    // If you want the merge to allow big changes in your wording such as a number of attributes mismatch,
+    // you can for example use the following :
+    // mergingOptions: [.allowRemoteEmptyString, .allowAttributeNumberMismatch]
 )
 
 Bundle.main.fb_updateWording(request: wordingRequest) { result in
-   switch result {
-   case .success:
-      // Update UI
-   case let .failure(error):
-      // Handle error
-   }
+    switch result {
+    case .success:
+        // Update UI
+    case let .failure(error):
+        // Handle error
+    }
 }
 ```
 
@@ -88,7 +89,7 @@ it, simply add the following line to your Podfile:
 pod 'Faberbabel'
 ```
 
-## Communication 
+## Communication
 
 - If you **need help**, use [Twitter](https://twitter.com/Fabernovel).
 - If you'd like to **ask a general question**, use [Twitter](https://www.fabernovel.com/).
