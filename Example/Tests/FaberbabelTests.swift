@@ -55,7 +55,10 @@ class FaberbabelTests: XCTestCase {
                 XCTFail("This should not be a success")
             case let .failure(error):
                 switch error {
-                case .unaccessibleBundle, .unknownLanguage, .other:
+                case .unaccessibleBundle,
+                     .unknownLanguage,
+                     .noLocalizableFileInBundle,
+                     .other:
                     XCTFail("This is not the correct error")
                 case .unreachableServer:
                     expectation.fulfill()
@@ -81,9 +84,13 @@ class FaberbabelTests: XCTestCase {
                 XCTFail("This should not be a success")
             case let .failure(error):
                 switch error {
-                case .unreachableServer, .unknownLanguage, .other:
+                case .unreachableServer,
+                     .unknownLanguage,
+                     .unaccessibleBundle,
+                     .other:
                     XCTFail("This is not the correct error \(error)")
-                case .unaccessibleBundle:
+                case let .noLocalizableFileInBundle(errorBundle):
+                    XCTAssertEqual(bundle, errorBundle)
                     expectation.fulfill()
                 }
             }

@@ -92,13 +92,13 @@ public class Faberbabel {
                                     forLanguage lang: String,
                                     bundle: Bundle,
                                     options: MergingOptions) throws -> Localizations {
-        let bundle = bundle.path(
+        let localizableFile = bundle.path(
             forResource: "Localizable",
             ofType: "strings",
             inDirectory: "\(lang).lproj"
         )
-        guard let mainLocalizableFile = bundle else {
-            throw WordingUpdateError.unaccessibleBundle
+        guard let mainLocalizableFile = localizableFile else {
+            throw WordingUpdateError.noLocalizableFileInBundle(bundle)
         }
         let localStrings: Localizations = NSDictionary(contentsOfFile: mainLocalizableFile) as? Localizations ?? [:]
         let merger = LocalizableMerger(eventLogger: logger)
