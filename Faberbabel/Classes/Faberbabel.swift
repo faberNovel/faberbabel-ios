@@ -85,7 +85,7 @@ public class Faberbabel {
 
     private func mergedLocalization(remoteStrings: Localizations,
                                     forLanguage lang: String,
-                                    options: [MergingOption]) throws -> Localizations {
+                                    options: MergingOptions) throws -> Localizations {
         let bundle = Bundle.main.path(
             forResource: "Localizable",
             ofType: "strings",

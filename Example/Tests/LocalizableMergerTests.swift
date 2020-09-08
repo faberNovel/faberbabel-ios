@@ -71,7 +71,7 @@ class LocalizableMergerTests: XCTestCase {
         let merged = localizableMerger.merge(
             localStrings: local,
             with: remote,
-            options: [.allowAttributeNumberMismatch]
+            options: .allowAttributeNumberMismatch
         )
         // Then
         XCTAssertEqual(merged, remote)
@@ -121,7 +121,7 @@ class LocalizableMergerTests: XCTestCase {
         let merged = localizableMerger.merge(
             localStrings: local,
             with: remote,
-            options: [.allowRemoteEmptyString]
+            options: .allowRemoteEmptyString
         )
         // Then
         XCTAssertEqual(merged, remote)

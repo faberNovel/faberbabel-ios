@@ -17,7 +17,7 @@ class LocalizableMerger {
 
     func merge(localStrings: Localizations,
                with remoteStrings: Localizations,
-               options: [MergingOption] = []) -> Localizations {
+               options: MergingOptions = []) -> Localizations {
         var result = localStrings
         var exceptions: [Event] = []
         for remoteLocalizable in remoteStrings {
@@ -45,7 +45,7 @@ class LocalizableMerger {
     private func exceptionFromMerging(local: String,
                                       remote: String,
                                       key: String,
-                                      options: [MergingOption]) -> Event? {
+                                      options: MergingOptions) -> Event? {
         if !options.contains(.allowRemoteEmptyString), remote.isEmpty {
             return Event(type: .emptyValue, key: key)
         }
