@@ -30,7 +30,7 @@ extension Bundle {
     // MARK: - Public
 
     public static func fb_setup(projectId: String, baseURL: URL) {
-        EventNotifier.shared = EventNotifier(projectId: projectId, baseURL: baseURL)
+        RemoteEventNotifier.shared = RemoteEventNotifier(projectId: projectId, baseURL: baseURL)
         LocalizableFetcher.shared = LocalizableFetcher(baseURL: baseURL, projectId: projectId)
     }
 
@@ -93,7 +93,7 @@ extension Bundle {
             throw WordingUpdateError.unaccessibleBundle
         }
         let localStrings: Localizations = NSDictionary(contentsOfFile: mainLocalizableFile) as? Localizations ?? [:]
-        let merger = LocalizableMerger()
+        let merger = LocalizableMerger(eventNotifier: RemoteEventNotifier.shared)
         return merger.merge(localStrings: localStrings, with: remoteStrings, options: options)
     }
 

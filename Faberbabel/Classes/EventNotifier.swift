@@ -7,8 +7,19 @@
 
 import Foundation
 
-class EventNotifier {
-    static var shared: EventNotifier?
+protocol EventNotifier {
+    func notify(events: [Event])
+}
+
+extension EventNotifier {
+
+    func notify(event: Event) {
+        notify(events: [event])
+    }
+}
+
+class RemoteEventNotifier: EventNotifier {
+    static var shared: RemoteEventNotifier?
 
     private let projectId: String
     private let baseURL: URL
@@ -25,6 +36,8 @@ class EventNotifier {
     private struct RestEventNotificationBody: Codable {
         let events: [RestEvent]
     }
+
+    // MARK: - EventNotifier
 
     func notify(events: [Event]) {
         let restBody = RestEventNotificationBody(
@@ -43,12 +56,5 @@ class EventNotifier {
         request.httpMethod = "POST"
         let task = urlSession.dataTask(with: request as URLRequest)
         task.resume()
-    }
-}
-
-extension EventNotifier {
-
-    func notify(event: Event) {
-        notify(events: [event])
     }
 }
