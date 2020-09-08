@@ -17,7 +17,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Bundle.fb_addAppGroupIdentifier("group.faberbabel.com")
+        // TODO: (Pierre Felgines) 08/09/2020 Fix this
+//        Bundle.fb_addAppGroupIdentifier("group.faberbabel.com")
     }
 
     @IBAction private func localize() {

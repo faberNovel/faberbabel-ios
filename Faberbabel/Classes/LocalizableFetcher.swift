@@ -13,7 +13,6 @@ public protocol LocalizableFetcher {
 }
 
 class RemoteLocalizableFetcher: LocalizableFetcher {
-    static var shared: RemoteLocalizableFetcher?
 
     let projectId: String
     let baseURL: URL

@@ -11,7 +11,6 @@ public enum WordingUpdateError: Error {
     case unknownLanguage
     case unreachableServer
     case unaccessibleBundle
-    case sdkNotSetUp
     case other(_ error: Error)
 }
 
@@ -27,8 +26,6 @@ extension WordingUpdateError: LocalizedError {
             return "Unable to reach the server"
         case .unaccessibleBundle:
             return "Unaccessible Bundle"
-        case .sdkNotSetUp:
-            return "The SDK wasn't setup. Follow the README instructions."
         case let .other(error):
             return error.localizedDescription
         }

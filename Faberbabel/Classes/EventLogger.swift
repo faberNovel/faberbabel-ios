@@ -47,7 +47,6 @@ public class ConsoleEventLogger: EventLogger {
 }
 
 class RemoteEventLogger: EventLogger {
-    static var shared: RemoteEventLogger?
 
     private let projectId: String
     private let baseURL: URL

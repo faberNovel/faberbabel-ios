@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Faberbabel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Replace by your project id and url
         guard let url = URL(string: "base_url") else { return false }
-        Bundle.fb_setup(
+
+        Faberbabel.configure(
             projectId: "project_id",
-            baseURL: url
+            baseURL: url,
+            appGroupIdentifier: "group.faberbabel.com"
         )
-        Bundle.fb_addAppGroupIdentifier("group.faberbabel.com")
+
         return true
     }
 }
