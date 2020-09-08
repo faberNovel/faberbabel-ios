@@ -35,6 +35,15 @@ public class CompoundEventLogger: EventLogger {
     }
 }
 
+public class EmptyLogger: EventLogger {
+
+    // MARK: - EventLogger
+
+    public func log(_ events: [Event]) {
+        // no op
+    }
+}
+
 public class ConsoleEventLogger: EventLogger {
 
     // MARK: - EventLogger

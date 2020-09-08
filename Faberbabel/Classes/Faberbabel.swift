@@ -52,25 +52,27 @@ public class Faberbabel {
             return
         }
         fetcher.fetch(for: lang) { result in
-            let mergedLocalizableResult = result.mapThrow {
-                try self.mergedLocalization(
-                    remoteStrings: $0,
-                    forLanguage: lang,
-                    options: request.mergingOptions
-                )
-            }
-            do {
-                switch mergedLocalizableResult {
-                case let .success(mergedLocalizable):
-                    try self.updateLocalizations(forLanguage: lang, withLocalizable: mergedLocalizable)
+            switch result {
+            case let .failure(error):
+                completion(.failure(.unreachableServer(error)))
+            case let .success(localizations):
+                do {
+                    let mergedLocalizable = try self.mergedLocalization(
+                        remoteStrings: localizations,
+                        forLanguage: lang,
+                        bundle: bundle,
+                        options: request.mergingOptions
+                    )
+                    try self.updateLocalizations(
+                        forLanguage: lang,
+                        withLocalizable: mergedLocalizable
+                    )
                     completion(.success)
-                case let .failure(error):
+                } catch let error as WordingUpdateError {
+                    completion(.failure(error))
+                } catch {
                     completion(.failure(.other(error)))
                 }
-            } catch let error as WordingUpdateError {
-                completion(.failure(error))
-            } catch {
-                completion(.failure(.other(error)))
             }
         }
     }
@@ -88,8 +90,9 @@ public class Faberbabel {
 
     private func mergedLocalization(remoteStrings: Localizations,
                                     forLanguage lang: String,
+                                    bundle: Bundle,
                                     options: MergingOptions) throws -> Localizations {
-        let bundle = Bundle.main.path(
+        let bundle = bundle.path(
             forResource: "Localizable",
             ofType: "strings",
             inDirectory: "\(lang).lproj"
