@@ -8,6 +8,7 @@
 import Foundation
 
 extension String {
+
     public var fb_translation: String {
         return fb_translate(to: Locale.current.languageCode ?? "en")
     }
@@ -24,10 +25,10 @@ extension String {
     }
 
     func fb_localize(to lang: String) -> String {
+        let url = Bundle.updatedLocalizablesBundle?.localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj")
         guard
-            let directoryUrl = Bundle.updatedLocalizablesBundle?.localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj"),
-            let bundle = Bundle(path: directoryUrl.path)
-            else {
+            let directoryUrl = url,
+            let bundle = Bundle(path: directoryUrl.path) else {
                 return NSLocalizedString(self, comment: "")
         }
         return bundle.localizedString(forKey: self, value: nil, table: nil)

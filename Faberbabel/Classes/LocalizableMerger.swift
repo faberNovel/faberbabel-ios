@@ -8,7 +8,10 @@
 import Foundation
 
 class LocalizableMerger {
-    func merge(localStrings: Localizations, with remoteStrings: Localizations, options: [MergingOption] = []) -> Localizations {
+
+    func merge(localStrings: Localizations,
+               with remoteStrings: Localizations,
+               options: [MergingOption] = []) -> Localizations {
         var result = localStrings
         var exceptions: [Event] = []
         for remoteLocalizable in remoteStrings {
@@ -32,9 +35,12 @@ class LocalizableMerger {
     }
 
     // MARK: - Private
-    private func exceptionFromMerging(local: String, remote: String, key: String, options: [MergingOption]) -> Event? {
-        if !options.contains(.allowRemoteEmptyString),
-            remote == "" {
+
+    private func exceptionFromMerging(local: String,
+                                      remote: String,
+                                      key: String,
+                                      options: [MergingOption]) -> Event? {
+        if !options.contains(.allowRemoteEmptyString), remote.isEmpty {
             return Event(type: .empty_value, key: key)
         }
         let localAttributesCount = local.countInstances(of: "$@") + local.countInstances(of: "%@")

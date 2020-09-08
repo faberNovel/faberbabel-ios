@@ -11,11 +11,13 @@ import CoreData
 extension Bundle {
 
     static var updatedLocalizablesBundle = Bundle(bundleName: "updatedLocalizablesBundle")
-    static private var appGroupIdentifier: String?
+    private static var appGroupIdentifier: String?
 
     var localizableDirectoryUrl: URL? {
         let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL
-        guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion.txt") else { return nil }
+        guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion.txt") else {
+            return nil
+        }
         let currentVersion: String
         if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
             currentVersion = version
@@ -28,16 +30,17 @@ extension Bundle {
 
     // MARK: - Public
 
-    static public func fb_setup(projectId: String, baseURL: URL) {
+    public static func fb_setup(projectId: String, baseURL: URL) {
         EventNotifier.shared = EventNotifier(projectId: projectId, baseURL: baseURL)
         LocalizableFetcher.shared = LocalizableFetcher(baseURL: baseURL, projectId: projectId)
     }
 
-    static public func fb_addAppGroupIdentifier(_ appGroupIdentifier: String) {
+    public static func fb_addAppGroupIdentifier(_ appGroupIdentifier: String) {
         self.appGroupIdentifier = appGroupIdentifier
     }
-    
-    public func fb_updateWording(request: UpdateWordingRequest, completion: @escaping(WordingUpdateResult) -> Void) {
+
+    public func fb_updateWording(request: UpdateWordingRequest,
+                                 completion: @escaping(WordingUpdateResult) -> Void) {
         let lang: String
         switch request.language {
         case let .languageCode(langCode):
@@ -77,16 +80,24 @@ extension Bundle {
 
     // MARK: - Private
 
-    private func mergedLocalization(remoteStrings: Localizations, forLanguage lang: String, options: [MergingOption]) throws -> Localizations {
-        guard
-            let mainLocalizableFile = Bundle.main.path(forResource: "Localizable", ofType: "strings", inDirectory: "\(lang).lproj")
-            else { throw NSError.unaccessibleBundle }
+    private func mergedLocalization(remoteStrings: Localizations,
+                                    forLanguage lang: String,
+                                    options: [MergingOption]) throws -> Localizations {
+        let bundle = Bundle.main.path(
+            forResource: "Localizable",
+            ofType: "strings",
+            inDirectory: "\(lang).lproj"
+        )
+        guard let mainLocalizableFile = bundle else {
+            throw NSError.unaccessibleBundle
+        }
         let localStrings: Localizations = NSDictionary(contentsOfFile: mainLocalizableFile) as? Localizations ?? [:]
         let merger = LocalizableMerger()
         return merger.merge(localStrings: localStrings, with: remoteStrings, options: options)
     }
 
-    private func updateLocalizations(forLanguage lang: String, withLocalizable strings: Localizations) throws {
+    private func updateLocalizations(forLanguage lang: String,
+                                     withLocalizable strings: Localizations) throws {
         guard let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL else { return }
         let propertyFileURL = bundleURL.appendingPathComponent("currentLocalizableVersion.txt")
         if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
@@ -94,19 +105,30 @@ extension Bundle {
             try? FileManager.default.removeItem(atPath: lastLocalizablesUrl.path)
         }
         let currentVersion = "\(Date().timeIntervalSince1970)"
-        try currentVersion.write(to: propertyFileURL, atomically: false, encoding: .utf8)
+        try currentVersion.write(
+            to: propertyFileURL,
+            atomically: false,
+            encoding: .utf8
+        )
         guard let localFileUrl = localizableFileUrl(forLanguage: lang, copyMainLocalizable: false) else {
             throw NSError.unaccessibleBundle
         }
         (strings as NSDictionary).write(to: localFileUrl, atomically: false)
     }
 
-    private func localizableFileUrl(forLanguage lang: String, copyMainLocalizable: Bool) -> URL? {
+    private func localizableFileUrl(forLanguage lang: String,
+                                    copyMainLocalizable: Bool) -> URL? {
         let languageURL = localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj", isDirectory: true)
         guard let langURL = languageURL else { return nil }
         if FileManager.default.fileExists(atPath: langURL.path) == false {
-            try? FileManager.default.createDirectory(at: langURL, withIntermediateDirectories: true, attributes: nil)
-            if copyMainLocalizable { copyMainLocalization(forLang: lang, atUrl: langURL) }
+            try? FileManager.default.createDirectory(
+                at: langURL,
+                withIntermediateDirectories: true,
+                attributes: nil
+            )
+            if copyMainLocalizable {
+                copyMainLocalization(forLang: lang, atUrl: langURL)
+            }
         }
         let filePath = langURL.appendingPathComponent("Localizable.strings")
         return filePath
@@ -114,15 +136,21 @@ extension Bundle {
 
     private func copyMainLocalization(forLang lang: String, atUrl langURL: URL) {
         let localizableFilePath = langURL.appendingPathComponent("Localizable.strings")
-        guard
-            let mainLocalizableFile = Bundle.main.path(forResource: "Localizable", ofType: "strings", inDirectory: "\(lang).lproj")
-            else { return }
+        let bundle = Bundle.main.path(
+            forResource: "Localizable",
+            ofType: "strings",
+            inDirectory: "\(lang).lproj"
+        )
+        guard let mainLocalizableFile = bundle else {
+            return
+        }
         let mainLocalizable = NSDictionary(contentsOfFile: mainLocalizableFile)
         mainLocalizable?.write(toFile: localizableFilePath.path, atomically: false)
     }
 }
 
 extension Bundle {
+
     // MARK: - Convenience functions
 
     static func bundleUrl(bundleName: String) -> URL? {
@@ -141,7 +169,11 @@ extension Bundle {
         guard let bundleUrl = Bundle.bundleUrl(bundleName: bundleName) else { return nil }
         let fileManager = FileManager.default
         if !fileManager.fileExists(atPath: bundleUrl.path) {
-            try? fileManager.createDirectory(at: bundleUrl, withIntermediateDirectories: true, attributes: nil)
+            try? fileManager.createDirectory(
+                at: bundleUrl,
+                withIntermediateDirectories: true,
+                attributes: nil
+            )
         }
         self.init(url: bundleUrl)
     }

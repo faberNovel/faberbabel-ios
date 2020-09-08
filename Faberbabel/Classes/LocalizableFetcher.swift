@@ -18,7 +18,8 @@ class LocalizableFetcher {
         self.projectId = projectId
     }
 
-    func fetch(for lang: String, completion: @escaping(Result<Localizations, Error>) -> Void) {
+    func fetch(for lang: String,
+               completion: @escaping(Result<Localizations, Error>) -> Void) {
         var urlComponents = URLComponents(string: baseURL.absoluteString + "/translations/projects/\(projectId)")
         urlComponents?.queryItems = [
             URLQueryItem(name: "platform", value: "ios"),

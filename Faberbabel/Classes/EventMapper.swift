@@ -8,11 +8,17 @@
 import Foundation
 
 class EventMapper {
+
     let event: Event
+
     init(event: Event) {
         self.event = event
     }
+
     func map() -> RestEvent {
-        return RestEvent(type: event.type.rawValue, key: event.key)
+        return RestEvent(
+            type: event.type.rawValue,
+            key: event.key
+        )
     }
 }

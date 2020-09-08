@@ -9,17 +9,15 @@ import Foundation
 
 public struct UpdateWordingRequest {
     public let language: Language
-    public let mergingOptions : [MergingOption]
+    public let mergingOptions: [MergingOption]
 
     public enum Language {
         case current
         case languageCode(String)
     }
 
-    public init(
-        language: Language = .current,
-        mergingOptions: [MergingOption] = []
-    ) {
+    public init(language: Language = .current,
+                mergingOptions: [MergingOption] = []) {
         self.language = language
         self.mergingOptions = mergingOptions
     }
