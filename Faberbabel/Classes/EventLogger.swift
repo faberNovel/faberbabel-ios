@@ -18,6 +18,34 @@ extension EventLogger {
     }
 }
 
+class CompoundEventLogger: EventLogger {
+
+    private let loggers: [EventLogger]
+
+    init(loggers: [EventLogger]) {
+        self.loggers = loggers
+    }
+
+    // MARK: - EventLogger
+
+    func log(_ events: [Event]) {
+        loggers.forEach {
+            $0.log(events)
+        }
+    }
+}
+
+class ConsoleEventLogger: EventLogger {
+
+    // MARK: - EventLogger
+
+    func log(_ events: [Event]) {
+        events.forEach { event in
+            print("FABERBABEL: \(event.type) on key \'\(event.key)\'")
+        }
+    }
+}
+
 class RemoteEventLogger: EventLogger {
     static var shared: RemoteEventLogger?
 
@@ -43,9 +71,6 @@ class RemoteEventLogger: EventLogger {
         let restBody = RestEventNotificationBody(
             events: events.map { RestEventMapper(event: $0).map() }
         )
-        for event in restBody.events {
-            print("FABERBABEL: \(event.type) on key \'\(event.key)\'")
-        }
         let url = baseURL.appendingPathComponent("translations/projects/\(projectId)/events")
         var request = URLRequest(url: url)
         do {
