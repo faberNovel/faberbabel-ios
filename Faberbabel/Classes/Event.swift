@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum EventType {
+public enum EventType {
     case missingKey
     case emptyValue
     case mismatchAttributes
 }
 
-struct Event {
-    let type: EventType
-    let key: String
+public struct Event {
+    public let type: EventType
+    public let key: String
 }

@@ -7,39 +7,39 @@
 
 import Foundation
 
-protocol EventLogger {
+public protocol EventLogger {
     func log(_ events: [Event])
 }
 
-extension EventLogger {
+public extension EventLogger {
 
     func log(_ event: Event) {
         log([event])
     }
 }
 
-class CompoundEventLogger: EventLogger {
+public class CompoundEventLogger: EventLogger {
 
     private let loggers: [EventLogger]
 
-    init(loggers: [EventLogger]) {
+    public init(loggers: [EventLogger]) {
         self.loggers = loggers
     }
 
     // MARK: - EventLogger
 
-    func log(_ events: [Event]) {
+    public func log(_ events: [Event]) {
         loggers.forEach {
             $0.log(events)
         }
     }
 }
 
-class ConsoleEventLogger: EventLogger {
+public class ConsoleEventLogger: EventLogger {
 
     // MARK: - EventLogger
 
-    func log(_ events: [Event]) {
+    public func log(_ events: [Event]) {
         events.forEach { event in
             print("FABERBABEL: \(event.type) on key \'\(event.key)\'")
         }

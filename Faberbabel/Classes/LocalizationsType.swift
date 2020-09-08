@@ -7,4 +7,4 @@
 
 import Foundation
 
-typealias Localizations = [String: String]
+public typealias Localizations = [String: String]

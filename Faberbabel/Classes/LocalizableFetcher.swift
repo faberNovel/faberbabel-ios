@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LocalizableFetcher {
+public protocol LocalizableFetcher {
     func fetch(for lang: String,
                completion: @escaping(Result<Localizations, Error>) -> Void)
 }
