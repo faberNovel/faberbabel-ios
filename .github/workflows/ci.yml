@@ -7,10 +7,8 @@ on:
 
 jobs:
   build:
-    env:
-      PATH: /Users/slave/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
-    runs-on: [self-hosted, macOS]
+    runs-on: macOS-latest
 
     steps:
     - uses: actions/checkout@v2
