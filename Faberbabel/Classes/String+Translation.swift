@@ -16,7 +16,8 @@ extension String {
     public func fb_translate(to lang: String) -> String {
         var localized = fb_localize(to: lang)
         if localized == self {
-            EventNotifier.shared?.notify(events: [Event(type: .missingKey, key: self)])
+            let event = Event(type: .missingKey, key: self)
+            EventNotifier.shared?.notify(event: event)
             if lang != "en" {
                 localized = fb_localize(to: "en")
             }

@@ -43,3 +43,10 @@ class EventNotifier {
         task.resume()
     }
 }
+
+extension EventNotifier {
+
+    func notify(event: Event) {
+        notify(events: [event])
+    }
+}
