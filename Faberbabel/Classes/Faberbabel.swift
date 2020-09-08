@@ -13,6 +13,11 @@ public class Faberbabel {
     private let fetcher: LocalizableFetcher
     private let appGroupIdentifier: String?
 
+    private lazy var updatedLocalizablesBundle = Bundle(
+        bundleName: "updatedLocalizablesBundle",
+        appGroupIdentifier: appGroupIdentifier
+    )
+
     init(fetcher: LocalizableFetcher,
          logger: EventLogger,
          appGroupIdentifier: String?) {
@@ -24,7 +29,7 @@ public class Faberbabel {
     // MARK: - Public
 
     var localizableDirectoryUrl: URL? {
-        let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL
+        let bundleURL = updatedLocalizablesBundle?.bundleURL
         guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion.txt") else {
             return nil
         }
@@ -96,7 +101,7 @@ public class Faberbabel {
 
     private func updateLocalizations(forLanguage lang: String,
                                      withLocalizable strings: Localizations) throws {
-        guard let bundleURL = Bundle.updatedLocalizablesBundle?.bundleURL else { return }
+        guard let bundleURL = updatedLocalizablesBundle?.bundleURL else { return }
         let propertyFileURL = bundleURL.appendingPathComponent("currentLocalizableVersion.txt")
         if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
             let lastLocalizablesUrl = bundleURL.appendingPathComponent(version, isDirectory: true)

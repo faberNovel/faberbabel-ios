@@ -9,12 +9,6 @@ import Foundation
 
 extension Bundle {
 
-    // TODO: (Pierre Felgines) 08/09/2020 Pass appGroupIdentifier
-    static var updatedLocalizablesBundle = Bundle(bundleName: "updatedLocalizablesBundle", appGroupIdentifier: nil)
-}
-
-extension Bundle {
-
     // MARK: - Convenience functions
 
     private static func bundleUrl(bundleName: String,
@@ -30,7 +24,7 @@ extension Bundle {
         return documentsUrl.appendingPathComponent(bundleName, isDirectory: true)
     }
 
-    private convenience init?(bundleName: String, appGroupIdentifier: String?) {
+    convenience init?(bundleName: String, appGroupIdentifier: String?) {
         guard let bundleUrl = Bundle.bundleUrl(bundleName: bundleName, appGroupIdentifier: appGroupIdentifier) else {
             return nil
         }
