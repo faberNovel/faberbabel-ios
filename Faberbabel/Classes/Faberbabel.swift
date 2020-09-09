@@ -119,14 +119,13 @@ public class Faberbabel {
             atomically: false,
             encoding: .utf8
         )
-        guard let localFileUrl = localizableFileUrl(forLanguage: lang, copyMainLocalizable: false) else {
+        guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
             throw WordingUpdateError.unaccessibleBundle
         }
         (strings as NSDictionary).write(to: localFileUrl, atomically: false)
     }
 
-    private func localizableFileUrl(forLanguage lang: String,
-                                    copyMainLocalizable: Bool) -> URL? {
+    private func localizableFileUrl(forLanguage lang: String) -> URL? {
         let languageURL = localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj", isDirectory: true)
         guard let langURL = languageURL else { return nil }
         if !FileManager.default.fileExists(atPath: langURL.path) {
@@ -135,25 +134,8 @@ public class Faberbabel {
                 withIntermediateDirectories: true,
                 attributes: nil
             )
-            if copyMainLocalizable {
-                copyMainLocalization(forLang: lang, atUrl: langURL)
-            }
         }
         let filePath = langURL.appendingPathComponent("Localizable.strings")
         return filePath
-    }
-
-    private func copyMainLocalization(forLang lang: String, atUrl langURL: URL) {
-        let localizableFilePath = langURL.appendingPathComponent("Localizable.strings")
-        let bundle = Bundle.main.path(
-            forResource: "Localizable",
-            ofType: "strings",
-            inDirectory: "\(lang).lproj"
-        )
-        guard let mainLocalizableFile = bundle else {
-            return
-        }
-        let mainLocalizable = NSDictionary(contentsOfFile: mainLocalizableFile)
-        mainLocalizable?.write(toFile: localizableFilePath.path, atomically: false)
     }
 }
