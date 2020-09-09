@@ -14,7 +14,7 @@ public class Faberbabel {
     private let appGroupIdentifier: String?
     private let fileManager = FileManager.default
 
-    lazy var updatedLocalizablesBundleURL = bundleUrl(
+    lazy var localizableDirectoryUrl = bundleUrl(
         bundleName: "updatedLocalizablesBundle",
         appGroupIdentifier: appGroupIdentifier
     )
@@ -29,10 +29,6 @@ public class Faberbabel {
     }
 
     // MARK: - Public
-
-    var localizableDirectoryUrl: URL {
-        updatedLocalizablesBundleURL
-    }
 
     func updateWording(request: UpdateWordingRequest,
                        bundle: Bundle,
@@ -71,7 +67,7 @@ public class Faberbabel {
     // MARK: - Private
 
     private func setUp() throws {
-        try fileManager.ft_createDirectoryIfNeeded(at: updatedLocalizablesBundleURL)
+        try fileManager.ft_createDirectoryIfNeeded(at: localizableDirectoryUrl)
     }
 
     private func lang(for request: UpdateWordingRequest) -> String {
