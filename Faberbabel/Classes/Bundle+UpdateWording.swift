@@ -12,7 +12,7 @@ extension Bundle {
     // MARK: - Convenience functions
 
     private static func bundleUrl(bundleName: String,
-                                  appGroupIdentifier: String?) -> URL? {
+                                  appGroupIdentifier: String?) -> URL {
         var path: String = ""
         if let appGroupIdentifier = appGroupIdentifier,
             let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) {
@@ -25,9 +25,10 @@ extension Bundle {
     }
 
     convenience init?(bundleName: String, appGroupIdentifier: String?) {
-        guard let bundleUrl = Bundle.bundleUrl(bundleName: bundleName, appGroupIdentifier: appGroupIdentifier) else {
-            return nil
-        }
+        let bundleUrl = Bundle.bundleUrl(
+            bundleName: bundleName,
+            appGroupIdentifier: appGroupIdentifier
+        )
         let fileManager = FileManager.default
         if !fileManager.fileExists(atPath: bundleUrl.path) {
             try? fileManager.createDirectory(
