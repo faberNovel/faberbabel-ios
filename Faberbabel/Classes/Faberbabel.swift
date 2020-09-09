@@ -129,7 +129,7 @@ public class Faberbabel {
                                     copyMainLocalizable: Bool) -> URL? {
         let languageURL = localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj", isDirectory: true)
         guard let langURL = languageURL else { return nil }
-        if FileManager.default.fileExists(atPath: langURL.path) == false {
+        if !FileManager.default.fileExists(atPath: langURL.path) {
             try? FileManager.default.createDirectory(
                 at: langURL,
                 withIntermediateDirectories: true,
