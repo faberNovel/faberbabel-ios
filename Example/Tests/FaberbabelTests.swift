@@ -97,4 +97,34 @@ class FaberbabelTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
+
+    func testUpdateWordingFailsWhenLanguageIsNotAvailable() {
+        // Given
+        let lang = "zzzz"
+
+        // When
+        let expectation = XCTestExpectation(description: "failure")
+        let request = UpdateWordingRequest(language: .languageCode(lang))
+        faberbabel.updateWording(
+            request: request,
+            bundle: .main
+        ) { result in
+            switch result {
+            case .success:
+                XCTFail("This should not be a success")
+            case let .failure(error):
+                switch error {
+                case .unreachableServer,
+                     .noLocalizableFileInBundle,
+                     .unaccessibleBundle,
+                     .other:
+                    XCTFail("This is not the correct error \(error)")
+                case let .unknownLanguage(errorLang):
+                    XCTAssertEqual(lang, errorLang)
+                    expectation.fulfill()
+                }
+            }
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
 }

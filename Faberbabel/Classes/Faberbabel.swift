@@ -48,7 +48,7 @@ public class Faberbabel {
                        completion: @escaping (WordingUpdateResult) -> Void) {
         let lang = self.lang(for: request)
         guard bundle.localizations.contains(lang) else {
-            completion(.failure(.unknownLanguage))
+            completion(.failure(.unknownLanguage(lang)))
             return
         }
         fetcher.fetch(for: lang) { result in
