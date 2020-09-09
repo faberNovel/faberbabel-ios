@@ -12,8 +12,9 @@ public class Faberbabel {
     let logger: EventLogger
     private let fetcher: LocalizableFetcher
     private let appGroupIdentifier: String?
+    private let fileManager = FileManager.default
 
-    private lazy var updatedLocalizablesBundle = Bundle(
+    private lazy var updatedLocalizablesBundleURL = bundleUrl(
         bundleName: "updatedLocalizablesBundle",
         appGroupIdentifier: appGroupIdentifier
     )
@@ -24,23 +25,14 @@ public class Faberbabel {
         self.fetcher = fetcher
         self.logger = logger
         self.appGroupIdentifier = appGroupIdentifier
+
+        try? createDirectory(for: updatedLocalizablesBundleURL)
     }
 
     // MARK: - Public
 
-    var localizableDirectoryUrl: URL? {
-        let bundleURL = updatedLocalizablesBundle?.bundleURL
-        guard let propertyFileURL = bundleURL?.appendingPathComponent("currentLocalizableVersion.txt") else {
-            return nil
-        }
-        let currentVersion: String
-        if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
-            currentVersion = version
-        } else {
-            currentVersion = "\(Date().timeIntervalSince1970)"
-            try? currentVersion.write(to: propertyFileURL, atomically: false, encoding: .utf8)
-        }
-        return bundleURL?.appendingPathComponent(currentVersion, isDirectory: true)
+    var localizableDirectoryUrl: URL {
+        updatedLocalizablesBundleURL
     }
 
     func updateWording(request: UpdateWordingRequest,
@@ -88,6 +80,30 @@ public class Faberbabel {
         }
     }
 
+    func createDirectory(for url: URL) throws {
+        guard !fileManager.fileExists(atPath: url.path) else {
+            return
+        }
+        try fileManager.createDirectory(
+            at: url,
+            withIntermediateDirectories: true,
+            attributes: nil
+        )
+    }
+
+    func bundleUrl(bundleName: String,
+                   appGroupIdentifier: String?) -> URL {
+        var path: String = ""
+        if let appGroupIdentifier = appGroupIdentifier,
+            let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) {
+            path = groupURL.path
+        } else if let appPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first {
+            path = appPath
+        }
+        let documentsUrl = URL(fileURLWithPath: path)
+        return documentsUrl.appendingPathComponent(bundleName, isDirectory: true)
+    }
+
     private func mergedLocalization(remoteStrings: Localizations,
                                     forLanguage lang: String,
                                     bundle: Bundle,
@@ -107,35 +123,15 @@ public class Faberbabel {
 
     private func updateLocalizations(forLanguage lang: String,
                                      withLocalizable strings: Localizations) throws {
-        guard let bundleURL = updatedLocalizablesBundle?.bundleURL else { return }
-        let propertyFileURL = bundleURL.appendingPathComponent("currentLocalizableVersion.txt")
-        if let version = try? String(contentsOfFile: propertyFileURL.path, encoding: .utf8) {
-            let lastLocalizablesUrl = bundleURL.appendingPathComponent(version, isDirectory: true)
-            try? FileManager.default.removeItem(atPath: lastLocalizablesUrl.path)
-        }
-        let currentVersion = "\(Date().timeIntervalSince1970)"
-        try currentVersion.write(
-            to: propertyFileURL,
-            atomically: false,
-            encoding: .utf8
-        )
-        guard let localFileUrl = localizableFileUrl(forLanguage: lang) else {
-            throw WordingUpdateError.unaccessibleBundle
-        }
-        (strings as NSDictionary).write(to: localFileUrl, atomically: false)
-    }
-
-    private func localizableFileUrl(forLanguage lang: String) -> URL? {
-        let languageURL = localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj", isDirectory: true)
-        guard let langURL = languageURL else { return nil }
-        if !FileManager.default.fileExists(atPath: langURL.path) {
-            try? FileManager.default.createDirectory(
+        let langURL = localizableDirectoryUrl.appendingPathComponent("\(lang).lproj", isDirectory: true)
+        if !fileManager.fileExists(atPath: langURL.path) {
+            try? fileManager.createDirectory(
                 at: langURL,
                 withIntermediateDirectories: true,
                 attributes: nil
             )
         }
-        let filePath = langURL.appendingPathComponent("Localizable.strings")
-        return filePath
+        let localFileUrl = langURL.appendingPathComponent("Localizable.strings")
+        (strings as NSDictionary).write(to: localFileUrl, atomically: false)
     }
 }

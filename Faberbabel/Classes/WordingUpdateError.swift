@@ -9,7 +9,6 @@ import Foundation
 
 public enum WordingUpdateError: Error {
     case unknownLanguage(String)
-    case unaccessibleBundle
     case noLocalizableFileInBundle(Bundle)
     case unreachableServer(_ error: Error)
     case other(_ error: Error)
@@ -27,8 +26,6 @@ extension WordingUpdateError: LocalizedError {
             return "Unable to reach the server \(error.localizedDescription)"
         case let .noLocalizableFileInBundle(bundle):
             return "No localizable file in bundle \(bundle)"
-        case .unaccessibleBundle:
-            return "Unaccessible Bundle"
         case let .other(error):
             return error.localizedDescription
         }

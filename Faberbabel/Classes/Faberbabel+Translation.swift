@@ -24,11 +24,9 @@ extension Faberbabel {
 
     private func value(forKey key: String,
                        lang: String) -> String {
-        let url = localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj")
-        guard
-            let directoryUrl = url,
-            let bundle = Bundle(path: directoryUrl.path) else {
-                return NSLocalizedString(key, comment: "")
+        let url = localizableDirectoryUrl.appendingPathComponent("\(lang).lproj")
+        guard let bundle = Bundle(path: url.path) else {
+            return NSLocalizedString(key, comment: "")
         }
         return bundle.localizedString(forKey: key, value: nil, table: nil)
     }
