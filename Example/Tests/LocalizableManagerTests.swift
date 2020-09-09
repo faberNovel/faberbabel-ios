@@ -1,5 +1,5 @@
 //
-//  FaberbabelTests.swift
+//  LocalizableManager.swift
 //  Faberbabel_Tests
 //
 //  Created by Pierre Felgines on 08/09/2020.
@@ -40,17 +40,17 @@ func FTAssertFileMissing(at url: URL, file: StaticString = #file, line: UInt = #
     )
 }
 
-class FaberbabelTests: XCTestCase {
+class LocalizableManagerTests: XCTestCase {
 
     struct TestError: Error {}
 
-    var faberbabel: Faberbabel!
+    var manager: LocalizableManager!
     var fetcher: Fetcher!
 
     override func setUp() {
         super.setUp()
         fetcher = Fetcher()
-        faberbabel = try! Faberbabel(
+        manager = try! LocalizableManager(
             fetcher: fetcher,
             logger: EmptyLogger(),
             appGroupIdentifier: nil
@@ -59,7 +59,7 @@ class FaberbabelTests: XCTestCase {
 
     override func tearDown() {
         super.tearDown()
-        try! FileManager.default.removeItem(at: faberbabel.localizableDirectoryUrl)
+        try! FileManager.default.removeItem(at: manager.localizableDirectoryUrl)
     }
 
     func testUpdateWordingFailsWhenFetcherFails() {
@@ -69,7 +69,7 @@ class FaberbabelTests: XCTestCase {
         // When
         let expectation = XCTestExpectation(description: "failure")
         let request = UpdateWordingRequest()
-        faberbabel.updateWording(
+        manager.updateWording(
             request: request,
             bundle: .main
         ) { result in
@@ -92,12 +92,12 @@ class FaberbabelTests: XCTestCase {
 
     func testUpdateWordingFailsWhenBundleDoesNotContainLocalizableFile() {
         // Given
-        let bundle = Bundle(for: FaberbabelTests.self)
+        let bundle = Bundle(for: LocalizableManagerTests.self)
 
         // When
         let expectation = XCTestExpectation(description: "failure")
         let request = UpdateWordingRequest()
-        faberbabel.updateWording(
+        manager.updateWording(
             request: request,
             bundle: bundle
         ) { result in
@@ -126,7 +126,7 @@ class FaberbabelTests: XCTestCase {
         // When
         let expectation = XCTestExpectation(description: "failure")
         let request = UpdateWordingRequest(language: .languageCode(lang))
-        faberbabel.updateWording(
+        manager.updateWording(
             request: request,
             bundle: .main
         ) { result in
@@ -155,17 +155,17 @@ class FaberbabelTests: XCTestCase {
         let remoteLocalizations: Localizations = [remoteKey: remoteValue]
         fetcher.result = .success(remoteLocalizations)
 
-        let localizableStringsUrl = faberbabel
+        let localizableStringsUrl = manager
             .localizableDirectoryUrl
             .appendingPathComponent("en.lproj/Localizable.strings")
 
-        FTAssertFileExists(at: faberbabel.localizableDirectoryUrl)
+        FTAssertFileExists(at: manager.localizableDirectoryUrl)
         FTAssertFileMissing(at: localizableStringsUrl)
 
         // When
         let expectation = XCTestExpectation(description: "success")
         let request = UpdateWordingRequest(language: .languageCode("en"))
-        faberbabel.updateWording(
+        manager.updateWording(
             request: request,
             bundle: .main
         ) { result in

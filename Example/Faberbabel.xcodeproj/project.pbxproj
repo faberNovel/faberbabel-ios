@@ -10,7 +10,7 @@
 		17DC7E7E9C479D9E76FE08A6 /* Pods_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA18F1BE660D951841FED78 /* Pods_Widget.framework */; };
 		398A81FF1A75BA500B671B37 /* Pods_Faberbabel_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E0AF1F404EF77FF679D4E8C /* Pods_Faberbabel_Tests.framework */; };
 		49170B172507C0A90094740E /* LocalizableMergerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49170B152507C0620094740E /* LocalizableMergerTests.swift */; };
-		49170B192507D0080094740E /* FaberbabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49170B182507D0080094740E /* FaberbabelTests.swift */; };
+		49170B192507D0080094740E /* LocalizableManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49170B182507D0080094740E /* LocalizableManagerTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -60,7 +60,7 @@
 /* Begin PBXFileReference section */
 		0E0AF1F404EF77FF679D4E8C /* Pods_Faberbabel_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faberbabel_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49170B152507C0620094740E /* LocalizableMergerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableMergerTests.swift; sourceTree = "<group>"; };
-		49170B182507D0080094740E /* FaberbabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaberbabelTests.swift; sourceTree = "<group>"; };
+		49170B182507D0080094740E /* LocalizableManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableManagerTests.swift; sourceTree = "<group>"; };
 		4B2A2875138543DEA570C7C8 /* Pods_Faberbabel_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Faberbabel_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54778E01FE9915EBD3E3CFD4 /* Faberbabel.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Faberbabel.podspec; path = ../Faberbabel.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5D512403CA1C980057C9E07E /* Pods-Faberbabel_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Faberbabel_Tests.release.xcconfig"; path = "Target Support Files/Pods-Faberbabel_Tests/Pods-Faberbabel_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				49170B152507C0620094740E /* LocalizableMergerTests.swift */,
-				49170B182507D0080094740E /* FaberbabelTests.swift */,
+				49170B182507D0080094740E /* LocalizableManagerTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -492,7 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49170B192507D0080094740E /* FaberbabelTests.swift in Sources */,
+				49170B192507D0080094740E /* LocalizableManagerTests.swift in Sources */,
 				49170B172507C0A90094740E /* LocalizableMergerTests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);

@@ -7,113 +7,64 @@
 
 import Foundation
 
-public class Faberbabel {
+public enum Faberbabel {
 
-    let logger: EventLogger
-    private let fetcher: LocalizableFetcher
-    private let appGroupIdentifier: String?
-    private let fileManager = FileManager.default
+    static var manager: LocalizableManager?
 
-    lazy var localizableDirectoryUrl = bundleUrl(
-        bundleName: "updatedLocalizablesBundle",
-        appGroupIdentifier: appGroupIdentifier
-    )
-
-    init(fetcher: LocalizableFetcher,
-         logger: EventLogger,
-         appGroupIdentifier: String?) throws {
-        self.fetcher = fetcher
-        self.logger = logger
-        self.appGroupIdentifier = appGroupIdentifier
-        try setUp()
-    }
-
-    // MARK: - Public
-
-    func updateWording(request: UpdateWordingRequest,
-                       bundle: Bundle,
-                       completion: @escaping (WordingUpdateResult) -> Void) {
-        let lang = self.lang(for: request)
-        guard bundle.localizations.contains(lang) else {
-            completion(.failure(.unknownLanguage(lang)))
-            return
-        }
-        fetcher.fetch(for: lang) { result in
-            switch result {
-            case let .failure(error):
-                completion(.failure(.unreachableServer(error)))
-            case let .success(localizations):
-                do {
-                    let mergedLocalizable = try self.mergedLocalization(
-                        remoteStrings: localizations,
-                        forLanguage: lang,
-                        bundle: bundle,
-                        options: request.mergingOptions
-                    )
-                    try self.updateLocalizations(
-                        forLanguage: lang,
-                        withLocalizable: mergedLocalizable
-                    )
-                    completion(.success)
-                } catch let error as WordingUpdateError {
-                    completion(.failure(error))
-                } catch {
-                    completion(.failure(.other(error)))
-                }
-            }
-        }
-    }
-
-    // MARK: - Private
-
-    private func setUp() throws {
-        try fileManager.ft_createDirectoryIfNeeded(at: localizableDirectoryUrl)
-    }
-
-    private func lang(for request: UpdateWordingRequest) -> String {
-        switch request.language {
-        case let .languageCode(langCode):
-            return langCode
-        case .current:
-            return Locale.current.languageCode ?? "en"
-        }
-    }
-
-    func bundleUrl(bundleName: String,
-                   appGroupIdentifier: String?) -> URL {
-        var path: String = ""
-        if let appGroupIdentifier = appGroupIdentifier,
-            let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) {
-            path = groupURL.path
-        } else if let appPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first {
-            path = appPath
-        }
-        let documentsUrl = URL(fileURLWithPath: path)
-        return documentsUrl.appendingPathComponent(bundleName, isDirectory: true)
-    }
-
-    private func mergedLocalization(remoteStrings: Localizations,
-                                    forLanguage lang: String,
-                                    bundle: Bundle,
-                                    options: MergingOptions) throws -> Localizations {
-        let localizableFile = bundle.path(
-            forResource: "Localizable",
-            ofType: "strings",
-            inDirectory: "\(lang).lproj"
+    public static func configure(projectId: String,
+                                 baseURL: URL,
+                                 appGroupIdentifier: String? = nil) {
+        let fetcher = RemoteLocalizableFetcher(
+            projectId: projectId,
+            baseURL: baseURL
         )
-        guard let mainLocalizableFile = localizableFile else {
-            throw WordingUpdateError.noLocalizableFileInBundle(bundle)
-        }
-        let localStrings: Localizations = NSDictionary(contentsOfFile: mainLocalizableFile) as? Localizations ?? [:]
-        let merger = LocalizableMerger(eventLogger: logger)
-        return merger.merge(localStrings: localStrings, with: remoteStrings, options: options)
+        let remoteLogger = RemoteEventLogger(
+            projectId: projectId,
+            baseURL: baseURL
+        )
+        let consoleLogger = ConsoleEventLogger()
+        let logger = CompoundEventLogger(
+            loggers: [remoteLogger, consoleLogger]
+        )
+        self.configure(
+            fetcher: fetcher,
+            logger: logger,
+            appGroupIdentifier: appGroupIdentifier
+        )
     }
 
-    private func updateLocalizations(forLanguage lang: String,
-                                     withLocalizable strings: Localizations) throws {
-        let langURL = localizableDirectoryUrl.appendingPathComponent("\(lang).lproj", isDirectory: true)
-        try fileManager.ft_createDirectoryIfNeeded(at: langURL)
-        let localFileUrl = langURL.appendingPathComponent("Localizable.strings")
-        (strings as NSDictionary).write(to: localFileUrl, atomically: false)
+    public static func configure(fetcher: LocalizableFetcher,
+                                 logger: EventLogger,
+                                 appGroupIdentifier: String? = nil) {
+        do {
+            Faberbabel.manager = try LocalizableManager(
+                fetcher: fetcher,
+                logger: logger,
+                appGroupIdentifier: appGroupIdentifier
+            )
+        } catch {
+            assertionFailure("Error configuring Faberbabel \(error)")
+        }
+    }
+
+    public static func updateWording(request: UpdateWordingRequest,
+                                     bundle: Bundle,
+                                     completion: @escaping (WordingUpdateResult) -> Void) {
+        guard let manager = Faberbabel.manager else {
+            preconditionFailure("The SDK wasn't setup. Follow the README instructions.")
+        }
+        manager.updateWording(
+            request: request,
+            bundle: bundle,
+            completion: completion
+        )
+    }
+
+    public static func translation(forKey key: String,
+                                   lang: String) -> String {
+        guard let manager = Faberbabel.manager else {
+            preconditionFailure("The SDK wasn't setup. Follow the README instructions.")
+        }
+        return manager.translation(forKey: key, lang: lang)
     }
 }
