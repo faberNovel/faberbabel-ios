@@ -9,5 +9,5 @@ import Foundation
 
 public enum WordingUpdateResult {
     case success
-    case failure(_ error: Error)
+    case failure(_ error: WordingUpdateError)
 }

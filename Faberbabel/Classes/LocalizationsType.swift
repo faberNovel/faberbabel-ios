@@ -7,4 +7,4 @@
 
 import Foundation
 
-typealias Localizations = Dictionary<String,String>
+public typealias Localizations = [String: String]

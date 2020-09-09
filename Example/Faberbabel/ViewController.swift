@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             language: .current,
             mergingOptions: []
         )
-        Bundle.main.fb_updateWording(request: wordingRequest) { [weak self] result in
+        Faberbabel.updateWording(request: wordingRequest, bundle: .main) { [weak self] result in
             self?.refreshButton.isEnabled = true
             self?.localizeButton.isEnabled = true
             switch result {

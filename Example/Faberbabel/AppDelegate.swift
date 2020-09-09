@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Faberbabel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,25 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication,
+                     // swiftlint:disable:next discouraged_optional_collection
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Replace by your project id and url
         guard let url = URL(string: "base_url") else { return false }
-        Bundle.fb_setup(
+
+        Faberbabel.configure(
             projectId: "project_id",
-            baseURL: url
+            baseURL: url,
+            appGroupIdentifier: "group.faberbabel.com"
         )
-        Bundle.fb_addAppGroupIdentifier("group.faberbabel.com")
+
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {}
-
-    func applicationDidEnterBackground(_ application: UIApplication) {}
-
-    func applicationWillEnterForeground(_ application: UIApplication) {}
-
-    func applicationDidBecomeActive(_ application: UIApplication) {}
-
-    func applicationWillTerminate(_ application: UIApplication) {}
-
 }

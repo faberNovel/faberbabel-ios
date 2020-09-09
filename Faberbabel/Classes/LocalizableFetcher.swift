@@ -7,35 +7,64 @@
 
 import Foundation
 
-class LocalizableFetcher {
-    static var shared: LocalizableFetcher?
+public protocol LocalizableFetcher {
+    func fetch(for lang: String,
+               completion: @escaping(Result<Localizations, Error>) -> Void)
+}
 
-    let projectId: String
-    let baseURL: URL
+class RemoteLocalizableFetcher: LocalizableFetcher {
 
-    init(baseURL: URL, projectId: String) {
-        self.baseURL = baseURL
-        self.projectId = projectId
+    enum LocalError: Error {
+        case malformedUrl
+        case generic
     }
 
-    func fetch(for lang: String, completion: @escaping(Result<Localizations, Error>) -> Void) {
+    private let projectId: String
+    private let baseURL: URL
+    private let urlSession: URLSession
+
+    init(projectId: String,
+         baseURL: URL,
+         urlSession: URLSession = .shared) {
+        self.projectId = projectId
+        self.baseURL = baseURL
+        self.urlSession = urlSession
+    }
+
+    // MARK: - LocalizableFetcher
+
+    func fetch(for lang: String,
+               completion: @escaping(Result<Localizations, Error>) -> Void) {
         var urlComponents = URLComponents(string: baseURL.absoluteString + "/translations/projects/\(projectId)")
         urlComponents?.queryItems = [
             URLQueryItem(name: "platform", value: "ios"),
             URLQueryItem(name: "language", value: lang)
         ]
-        DispatchQueue(label: "updateWording").async {
-            if let url = urlComponents?.url,
-                let dictionary = NSDictionary(contentsOf: url),
-                let localizations = dictionary as? Localizations {
+
+        guard let url = urlComponents?.url else {
+            completion(.failure(LocalError.malformedUrl))
+            return
+        }
+
+        let task = urlSession.dataTask(with: url) { (data, _, error) in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(.failure(error ?? LocalError.generic))
+                }
+                return
+            }
+            do {
+                let decoder = PropertyListDecoder()
+                let localizations = try decoder.decode(Localizations.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(localizations))
                 }
-            } else {
+            } catch {
                 DispatchQueue.main.async {
-                    completion(.failure(NSError.unreachableServerError))
+                    completion(.failure(error))
                 }
             }
         }
+        task.resume()
     }
 }

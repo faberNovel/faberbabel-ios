@@ -17,7 +17,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Bundle.fb_addAppGroupIdentifier("group.faberbabel.com")
+
+        guard let url = URL(string: "base_url") else { return }
+        Faberbabel.configure(
+            projectId: "project_id",
+            baseURL: url,
+            appGroupIdentifier: "group.faberbabel.com"
+        )
     }
 
     @IBAction private func localize() {

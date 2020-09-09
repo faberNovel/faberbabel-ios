@@ -8,7 +8,16 @@
 import Foundation
 
 class LocalizableMerger {
-    func merge(localStrings: Localizations, with remoteStrings: Localizations, options: [MergingOption] = []) -> Localizations {
+
+    private let eventLogger: EventLogger?
+
+    init(eventLogger: EventLogger?) {
+        self.eventLogger = eventLogger
+    }
+
+    func merge(localStrings: Localizations,
+               with remoteStrings: Localizations,
+               options: [MergingOption] = []) -> Localizations {
         var result = localStrings
         var exceptions: [Event] = []
         for remoteLocalizable in remoteStrings {
@@ -27,21 +36,24 @@ class LocalizableMerger {
                 result[remoteLocalizable.key] = remoteLocalizable.value
             }
         }
-        EventNotifier.shared?.notify(events: exceptions)
+        eventLogger?.log(exceptions)
         return result
     }
 
     // MARK: - Private
-    private func exceptionFromMerging(local: String, remote: String, key: String, options: [MergingOption]) -> Event? {
-        if !options.contains(.allowRemoteEmptyString),
-            remote == "" {
-            return Event(type: .empty_value, key: key)
+
+    private func exceptionFromMerging(local: String,
+                                      remote: String,
+                                      key: String,
+                                      options: [MergingOption]) -> Event? {
+        if !options.contains(.allowRemoteEmptyString), remote.isEmpty {
+            return Event(type: .emptyValue, key: key)
         }
         let localAttributesCount = local.countInstances(of: "$@") + local.countInstances(of: "%@")
         let remoteAttributesCount = remote.countInstances(of: "$@") + remote.countInstances(of: "%@")
         if !options.contains(.allowAttributeNumberMismatch),
             remoteAttributesCount != localAttributesCount {
-            return Event(type: .mismatch_attributes, key: key)
+            return Event(type: .mismatchAttributes, key: key)
         }
         return nil
     }
