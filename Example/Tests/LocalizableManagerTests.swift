@@ -22,24 +22,6 @@ class Fetcher: LocalizableFetcher {
     }
 }
 
-func FTAssertFileExists(at url: URL, file: StaticString = #file, line: UInt = #line) {
-    XCTAssertTrue(
-        FileManager.default.fileExists(atPath: url.path),
-        "File should exist at path \(url.path)",
-        file: file,
-        line: line
-    )
-}
-
-func FTAssertFileMissing(at url: URL, file: StaticString = #file, line: UInt = #line) {
-    XCTAssertFalse(
-        FileManager.default.fileExists(atPath: url.path),
-        "File should not exist at path \(url.path)",
-        file: file,
-        line: line
-    )
-}
-
 class LocalizableManagerTests: XCTestCase {
 
     struct TestError: Error {}
