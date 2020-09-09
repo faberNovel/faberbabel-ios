@@ -36,11 +36,15 @@ extension Faberbabel {
     public static func configure(fetcher: LocalizableFetcher,
                                  logger: EventLogger,
                                  appGroupIdentifier: String? = nil) {
-        Faberbabel.shared = Faberbabel(
-            fetcher: fetcher,
-            logger: logger,
-            appGroupIdentifier: appGroupIdentifier
-        )
+        do {
+            Faberbabel.shared = try Faberbabel(
+                fetcher: fetcher,
+                logger: logger,
+                appGroupIdentifier: appGroupIdentifier
+            )
+        } catch {
+            assertionFailure("Error configuring Faberbabel \(error)")
+        }
     }
 
     public static func updateWording(request: UpdateWordingRequest,

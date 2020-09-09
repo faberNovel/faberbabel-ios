@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import Faberbabel
 
-// swiftlint:disable implicitly_unwrapped_optional
+// swiftlint:disable implicitly_unwrapped_optional force_try
 
 class Fetcher: LocalizableFetcher {
 
@@ -32,7 +32,7 @@ class FaberbabelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         fetcher = Fetcher()
-        faberbabel = Faberbabel(
+        faberbabel = try! Faberbabel(
             fetcher: fetcher,
             logger: EmptyLogger(),
             appGroupIdentifier: nil
