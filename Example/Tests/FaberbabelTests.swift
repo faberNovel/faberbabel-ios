@@ -22,6 +22,24 @@ class Fetcher: LocalizableFetcher {
     }
 }
 
+func FTAssertFileExists(at url: URL, file: StaticString = #file, line: UInt = #line) {
+    XCTAssertTrue(
+        FileManager.default.fileExists(atPath: url.path),
+        "File should exist at path \(url.path)",
+        file: file,
+        line: line
+    )
+}
+
+func FTAssertFileMissing(at url: URL, file: StaticString = #file, line: UInt = #line) {
+    XCTAssertFalse(
+        FileManager.default.fileExists(atPath: url.path),
+        "File should not exist at path \(url.path)",
+        file: file,
+        line: line
+    )
+}
+
 class FaberbabelTests: XCTestCase {
 
     struct TestError: Error {}
@@ -37,6 +55,11 @@ class FaberbabelTests: XCTestCase {
             logger: EmptyLogger(),
             appGroupIdentifier: nil
         )
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        try! FileManager.default.removeItem(at: faberbabel.localizableDirectoryUrl)
     }
 
     func testUpdateWordingFailsWhenFetcherFails() {
@@ -120,6 +143,41 @@ class FaberbabelTests: XCTestCase {
                     XCTAssertEqual(lang, errorLang)
                     expectation.fulfill()
                 }
+            }
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testUpdateWordingSucceedsWithLocalizableFilesUpdated() {
+        // Given
+        let remoteKey = "test_key"
+        let remoteValue = "test_value"
+        let remoteLocalizations: Localizations = [remoteKey: remoteValue]
+        fetcher.result = .success(remoteLocalizations)
+
+        let localizableStringsUrl = faberbabel
+            .localizableDirectoryUrl
+            .appendingPathComponent("en.lproj/Localizable.strings")
+
+        FTAssertFileExists(at: faberbabel.localizableDirectoryUrl)
+        FTAssertFileMissing(at: localizableStringsUrl)
+
+        // When
+        let expectation = XCTestExpectation(description: "success")
+        let request = UpdateWordingRequest(language: .languageCode("en"))
+        faberbabel.updateWording(
+            request: request,
+            bundle: .main
+        ) { result in
+            switch result {
+            case .success:
+                // Then
+                FTAssertFileExists(at: localizableStringsUrl)
+                let writtenLocalization = NSDictionary(contentsOf: localizableStringsUrl) as? Localizations ?? [:]
+                XCTAssertEqual(writtenLocalization[remoteKey], remoteValue)
+                expectation.fulfill()
+            case .failure:
+                XCTFail("This should not be a failure")
             }
         }
         wait(for: [expectation], timeout: 0.1)
