@@ -95,7 +95,7 @@ public class Faberbabel {
             throw WordingUpdateError.unaccessibleBundle
         }
         let localStrings: Localizations = NSDictionary(contentsOfFile: mainLocalizableFile) as? Localizations ?? [:]
-        let merger = LocalizableMerger(eventNotifier: logger)
+        let merger = LocalizableMerger(eventLogger: logger)
         return merger.merge(localStrings: localStrings, with: remoteStrings, options: options)
     }
 

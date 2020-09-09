@@ -7,7 +7,7 @@ class MemoryEventLogger: EventLogger {
 
     var notifiedEvents: [Event] = []
 
-    // MARK: - EventNotifier
+    // MARK: - EventLogger
 
     func log(_ events: [Event]) {
         notifiedEvents.append(contentsOf: events)
@@ -20,8 +20,8 @@ class Tests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let notifier = MemoryEventLogger()
-        localizableMerger = LocalizableMerger(eventNotifier: notifier)
+        let logger = MemoryEventLogger()
+        localizableMerger = LocalizableMerger(eventLogger: logger)
     }
 
     func testMerger_wrongAttributesNumber_ShouldNotMerge() {

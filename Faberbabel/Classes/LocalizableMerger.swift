@@ -9,10 +9,10 @@ import Foundation
 
 class LocalizableMerger {
 
-    private let eventNotifier: EventLogger?
+    private let eventLogger: EventLogger?
 
-    init(eventNotifier: EventLogger?) {
-        self.eventNotifier = eventNotifier
+    init(eventLogger: EventLogger?) {
+        self.eventLogger = eventLogger
     }
 
     func merge(localStrings: Localizations,
@@ -36,7 +36,7 @@ class LocalizableMerger {
                 result[remoteLocalizable.key] = remoteLocalizable.value
             }
         }
-        eventNotifier?.log(exceptions)
+        eventLogger?.log(exceptions)
         return result
     }
 
