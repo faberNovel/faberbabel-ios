@@ -25,8 +25,7 @@ public class Faberbabel {
         self.fetcher = fetcher
         self.logger = logger
         self.appGroupIdentifier = appGroupIdentifier
-
-        try? createDirectory(for: updatedLocalizablesBundleURL)
+        setUp()
     }
 
     // MARK: - Public
@@ -71,6 +70,10 @@ public class Faberbabel {
 
     // MARK: - Private
 
+    private func setUp() {
+        try? fileManager.ft_createDirectoryIfNeeded(at: updatedLocalizablesBundleURL)
+    }
+
     private func lang(for request: UpdateWordingRequest) -> String {
         switch request.language {
         case let .languageCode(langCode):
@@ -78,17 +81,6 @@ public class Faberbabel {
         case .current:
             return Locale.current.languageCode ?? "en"
         }
-    }
-
-    func createDirectory(for url: URL) throws {
-        guard !fileManager.fileExists(atPath: url.path) else {
-            return
-        }
-        try fileManager.createDirectory(
-            at: url,
-            withIntermediateDirectories: true,
-            attributes: nil
-        )
     }
 
     func bundleUrl(bundleName: String,
@@ -124,13 +116,7 @@ public class Faberbabel {
     private func updateLocalizations(forLanguage lang: String,
                                      withLocalizable strings: Localizations) throws {
         let langURL = localizableDirectoryUrl.appendingPathComponent("\(lang).lproj", isDirectory: true)
-        if !fileManager.fileExists(atPath: langURL.path) {
-            try? fileManager.createDirectory(
-                at: langURL,
-                withIntermediateDirectories: true,
-                attributes: nil
-            )
-        }
+        try fileManager.ft_createDirectoryIfNeeded(at: langURL)
         let localFileUrl = langURL.appendingPathComponent("Localizable.strings")
         (strings as NSDictionary).write(to: localFileUrl, atomically: false)
     }
