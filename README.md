@@ -154,7 +154,7 @@ If a value is not found in specified language, the system will fallback to engli
 
 ## Requirements
 
-- iOS 8.0+
+- iOS 10.0+ / tvOS 10.0+
 - Swift 5.0
 
 ## Installation
