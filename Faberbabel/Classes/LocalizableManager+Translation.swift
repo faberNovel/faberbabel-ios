@@ -1,5 +1,5 @@
 //
-//  Faberbabel+Translation.swift
+//  LocalizableManager+Translation.swift
 //  Faberbabel
 //
 //  Created by Pierre Felgines on 08/09/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Faberbabel {
+extension LocalizableManager {
 
     func translation(forKey key: String,
                      lang: String) -> String {
@@ -24,11 +24,9 @@ extension Faberbabel {
 
     private func value(forKey key: String,
                        lang: String) -> String {
-        let url = localizableDirectoryUrl?.appendingPathComponent("\(lang).lproj")
-        guard
-            let directoryUrl = url,
-            let bundle = Bundle(path: directoryUrl.path) else {
-                return NSLocalizedString(key, comment: "")
+        let url = localizableDirectoryUrl.appendingPathComponent("\(lang).lproj")
+        guard let bundle = Bundle(path: url.path) else {
+            return NSLocalizedString(key, comment: "")
         }
         return bundle.localizedString(forKey: key, value: nil, table: nil)
     }
