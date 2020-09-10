@@ -31,7 +31,7 @@ class TranslationTests: XCTestCase {
         manager = try! LocalizableManager(
             fetcher: EmptyFetcher(),
             logger: logger,
-            appGroupIdentifier: nil
+            localizableDirectoryUrl: URL(fileURLWithPath: NSTemporaryDirectory())
         )
 
         FTAssertDirectoryEmpty(at: manager.localizableDirectoryUrl)

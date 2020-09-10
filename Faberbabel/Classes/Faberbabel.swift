@@ -26,21 +26,29 @@ public enum Faberbabel {
         let logger = CompoundEventLogger(
             loggers: [remoteLogger, consoleLogger]
         )
-        self.configure(
-            fetcher: fetcher,
-            logger: logger,
+        let bundleLocationSelector = DefaultBundleLocationSelector(
+            bundleName: "updatedLocalizablesBundle",
             appGroupIdentifier: appGroupIdentifier
         )
+        do {
+            self.configure(
+                fetcher: fetcher,
+                logger: logger,
+                localizableDirectoryUrl: try bundleLocationSelector.bundleUrl()
+            )
+        } catch {
+            assertionFailure("Error configuring Faberbabel \(error)")
+        }
     }
 
     public static func configure(fetcher: LocalizableFetcher,
                                  logger: EventLogger,
-                                 appGroupIdentifier: String? = nil) {
+                                 localizableDirectoryUrl: URL) {
         do {
             Faberbabel.manager = try LocalizableManager(
                 fetcher: fetcher,
                 logger: logger,
-                appGroupIdentifier: appGroupIdentifier
+                localizableDirectoryUrl: localizableDirectoryUrl
             )
         } catch {
             assertionFailure("Error configuring Faberbabel \(error)")

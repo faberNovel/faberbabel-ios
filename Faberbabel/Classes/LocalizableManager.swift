@@ -9,22 +9,17 @@ import Foundation
 
 class LocalizableManager {
 
+    let localizableDirectoryUrl: URL
     let logger: EventLogger
     private let fetcher: LocalizableFetcher
-    private let appGroupIdentifier: String?
     private let fileManager = FileManager.default
-
-    lazy var localizableDirectoryUrl = bundleUrl(
-        bundleName: "updatedLocalizablesBundle",
-        appGroupIdentifier: appGroupIdentifier
-    )
 
     init(fetcher: LocalizableFetcher,
          logger: EventLogger,
-         appGroupIdentifier: String?) throws {
+         localizableDirectoryUrl: URL) throws {
         self.fetcher = fetcher
         self.logger = logger
-        self.appGroupIdentifier = appGroupIdentifier
+        self.localizableDirectoryUrl = localizableDirectoryUrl
         try setUp()
     }
 
@@ -77,19 +72,6 @@ class LocalizableManager {
         case .current:
             return Locale.current.languageCode ?? "en"
         }
-    }
-
-    func bundleUrl(bundleName: String,
-                   appGroupIdentifier: String?) -> URL {
-        var path: String = ""
-        if let appGroupIdentifier = appGroupIdentifier,
-            let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) {
-            path = groupURL.path
-        } else if let appPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first {
-            path = appPath
-        }
-        let documentsUrl = URL(fileURLWithPath: path)
-        return documentsUrl.appendingPathComponent(bundleName, isDirectory: true)
     }
 
     private func mergedLocalization(remoteStrings: Localizations,
