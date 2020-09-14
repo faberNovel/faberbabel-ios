@@ -35,7 +35,7 @@ class LocalizableManagerTests: XCTestCase {
         manager = try! LocalizableManager(
             fetcher: fetcher,
             logger: EmptyLogger(),
-            appGroupIdentifier: nil
+            localizableDirectoryUrl: URL(fileURLWithPath: NSTemporaryDirectory())
         )
     }
 

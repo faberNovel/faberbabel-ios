@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     @IBOutlet private var label1: UILabel!
     @IBOutlet private var label2: UILabel!
+    @IBOutlet private var label3: UILabel!
     @IBOutlet private var refreshButton: UIButton!
     @IBOutlet private var localizeButton: UIButton!
 
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         label1.text = "hello_world_title"
         label2.text = "hello_world_description"
+        label3.text = "dynamic_wording"
         refreshButton.setTitle("refresh_button", for: .normal)
         localizeButton.setTitle("localize_button", for: .normal)
     }
@@ -46,6 +48,7 @@ class ViewController: UIViewController {
     @IBAction private func localize() {
         label1.text = "hello_world_title".fb_translation
         label2.text = "hello_world_description".fb_translation
+        label3.text = "dynamic_wording".fb_translation
         refreshButton.setTitle("refresh_button".fb_translation, for: .normal)
         localizeButton.setTitle("localize_button".fb_translation, for: .normal)
     }

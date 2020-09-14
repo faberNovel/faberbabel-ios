@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Faberbabel.svg?style=flat)](https://cocoapods.org/pods/Faberbabel)
 [![Platform](https://img.shields.io/cocoapods/p/Faberbabel.svg?style=flat)](https://cocoapods.org/pods/Faberbabel)
 
-This library is an iOS SDK to easily implement Faberbabel in you app. Faberbabel helps you deploy a new wording remotely into your apps.
+This library is an iOS SDK to update the app wording dynamically. The new wording is downloaded from a remote source and merged with the old one. The main advantage is to not redeploy the app to update the wording.
 
 - [Features](#features)
 - [Example](#example)
@@ -18,9 +18,10 @@ This library is an iOS SDK to easily implement Faberbabel in you app. Faberbabel
 
 ## Features
 
-- [x] Update the app wording remotely
+- [x] Update the app wording dynamically from a remote source
+- [x] Avoid reploying the app
 - [x] Localize a key with the updated wording
-- [x] Notify the back when an error occurs (key missing / merge error)
+- [x] Log events when an error occurs (key missing / merge error)
 
 ## Example
 
@@ -28,25 +29,90 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## How to use
 
-### Setup
+### Default setup
 
 Setup the library with your credentials in the `AppDelegate.swift` for example.
 
 ```swift
-Bundle.fb_setup(
+Faberbabel.configure(
     projectId: "xxx-xxx-xxx",
-    baseURL: "https://xxx.com"
+    baseURL: URL(string: "https://xxx.com")!
 )
 ```
 
-If you are using extensions, you might want to share one wording for all of your targets. You can achieve that simply by adding this line with a valid `App Group Identifier` before using the library in all your wanted targets.
-Remember to add this `App Group Identifier` in the capabilities of your targets.
+If you are using extensions, you might want to share one wording for all of your targets. For this, add an `App Group Identifier` in the capabilities of your targets, then pass the identifier in the `configure` method:
 
 ```swift
-Bundle.fb_addAppGroupIdentifier("APP_GROUP_IDENTIFIER")
+Faberbabel.configure(
+    projectId: "xxx-xxx-xxx",
+    baseURL: URL(string: "https://xxx.com")!,
+    appGroupIdentifier: "group.xxx.com"
+)
 ```
 
+### Custom setup
+
+Instead of using the default `configure` method you can control all the dependencies:
+- how the wording is fetched
+- how error events are handled
+- where the fetched wording is located
+
+```swift
+Faberbabel.configure(
+    fetcher: MyCustomFetcher(),
+    logger: MyCustomLogger(),
+    localizableDirectoryUrl: myCustomLocation
+)
+```
+
+#### Fetch wording from custom source
+
+You can fetch the wording from a custom source. For this, create an object conforming to the `LocalizableFetcher` protocol:
+
+```swift
+class MyCustomFetcher: LocalizableFetcher {
+
+    // MARK: - LocalizableFetcher
+
+    func fetch(for lang: String,
+               completion: @escaping (Result<Localizations, Error>) -> Void) {
+        let result: Localizations = ["key": "value"]
+        completion(result)
+    }
+}
+```
+
+#### Log events
+
+When errors occur, events are created and sent to an `EventLogger`.
+
+By default some loggers already exists:
+- `ConsoleEventLogger` that prints events to the console
+- `EmptyLogger` that does nothing
+- `CompoundEventLogger` that aggregate multiple loggers
+
+You can create your own event logger by conforming to the `EventLogger` protocol. For instance:
+
+```swift
+class RemoteEventLogger: EventLogger {
+
+    // MARK: - EventLogger
+
+    func log(_ events: [Event]) {
+        // send events to remote server
+    }
+}
+```
+
+#### Localizable directory url
+
+By default the new `Localizable.strings` downloaded from the remote source is stored either in the user library directory if no `appGroupIdentifier` is passed, or in the location in the file system of the app group's shared directory.
+
+You can create your custom url and have full control of the location of the localizable directory.
+
 ### Update the wording
+
+To fetch a new wording from the remote source, simply call the `updateWording` method like so:
 
 ```swift
 let wordingRequest = UpdateWordingRequest(
@@ -57,7 +123,10 @@ let wordingRequest = UpdateWordingRequest(
     // mergingOptions: [.allowRemoteEmptyString, .allowAttributeNumberMismatch]
 )
 
-Bundle.main.fb_updateWording(request: wordingRequest) { result in
+Faberbabel.updateWording(
+    request: wordingRequest,
+    bundle: .main
+) { result in
     switch result {
     case .success:
         // Update UI
@@ -69,15 +138,23 @@ Bundle.main.fb_updateWording(request: wordingRequest) { result in
 
 ### Localize a key with the updated wording
 
+To get the localized version of a key, do not use `NSLocalizedString` that will only search for translations in the main bundle, but use the `fb_translation` method on `String`:
+
 ```swift
 "key".fb_translation // returns the localized string in the current language
-// OR
-"key".fb_translate(to: "en") // returns the localized string in english (if it exists)
 ```
+
+You can also fetch a translation for a specific language:
+
+```swift
+"key".fb_translate(to: "fr")
+```
+
+If a value is not found in specified language, the system will fallback to english.
 
 ## Requirements
 
-- iOS 8.0+
+- iOS 10.0+ / tvOS 10.0+
 - Swift 5.0
 
 ## Installation
