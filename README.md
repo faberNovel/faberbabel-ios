@@ -106,7 +106,7 @@ class RemoteEventLogger: EventLogger {
 
 #### Localizable directory url
 
-By default the new `Localizable.strings` downloaded from the remote source is stored either in the user library directory if no `appGroupIdentifier` is passed, either in the location in the file system of the app group's shared directory.
+By default the new `Localizable.strings` downloaded from the remote source is stored either in the user library directory if no `appGroupIdentifier` is passed, or in the location in the file system of the app group's shared directory.
 
 You can create your custom url and have full control of the location of the localizable directory.
 
